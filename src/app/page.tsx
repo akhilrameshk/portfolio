@@ -24,6 +24,10 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CodeIcon from '@mui/icons-material/Code';
 import LayersIcon from '@mui/icons-material/Layers';
 import StorageIcon from '@mui/icons-material/Storage';
+import DownloadIcon from '@mui/icons-material/Download';
+import SpeedIcon from '@mui/icons-material/Speed';
+import ArchitectureIcon from '@mui/icons-material/Architecture';
+import SecurityIcon from '@mui/icons-material/Security';
 import { motion } from 'framer-motion';
 import { darkTheme } from '@/theme/theme';
 
@@ -32,6 +36,13 @@ const motionVariants = {
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5 },
 };
+
+const impactStats = [
+  { value: '10+', label: 'Years Experience' },
+  { value: '10+', label: 'Production Projects' },
+  { value: '40%', label: 'Performance Gain (SSR/SSG)' },
+  { value: '35%', label: 'Database Optimization' },
+];
 
 const projectsList = [
   {
@@ -95,7 +106,7 @@ const projectsList = [
     category: 'EdTech',
     color: '#6366f1',
     description: 'All-in-one education management system streamlining administration, communication, and student workflows.',
-    tech: 'Mobile • Web • Node.js',
+    tech: 'Meteor • AngularJS • Cordova • JavaScript • MongoDB • Node.js',
   },
   {
     title: 'Eye of Sharjah',
@@ -118,11 +129,11 @@ export default function Home() {
             <Box 
               component={motion.div} 
               {...motionVariants}
-              sx={{ minHeight: { xs: 'auto', md: '55vh' }, display: 'flex', flexDirection: 'column', justifyContent: 'center', py: { xs: 4, md: 2 } }}
+              sx={{ minHeight: { xs: 'auto', md: '50vh' }, display: 'flex', flexDirection: 'column', justifyContent: 'center', py: { xs: 4, md: 2 } }}
             >
               <Box sx={{ mb: 2 }}>
                 <Chip 
-                  label="Senior/Lead Full Stack Software Developer • 10+ Years Experience" 
+                  label="Senior / Lead Full Stack Software Developer • 10+ Years Experience" 
                   variant="outlined" 
                   size="medium"
                   sx={{ 
@@ -139,13 +150,13 @@ export default function Home() {
                 Akhil Ramesh K
               </Typography>
 
-              <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 300, maxWidth: '780px', mb: 4, lineHeight: 1.5, fontSize: { xs: '1.1rem', md: '1.35rem' } }}>
-                Senior/Lead Full Stack Web & Mobile Software Developer specializing in{' '}
-                <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>Next.js, React, Angular and Node.js</Box>, and{' '}
-                <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL, & DynamoDB</Box>.             
-               </Typography>
+              <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 300, maxWidth: '820px', mb: 4, lineHeight: 1.5, fontSize: { xs: '1.1rem', md: '1.35rem' } }}>
+                Senior Full Stack Web & Mobile Software Developer specializing in{' '}
+                <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>Next.js, React, Angular, Node.js</Box>, and{' '}
+                <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
+              </Typography>
 
-              <Stack  spacing={1.5} direction="row"   sx={{ gap: 1.5,flexWrap: 'wrap' }}>
+              <Stack spacing={1.5} direction="row" sx={{ gap: 1.5, flexWrap: 'wrap' }}>
                 <Button 
                   variant="contained" 
                   href="#projects"
@@ -153,6 +164,16 @@ export default function Home() {
                   sx={{ bgcolor: '#ffffff', color: '#000000', px: 3, py: 1.2, textTransform: 'none', fontWeight: 600, '&:hover': { bgcolor: '#e4e4e7' } }}
                 >
                   View Projects
+                </Button>
+                <Button 
+                  variant="outlined" 
+                  href="/Akhil_Ramesh_FullStack.pdf" 
+                  target="_blank"
+                  download
+                  startIcon={<DownloadIcon />}
+                  sx={{ borderColor: '#10b981', color: '#10b981', px: 2.5, py: 1.2, textTransform: 'none', fontWeight: 600, '&:hover': { bgcolor: 'rgba(16, 185, 129, 0.1)', borderColor: '#10b981' } }}
+                >
+                  Download Resume
                 </Button>
                 <Button 
                   variant="outlined" 
@@ -183,6 +204,53 @@ export default function Home() {
               </Stack>
             </Box>
 
+            {/* --- IMPACT METRICS --- */}
+            <Grid container spacing={2}>
+              {impactStats.map((stat, i) => (
+                <Grid size={{ xs: 6, sm: 3 }} key={i}>
+                  <Card variant="outlined" sx={{ textAlign: 'center', py: 2.5, px: 1, bgcolor: 'rgba(24, 24, 27, 0.4)', borderColor: 'rgba(255, 255, 255, 0.08)' }}>
+                    <Typography variant="h4" sx={{ fontWeight: 800, color: '#10b981', mb: 0.5 }}>{stat.value}</Typography>
+                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 1, fontWeight: 600, fontSize: '0.7rem' }}>{stat.label}</Typography>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+
+            {/* --- ABOUT ME / INTRODUCTION --- */}
+            <Box>
+              <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
+                About Me
+              </Typography>
+              <Typography variant="h3" sx={{ mb: 2, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+                Engineering Leadership & Full-Stack Craftsmanship
+              </Typography>
+
+              <Card variant="outlined" sx={{ p: { xs: 2.5, md: 4 }, borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                <Grid container spacing={3} >
+                  <Grid size={{ xs: 12, md: 8 }}>
+                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2, fontSize: '1.05rem' }}>
+                      With over a decade of software engineering experience**, I build resilient, high-performance web and mobile applications from scratch. My focus centers on building clean architectural patterns using modern JavaScript/TypeScript ecosystems, optimizing heavy database operations, and crafting intuitive end-user interfaces.
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
+                      Whether scaling enterprise platforms like **Isentia** or real-time event engines like **Comeonda**, I thrive on tackling backend synchronization bottlenecks, server-side rendering optimizations, and multi-tenant database designs.
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, md: 4 }}>
+                    <Stack spacing={1.5}>
+                      <Box sx={{ p: 2, borderRadius: 1, bgcolor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>Core Strength</Typography>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#10b981' }}>Full-Lifecycle Product Architecture</Typography>
+                      </Box>
+                      <Box sx={{ p: 2, borderRadius: 1, bgcolor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>Specialization</Typography>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#a855f7' }}>SSR/SSG Optimizations & SQL/NoSQL Aggregation</Typography>
+                      </Box>
+                    </Stack>
+                  </Grid>
+                </Grid>
+              </Card>
+            </Box>
+
             {/* --- FEATURED PROJECTS --- */}
             <Box id="projects">
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
@@ -201,7 +269,7 @@ export default function Home() {
                         height: '100%', 
                         display: 'flex', 
                         flexDirection: 'column', 
-                        justify: 'space-between', 
+                        justifyContent: 'space-between', 
                         p: 0.5,
                         borderColor: 'rgba(255, 255, 255, 0.08)',
                         bgcolor: 'rgba(24, 24, 27, 0.4)',
@@ -259,7 +327,7 @@ export default function Home() {
                       <CodeIcon sx={{ color: '#10b981', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Frontend Development</Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                        React.js, Next.js, Angular, TypeScript, JavaScript (ES6+), HTML5/CSS3, UI/UX Implementation, SSR/SSG.
+                        React.js, Next.js, Angular, AngularJS, TypeScript, JavaScript (ES6+), HTML5/CSS3, UI/UX Implementation, SSR/SSG.
                       </Typography>
                     </CardContent>
                   </Card>
@@ -271,7 +339,7 @@ export default function Home() {
                       <LayersIcon sx={{ color: '#a855f7', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Backend & Mobile</Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                        Node.js, NestJS, Express.js, RESTful APIs, GraphQL, Cordova, Hybrid Mobile Apps, WebSockets.
+                        Node.js, NestJS, Express.js, Meteor, RESTful APIs, GraphQL, Cordova, Hybrid Mobile Apps, WebSockets.
                       </Typography>
                     </CardContent>
                   </Card>
@@ -283,7 +351,55 @@ export default function Home() {
                       <StorageIcon sx={{ color: '#3b82f6', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Databases & Tools</Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                        MongoDB (Schema Design & Aggregation), PostgreSQL, MySQL, Redis, AWS, Netlify, GitHub, CI/CD.
+                        MongoDB (Schema Design & Aggregation), PostgreSQL, MySQL, DynamoDB, Redis, AWS, Netlify, GitHub, CI/CD.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              </Grid>
+            </Box>
+
+            {/* --- ENGINEERING PHILOSOPHY --- */}
+            <Box>
+              <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
+                Philosophy
+              </Typography>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+                Engineering Principles
+              </Typography>
+
+              <Grid container spacing={2.5}>
+                <Grid size={{ xs: 12, md: 4 }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                    <CardContent>
+                      <SpeedIcon sx={{ color: '#f59e0b', mb: 1, fontSize: 28 }} />
+                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Performance Optimization</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                        Leveraging server-side caching, bundle splitting, and query indexing to deliver rapid page loads and minimal latency.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+
+                <Grid size={{ xs: 12, md: 4 }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                    <CardContent>
+                      <ArchitectureIcon sx={{ color: '#f59e0b', mb: 1, fontSize: 28 }} />
+                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Scalable System Design</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                        Designing decoupled modular services and reusable component architecture built to withstand evolving business needs.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+
+                <Grid size={{ xs: 12, md: 4 }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                    <CardContent>
+                      <SecurityIcon sx={{ color: '#f59e0b', mb: 1, fontSize: 28 }} />
+                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Maintainability & Clean Code</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                        Enforcing strict TypeScript typing, modular directory organization, and automated testing patterns across teams.
                       </Typography>
                     </CardContent>
                   </Card>
@@ -325,6 +441,32 @@ export default function Home() {
               </Stack>
             </Box>
 
+            {/* --- CONTACT CALLOUT --- */}
+            <Card variant="outlined" sx={{ p: { xs: 3, md: 5 }, textAlign: 'center', borderColor: 'rgba(255, 255, 255, 0.12)', bgcolor: 'rgba(24, 24, 27, 0.6)' }}>
+              <Typography variant="h4" sx={{ fontWeight: 800, mb: 1.5 }}>Let&apos;s Build Something Exceptional</Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '650px', mx: 'auto', mb: 3, lineHeight: 1.6 }}>
+                Open to senior lead positions, full-stack architecture roles, or high-impact technical consulting across Next.js, React, and Node.js ecosystems.
+              </Typography>
+              <Stack  spacing={2}  direction="row" sx={{ gap: 2, flexWrap: 'wrap',justifyContent: 'center', }}>
+                <Button 
+                  variant="contained" 
+                  href="mailto:akhilrameshk@gmail.com"
+                  startIcon={<EmailIcon />}
+                  sx={{ bgcolor: '#ffffff', color: '#000000', px: 3.5, py: 1.3, fontWeight: 700, textTransform: 'none', '&:hover': { bgcolor: '#e4e4e7' } }}
+                >
+                  Send Email
+                </Button>
+                <Button 
+                  variant="outlined" 
+                  href="tel:+919633134324"
+                  startIcon={<PhoneIcon />}
+                  sx={{ borderColor: 'rgba(255, 255, 255, 0.2)', color: 'text.primary', px: 3, py: 1.3, textTransform: 'none', '&:hover': { bgcolor: '#18181b' } }}
+                >
+                  Call Directly
+                </Button>
+              </Stack>
+            </Card>
+
             <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)' }} />
 
             {/* --- FOOTER --- */}
@@ -332,7 +474,7 @@ export default function Home() {
               <Typography variant="caption" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
                 © {new Date().getFullYear()} Akhil Ramesh K. All rights reserved.
               </Typography>
-              <Stack direction="row" spacing={1.5}  useFlexGap sx={{ gap: 1.5, flexWrap: 'wrap' }}>
+              <Stack direction="row" spacing={1.5} useFlexGap sx={{ gap: 1.5, flexWrap: 'wrap' }}>
                 <Button size="small" href="https://linkedin.com/in/akhil-ramesh-a0270648" target="_blank" startIcon={<LinkedInIcon />} sx={{ color: 'text.secondary', textTransform: 'none' }}>
                   LinkedIn
                 </Button>
