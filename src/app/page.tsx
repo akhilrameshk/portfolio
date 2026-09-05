@@ -25,6 +25,7 @@ import {
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CodeIcon from '@mui/icons-material/Code';
@@ -175,44 +176,76 @@ export default function Home() {
         position="sticky" 
         elevation={0}
         sx={{ 
-          bgcolor: 'rgba(9, 9, 11, 0.75)', 
+          bgcolor: 'rgba(9, 9, 11, 0.85)', 
           backdropFilter: 'blur(16px)', 
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)' 
         }}
       >
         <Container maxWidth="lg">
-          <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: '64px' }}>
+          <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: '64px', px: { xs: 1, sm: 0 } }}>
+            {/* FULL NAME ON TOP */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <TerminalIcon sx={{ color: '#10b981', fontSize: 24 }} />
-              <Typography variant="subtitle1" sx={{ fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', fontFamily: 'monospace' }}>
-                akhil.dev
+              <TerminalIcon sx={{ color: '#10b981', fontSize: 22 }} />
+              <Typography 
+                variant="subtitle1" 
+                sx={{ 
+                  fontWeight: 800, 
+                  letterSpacing: '-0.02em', 
+                  color: '#fff', 
+                  fontSize: { xs: '0.95rem', sm: '1.1rem' } 
+                }}
+              >
+                Akhil Ramesh K
               </Typography>
             </Box>
 
-            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', sm: 'flex' } }}>
+            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button href="#about" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>About</Button>
               <Button href="#projects" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Projects</Button>
               <Button href="#skills" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Skills</Button>
               <Button href="#experience" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Experience</Button>
             </Stack>
 
-            <Button 
-              variant="contained" 
-              href="mailto:akhilrameshk@gmail.com" 
-              size="small"
-              startIcon={<EmailIcon />}
-              sx={{ 
-                bgcolor: '#ffffff', 
-                color: '#000000', 
-                fontWeight: 700, 
-                textTransform: 'none', 
-                borderRadius: '6px',
-                px: 2,
-                '&:hover': { bgcolor: '#e4e4e7' } 
-              }}
-            >
-              Contact
-            </Button>
+            {/* TOP RIGHT ACTION BUTTONS WITH WHATSAPP */}
+            <Stack direction="row" spacing={1}>
+              <Button 
+                variant="contained" 
+                href="https://wa.me/919633134324" 
+                target="_blank"
+                size="small"
+                startIcon={<WhatsAppIcon />}
+                sx={{ 
+                  bgcolor: '#25D366', 
+                  color: '#ffffff', 
+                  fontWeight: 700, 
+                  textTransform: 'none', 
+                  borderRadius: '6px',
+                  px: { xs: 1.2, sm: 2 },
+                  fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                  '&:hover': { bgcolor: '#1ebc57' } 
+                }}
+              >
+                WhatsApp
+              </Button>
+              <Button 
+                variant="contained" 
+                href="mailto:akhilrameshk@gmail.com" 
+                size="small"
+                startIcon={<EmailIcon />}
+                sx={{ 
+                  bgcolor: '#ffffff', 
+                  color: '#000000', 
+                  fontWeight: 700, 
+                  textTransform: 'none', 
+                  borderRadius: '6px',
+                  px: { xs: 1.2, sm: 2 },
+                  fontSize: { xs: '0.75rem', sm: '0.85rem' },
+                  '&:hover': { bgcolor: '#e4e4e7' } 
+                }}
+              >
+                Contact
+              </Button>
+            </Stack>
           </Toolbar>
         </Container>
       </AppBar>
@@ -223,7 +256,7 @@ export default function Home() {
           color: 'text.primary', 
           minHeight: '100vh', 
           pb: { xs: 6, md: 10 },
-          pt: { xs: 3, md: 5 },
+          pt: { xs: 2, md: 5 },
           position: 'relative',
           overflow: 'hidden',
           backgroundImage: `
@@ -233,7 +266,7 @@ export default function Home() {
         }}
       >
         <Container maxWidth="lg">
-          <Stack spacing={{ xs: 8, md: 12 }}>
+          <Stack spacing={{ xs: 6, md: 12 }}>
             
             {/* --- HERO SECTION --- */}
             <Box 
@@ -243,27 +276,38 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               sx={{ pt: { xs: 2, md: 4 } }}
             >
-              <Box sx={{ mb: 2.5 }}>
+              {/* NO TRUNCATION BADGES */}
+              <Stack direction="row" spacing={1} sx={{ mb: 2.5, flexWrap: 'wrap', gap: 1 }}>
                 <Chip 
-                  label="Senior / Lead Full Stack Software Developer • 10+ Years Experience" 
-                  variant="outlined" 
-                  size={isMobile ? "small" : "medium"}
+                  label="Senior / Lead Full Stack Developer" 
+                  size="small"
                   sx={{ 
                     borderColor: 'rgba(16, 185, 129, 0.3)', 
                     bgcolor: 'rgba(16, 185, 129, 0.05)', 
                     color: '#10b981',
                     fontFamily: 'monospace',
-                    fontSize: { xs: '0.72rem', sm: '0.82rem' },
-                    py: 0.5,
-                    px: 0.5
+                    fontWeight: 600,
+                    fontSize: { xs: '0.7rem', sm: '0.8rem' }
                   }} 
                 />
-              </Box>
+                <Chip 
+                  label="10+ Years Experience" 
+                  size="small"
+                  sx={{ 
+                    borderColor: 'rgba(168, 85, 247, 0.3)', 
+                    bgcolor: 'rgba(168, 85, 247, 0.05)', 
+                    color: '#a855f7',
+                    fontFamily: 'monospace',
+                    fontWeight: 600,
+                    fontSize: { xs: '0.7rem', sm: '0.8rem' }
+                  }} 
+                />
+              </Stack>
 
               <Typography 
                 variant="h1" 
                 sx={{ 
-                  fontSize: { xs: '2.6rem', sm: '4rem', md: '5rem' }, 
+                  fontSize: { xs: '2.5rem', sm: '4rem', md: '5rem' }, 
                   fontWeight: 900, 
                   letterSpacing: '-0.03em', 
                   mb: 2.5,
@@ -283,7 +327,7 @@ export default function Home() {
                   maxWidth: '840px', 
                   mb: 4.5, 
                   lineHeight: 1.6, 
-                  fontSize: { xs: '1.05rem', sm: '1.25rem', md: '1.38rem' } 
+                  fontSize: { xs: '1rem', sm: '1.25rem', md: '1.38rem' } 
                 }}
               >
                 Senior Full Stack Web & Mobile Software Developer specializing in{' '}
@@ -291,7 +335,7 @@ export default function Home() {
                 <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
               </Typography>
 
-              {/* Action Buttons */}
+              {/* Action Buttons with WhatsApp */}
               <Box 
                 sx={{ 
                   display: 'flex', 
@@ -307,7 +351,7 @@ export default function Home() {
                   sx={{ 
                     bgcolor: '#10b981', 
                     color: '#000000', 
-                    px: 3.5, 
+                    px: 3, 
                     py: 1.3, 
                     textTransform: 'none', 
                     fontWeight: 700, 
@@ -317,6 +361,24 @@ export default function Home() {
                   }}
                 >
                   View Featured Projects
+                </Button>
+                <Button 
+                  variant="contained" 
+                  href="https://wa.me/919633134324"
+                  target="_blank"
+                  startIcon={<WhatsAppIcon />}
+                  sx={{ 
+                    bgcolor: '#25D366', 
+                    color: '#ffffff', 
+                    px: 2.5, 
+                    py: 1.3, 
+                    textTransform: 'none', 
+                    fontWeight: 700, 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#1ebc57' } 
+                  }}
+                >
+                  WhatsApp
                 </Button>
                 <Button 
                   variant="outlined" 
@@ -335,41 +397,7 @@ export default function Home() {
                     '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.05)', borderColor: '#ffffff' } 
                   }}
                 >
-                  Download Resume
-                </Button>
-                <Button 
-                  variant="outlined" 
-                  href="https://linkedin.com/in/akhil-ramesh-a0270648"
-                  target="_blank"
-                  startIcon={<LinkedInIcon />}
-                  sx={{ 
-                    borderColor: 'rgba(255, 255, 255, 0.12)', 
-                    color: 'text.primary', 
-                    px: 2, 
-                    py: 1.3, 
-                    textTransform: 'none', 
-                    borderRadius: '8px',
-                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
-                  }}
-                >
-                  LinkedIn
-                </Button>
-                <Button 
-                  variant="outlined" 
-                  href="https://github.com/akhilrameshk/"
-                  target="_blank"
-                  startIcon={<GitHubIcon />}
-                  sx={{ 
-                    borderColor: 'rgba(255, 255, 255, 0.12)', 
-                    color: 'text.primary', 
-                    px: 2, 
-                    py: 1.3, 
-                    textTransform: 'none', 
-                    borderRadius: '8px',
-                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
-                  }}
-                >
-                  GitHub
+                  Resume
                 </Button>
               </Box>
             </Box>
@@ -382,8 +410,8 @@ export default function Home() {
                     variant="outlined" 
                     sx={{ 
                       textAlign: 'center', 
-                      py: 3, 
-                      px: 2, 
+                      py: 2.5, 
+                      px: 1.5, 
                       bgcolor: 'rgba(18, 18, 22, 0.5)', 
                       borderColor: 'rgba(255, 255, 255, 0.08)',
                       borderRadius: '12px',
@@ -397,7 +425,7 @@ export default function Home() {
                     <Typography variant="h3" sx={{ fontWeight: 800, color: '#10b981', mb: 0.5, fontSize: { xs: '1.8rem', sm: '2.4rem' } }}>
                       {stat.value}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, fontSize: '0.68rem', display: 'block' }}>
+                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, fontSize: '0.65rem', display: 'block' }}>
                       {stat.label}
                     </Typography>
                   </Card>
@@ -410,14 +438,14 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 About Me
               </Typography>
-              <Typography variant="h3" sx={{ mb: 2.5, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.7rem', md: '2.2rem' } }}>
+              <Typography variant="h3" sx={{ mb: 2.5, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Engineering Leadership & Full-Stack Craftsmanship
               </Typography>
 
               <Card 
                 variant="outlined" 
                 sx={{ 
-                  p: { xs: 3, md: 4.5 }, 
+                  p: { xs: 2.5, md: 4.5 }, 
                   borderColor: 'rgba(255, 255, 255, 0.08)', 
                   bgcolor: 'rgba(18, 18, 22, 0.5)',
                   borderRadius: '16px',
@@ -426,22 +454,22 @@ export default function Home() {
               >
                 <Grid container spacing={4}>
                   <Grid size={{ xs: 12, md: 8 }}>
-                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.85, mb: 2, fontSize: { xs: '0.98rem', md: '1.05rem' } }}>
+                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.85, mb: 2, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
                       With over a decade of software engineering experience, I build resilient, high-performance web and mobile applications from scratch. My focus centers on building clean architectural patterns using modern JavaScript/TypeScript ecosystems, optimizing heavy database operations, and crafting intuitive end-user interfaces.
                     </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.85, fontSize: { xs: '0.98rem', md: '1.05rem' } }}>
+                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.85, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
                       Whether scaling enterprise platforms like <Box component="strong" sx={{ color: '#ffffff', fontWeight: 600 }}>Isentia</Box> or real-time event engines like <Box component="strong" sx={{ color: '#ffffff', fontWeight: 600 }}>Comeonda</Box>, I thrive on tackling backend synchronization bottlenecks, server-side rendering optimizations, and multi-tenant database designs.
                     </Typography>
                   </Grid>
                   <Grid size={{ xs: 12, md: 4 }}>
                     <Stack spacing={2}>
-                      <Box sx={{ p: 2.5, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                      <Box sx={{ p: 2, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5, textTransform: 'uppercase', fontFamily: 'monospace' }}>Core Focus</Typography>
-                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#10b981', fontSize: '0.95rem' }}>Full-Lifecycle Product Architecture</Typography>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#10b981', fontSize: '0.9rem' }}>Full-Lifecycle Product Architecture</Typography>
                       </Box>
-                      <Box sx={{ p: 2.5, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                      <Box sx={{ p: 2, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5, textTransform: 'uppercase', fontFamily: 'monospace' }}>Specialization</Typography>
-                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#a855f7', fontSize: '0.95rem' }}>SSR/SSG Optimizations & SQL/NoSQL Aggregation</Typography>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#a855f7', fontSize: '0.9rem' }}>SSR/SSG Optimizations & SQL/NoSQL Aggregation</Typography>
                       </Box>
                     </Stack>
                   </Grid>
@@ -454,7 +482,7 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 Portfolio
               </Typography>
-              <Typography variant="h3" sx={{ mb: 2, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.7rem', md: '2.2rem' } }}>
+              <Typography variant="h3" sx={{ mb: 2, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Featured Projects Showcase
               </Typography>
 
@@ -549,60 +577,12 @@ export default function Home() {
               </Grid>
             </Box>
 
-            {/* --- TECHNICAL SKILLS --- */}
-            <Box id="skills">
-              <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#a855f7', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
-                Stack
-              </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.7rem', md: '2.2rem' } }}>
-                Technical Expertise
-              </Typography>
-
-              <Grid container spacing={2.5}>
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1.5, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 22, 0.5)', borderRadius: '12px' }}>
-                    <CardContent>
-                      <CodeIcon sx={{ color: '#10b981', mb: 1.5, fontSize: 32 }} />
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Frontend Architecture</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
-                        React.js, Next.js, Angular, AngularJS, TypeScript, JavaScript (ES6+), HTML5/CSS3, Material UI, SSR/SSG Optimizations.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1.5, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 22, 0.5)', borderRadius: '12px' }}>
-                    <CardContent>
-                      <LayersIcon sx={{ color: '#a855f7', mb: 1.5, fontSize: 32 }} />
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Backend & Mobile Platforms</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
-                        Node.js, NestJS, Express.js, Meteor, RESTful APIs, GraphQL, Cordova Hybrid Apps, WebSockets, Real-time Engines.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1.5, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 22, 0.5)', borderRadius: '12px' }}>
-                    <CardContent>
-                      <StorageIcon sx={{ color: '#3b82f6', mb: 1.5, fontSize: 32 }} />
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Databases & Infrastructure</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
-                        MongoDB (Aggregation Pipelines), PostgreSQL, MySQL, DynamoDB, Redis Caching, AWS, Vercel, Netlify, Git, CI/CD.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </Box>
-
             {/* --- WORK EXPERIENCE TIMELINE --- */}
             <Box id="experience">
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#3b82f6', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 Experience
               </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.7rem', md: '2.2rem' } }}>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Career History
               </Typography>
 
@@ -660,59 +640,11 @@ export default function Home() {
               </Stack>
             </Box>
 
-            {/* --- ENGINEERING PHILOSOPHY --- */}
-            <Box>
-              <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
-                Philosophy
-              </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.7rem', md: '2.2rem' } }}>
-                Core Engineering Standards
-              </Typography>
-
-              <Grid container spacing={2.5}>
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1.5, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 22, 0.5)', borderRadius: '12px' }}>
-                    <CardContent>
-                      <SpeedIcon sx={{ color: '#f59e0b', mb: 1.5, fontSize: 32 }} />
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Performance Optimization</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
-                        Leveraging server-side caching, bundle splitting, and query indexing to deliver rapid page loads and minimal latency.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1.5, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 22, 0.5)', borderRadius: '12px' }}>
-                    <CardContent>
-                      <ArchitectureIcon sx={{ color: '#f59e0b', mb: 1.5, fontSize: 32 }} />
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Scalable System Design</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
-                        Designing decoupled modular services and reusable component architecture built to withstand evolving business needs.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-
-                <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1.5, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 22, 0.5)', borderRadius: '12px' }}>
-                    <CardContent>
-                      <SecurityIcon sx={{ color: '#f59e0b', mb: 1.5, fontSize: 32 }} />
-                      <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Maintainability & Clean Code</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
-                        Enforcing strict TypeScript typing, modular directory organization, and automated testing patterns across teams.
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              </Grid>
-            </Box>
-
             {/* --- CONTACT CALLOUT --- */}
             <Card 
               variant="outlined" 
               sx={{ 
-                p: { xs: 3.5, md: 6 }, 
+                p: { xs: 3, md: 6 }, 
                 textAlign: 'center', 
                 borderColor: 'rgba(16, 185, 129, 0.25)', 
                 bgcolor: 'rgba(18, 18, 22, 0.7)',
@@ -721,17 +653,35 @@ export default function Home() {
                 boxShadow: '0 10px 40px -15px rgba(0, 0, 0, 0.5)'
               }}
             >
-              <Typography variant="h4" sx={{ fontWeight: 800, mb: 1.5, fontSize: { xs: '1.6rem', sm: '2.2rem' } }}>
+              <Typography variant="h4" sx={{ fontWeight: 800, mb: 1.5, fontSize: { xs: '1.5rem', sm: '2.2rem' } }}>
                 Let&apos;s Build Something Exceptional
               </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '650px', mx: 'auto', mb: 3.5, lineHeight: 1.6, fontSize: { xs: '0.95rem', sm: '1.05rem' } }}>
+              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '650px', mx: 'auto', mb: 3.5, lineHeight: 1.6, fontSize: { xs: '0.9rem', sm: '1.05rem' } }}>
                 Open to senior lead positions, full-stack architecture roles, or high-impact technical consulting across Next.js, React, and Node.js ecosystems.
               </Typography>
               <Stack 
                 direction={{ xs: 'column', sm: 'row' }} 
-                spacing={2} 
-                sx={{ justifyContent: 'center', maxWidth: { xs: '100%', sm: '420px' }, mx: 'auto' }}
+                spacing={1.5} 
+                sx={{ justifyContent: 'center', maxWidth: { xs: '100%', sm: '500px' }, mx: 'auto' }}
               >
+                <Button 
+                  variant="contained" 
+                  href="https://wa.me/919633134324"
+                  target="_blank"
+                  startIcon={<WhatsAppIcon />}
+                  fullWidth
+                  sx={{ 
+                    bgcolor: '#25D366', 
+                    color: '#ffffff', 
+                    py: 1.3, 
+                    fontWeight: 700, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#1ebc57' } 
+                  }}
+                >
+                  WhatsApp
+                </Button>
                 <Button 
                   variant="contained" 
                   href="mailto:akhilrameshk@gmail.com"
@@ -740,7 +690,7 @@ export default function Home() {
                   sx={{ 
                     bgcolor: '#10b981', 
                     color: '#000000', 
-                    py: 1.4, 
+                    py: 1.3, 
                     fontWeight: 700, 
                     textTransform: 'none', 
                     borderRadius: '8px',
@@ -748,23 +698,7 @@ export default function Home() {
                     '&:hover': { bgcolor: '#059669' } 
                   }}
                 >
-                  Send Email
-                </Button>
-                <Button 
-                  variant="outlined" 
-                  href="tel:+919633134324"
-                  startIcon={<PhoneIcon />}
-                  fullWidth
-                  sx={{ 
-                    borderColor: 'rgba(255, 255, 255, 0.15)', 
-                    color: 'text.primary', 
-                    py: 1.4, 
-                    textTransform: 'none', 
-                    borderRadius: '8px',
-                    '&:hover': { bgcolor: '#18181b', borderColor: '#ffffff' } 
-                  }}
-                >
-                  Call Directly
+                  Email
                 </Button>
               </Stack>
             </Card>
@@ -777,17 +711,14 @@ export default function Home() {
                 © {new Date().getFullYear()} Akhil Ramesh K. All rights reserved.
               </Typography>
               <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
+                <Button size="small" href="https://wa.me/919633134324" target="_blank" startIcon={<WhatsAppIcon />} sx={{ color: '#25D366', textTransform: 'none' }}>
+                  WhatsApp
+                </Button>
                 <Button size="small" href="https://linkedin.com/in/akhil-ramesh-a0270648" target="_blank" startIcon={<LinkedInIcon />} sx={{ color: 'text.secondary', textTransform: 'none' }}>
                   LinkedIn
                 </Button>
                 <Button size="small" href="https://github.com/akhilrameshk/" target="_blank" startIcon={<GitHubIcon />} sx={{ color: 'text.secondary', textTransform: 'none' }}>
                   GitHub
-                </Button>
-                <Button size="small" href="mailto:akhilrameshk@gmail.com" startIcon={<EmailIcon />} sx={{ color: 'text.secondary', textTransform: 'none' }}>
-                  Email
-                </Button>
-                <Button size="small" href="tel:+919633134324" startIcon={<PhoneIcon />} sx={{ color: 'text.secondary', textTransform: 'none' }}>
-                  +91 96331 34324
                 </Button>
               </Stack>
             </Box>
