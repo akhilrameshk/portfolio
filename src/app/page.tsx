@@ -194,7 +194,7 @@ export default function Home() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      {/* --- CLEAN HEADER (NO ICONS) --- */}
+      {/* --- HEADER (CLEAN TEXT-ONLY CONTACT BUTTONS) --- */}
       <AppBar 
         position="sticky" 
         elevation={0}
@@ -349,7 +349,7 @@ export default function Home() {
                 <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
               </Typography>
 
-              {/* ACTION BUTTONS WITH SOCIAL AND CONTACT LINKS */}
+              {/* HERO ACTION BUTTONS WITH SOCIAL & CONTACT LINKS */}
               <Box 
                 sx={{ 
                   display: 'flex', 
@@ -741,7 +741,7 @@ export default function Home() {
           </Stack>
         </Container>
 
-        {/* --- FLOATING VERTICAL QUICK ACTIONS + DYNAMIC SCROLL ARROW TOGGLE --- */}
+        {/* --- FLOATING VERTICAL QUICK ACTIONS (DYNAMIC ARROW AT BOTTOM) --- */}
         <Stack 
           direction="column"
           spacing={1.2}
@@ -753,28 +753,6 @@ export default function Home() {
             alignItems: 'center'
           }}
         >
-          {/* Dynamic Scroll Toggle Button (Top -> Down Arrow, Bottom -> Up Arrow) */}
-          <Tooltip title={isAtBottom ? "Scroll to Top" : "Scroll to Bottom"} placement="left">
-            <Fab 
-              size="small" 
-              onClick={handleScrollToggle} 
-              aria-label="scroll toggle"
-              sx={{ 
-                bgcolor: '#10b981', 
-                color: '#000000', 
-                boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)',
-                '&:hover': { bgcolor: '#059669', color: '#ffffff' } 
-              }}
-            >
-              {isAtBottom ? (
-                <KeyboardArrowUpIcon fontSize="small" />
-              ) : (
-                <KeyboardArrowDownIcon fontSize="small" />
-              )}
-            </Fab>
-          </Tooltip>
-
-          {/* Quick Contact Actions arranged Vertically */}
           <Tooltip title="WhatsApp" placement="left">
             <Fab 
               size="small" 
@@ -826,6 +804,27 @@ export default function Home() {
               }}
             >
               <PhoneIcon fontSize="small" />
+            </Fab>
+          </Tooltip>
+
+          {/* Dynamic Scroll Toggle Button - At the bottom of the stack */}
+          <Tooltip title={isAtBottom ? "Scroll to Top" : "Scroll to Bottom"} placement="left">
+            <Fab 
+              size="small" 
+              onClick={handleScrollToggle} 
+              aria-label="scroll toggle"
+              sx={{ 
+                bgcolor: '#10b981', 
+                color: '#000000', 
+                boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)',
+                '&:hover': { bgcolor: '#059669', color: '#ffffff' } 
+              }}
+            >
+              {isAtBottom ? (
+                <KeyboardArrowUpIcon fontSize="small" />
+              ) : (
+                <KeyboardArrowDownIcon fontSize="small" />
+              )}
             </Fab>
           </Tooltip>
         </Stack>
