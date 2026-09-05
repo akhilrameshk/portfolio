@@ -1,4 +1,3 @@
-// src/app/page.tsx
 'use client';
 
 import React from 'react';
@@ -14,7 +13,9 @@ import {
   Chip, 
   Button, 
   Divider, 
-  Stack 
+  Stack,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EmailIcon from '@mui/icons-material/Email';
@@ -40,8 +41,8 @@ const motionVariants = {
 const impactStats = [
   { value: '10+', label: 'Years Experience' },
   { value: '10+', label: 'Production Projects' },
-  { value: '40%', label: 'Performance Gain (SSR/SSG)' },
-  { value: '35%', label: 'Database Optimization' },
+  { value: '40%', label: 'Performance Gain' },
+  { value: '35%', label: 'Database Speedup' },
 ];
 
 const projectsList = [
@@ -106,7 +107,7 @@ const projectsList = [
     category: 'EdTech',
     color: '#6366f1',
     description: 'All-in-one education management system streamlining administration, communication, and student workflows.',
-    tech: 'Meteor • AngularJS • Cordova • JavaScript • MongoDB • Node.js',
+    tech: 'Meteor • AngularJS • Cordova • MongoDB • Node.js',
   },
   {
     title: 'Eye of Sharjah',
@@ -118,10 +119,21 @@ const projectsList = [
 ];
 
 export default function Home() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Box sx={{ bgcolor: 'background.default', color: 'text.primary', minHeight: '100vh', py: { xs: 4, md: 8 } }}>
+      <Box 
+        sx={{ 
+          bgcolor: '#09090b', 
+          color: 'text.primary', 
+          minHeight: '100vh', 
+          py: { xs: 3, md: 8 },
+          backgroundImage: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.12), transparent)'
+        }}
+      >
         <Container maxWidth="lg">
           <Stack spacing={{ xs: 6, md: 10 }}>
             
@@ -129,39 +141,84 @@ export default function Home() {
             <Box 
               component={motion.div} 
               {...motionVariants}
-              sx={{ minHeight: { xs: 'auto', md: '50vh' }, display: 'flex', flexDirection: 'column', justifyContent: 'center', py: { xs: 4, md: 2 } }}
+              sx={{ 
+                minHeight: { xs: 'auto', md: '45vh' }, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'center', 
+                py: { xs: 2, md: 4 } 
+              }}
             >
               <Box sx={{ mb: 2 }}>
                 <Chip 
                   label="Senior / Lead Full Stack Software Developer • 10+ Years Experience" 
                   variant="outlined" 
-                  size="medium"
+                  size={isMobile ? "small" : "medium"}
                   sx={{ 
-                    borderColor: 'rgba(255, 255, 255, 0.15)', 
-                    bgcolor: 'rgba(24, 24, 27, 0.6)', 
-                    color: 'text.secondary',
+                    borderColor: 'rgba(16, 185, 129, 0.3)', 
+                    bgcolor: 'rgba(16, 185, 129, 0.05)', 
+                    color: '#10b981',
                     fontFamily: 'monospace',
-                    fontSize: '0.8rem'
+                    fontSize: { xs: '0.7rem', sm: '0.8rem' },
+                    py: 0.5
                   }} 
                 />
               </Box>
 
-              <Typography variant="h1" sx={{ fontSize: { xs: '2.5rem', sm: '3.8rem', md: '4.5rem' }, fontWeight: 800, tracking: '-0.02em', mb: 2 }}>
+              <Typography 
+                variant="h1" 
+                sx={{ 
+                  fontSize: { xs: '2.4rem', sm: '3.6rem', md: '4.5rem' }, 
+                  fontWeight: 800, 
+                  letterSpacing: '-0.02em', 
+                  mb: 2,
+                  background: 'linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
                 Akhil Ramesh K
               </Typography>
 
-              <Typography variant="h5" color="text.secondary" sx={{ fontWeight: 300, maxWidth: '820px', mb: 4, lineHeight: 1.5, fontSize: { xs: '1.1rem', md: '1.35rem' } }}>
+              <Typography 
+                variant="h5" 
+                color="text.secondary" 
+                sx={{ 
+                  fontWeight: 300, 
+                  maxWidth: '820px', 
+                  mb: 4, 
+                  lineHeight: 1.6, 
+                  fontSize: { xs: '1rem', sm: '1.2rem', md: '1.35rem' } 
+                }}
+              >
                 Senior Full Stack Web & Mobile Software Developer specializing in{' '}
-                <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>Next.js, React, Angular, Node.js</Box>, and{' '}
-                <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
+                <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>Next.js, React, Angular, Node.js</Box>, and{' '}
+                <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
               </Typography>
 
-              <Stack spacing={1.5} direction="row" sx={{ gap: 1.5, flexWrap: 'wrap' }}>
+              {/* Action Buttons with Responsive Behavior */}
+              <Box 
+                sx={{ 
+                  display: 'flex', 
+                  flexWrap: 'wrap', 
+                  gap: 1.5, 
+                  '& > *': { flexGrow: { xs: 1, sm: 0 } } 
+                }}
+              >
                 <Button 
                   variant="contained" 
                   href="#projects"
                   endIcon={<ArrowForwardIcon />}
-                  sx={{ bgcolor: '#ffffff', color: '#000000', px: 3, py: 1.2, textTransform: 'none', fontWeight: 600, '&:hover': { bgcolor: '#e4e4e7' } }}
+                  sx={{ 
+                    bgcolor: '#ffffff', 
+                    color: '#000000', 
+                    px: 3, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    fontWeight: 700, 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#e4e4e7' } 
+                  }}
                 >
                   View Projects
                 </Button>
@@ -171,7 +228,16 @@ export default function Home() {
                   target="_blank"
                   download
                   startIcon={<DownloadIcon />}
-                  sx={{ borderColor: '#10b981', color: '#10b981', px: 2.5, py: 1.2, textTransform: 'none', fontWeight: 600, '&:hover': { bgcolor: 'rgba(16, 185, 129, 0.1)', borderColor: '#10b981' } }}
+                  sx={{ 
+                    borderColor: '#10b981', 
+                    color: '#10b981', 
+                    px: 2.5, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    fontWeight: 600, 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: 'rgba(16, 185, 129, 0.1)', borderColor: '#10b981' } 
+                  }}
                 >
                   Download Resume
                 </Button>
@@ -180,7 +246,15 @@ export default function Home() {
                   href="https://linkedin.com/in/akhil-ramesh-a0270648"
                   target="_blank"
                   startIcon={<LinkedInIcon />}
-                  sx={{ borderColor: 'rgba(255, 255, 255, 0.15)', color: 'text.primary', px: 2.5, py: 1.2, textTransform: 'none', '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } }}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.15)', 
+                    color: 'text.primary', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
+                  }}
                 >
                   LinkedIn
                 </Button>
@@ -189,7 +263,15 @@ export default function Home() {
                   href="https://github.com/akhilrameshk/"
                   target="_blank"
                   startIcon={<GitHubIcon />}
-                  sx={{ borderColor: 'rgba(255, 255, 255, 0.15)', color: 'text.primary', px: 2.5, py: 1.2, textTransform: 'none', '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } }}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.15)', 
+                    color: 'text.primary', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
+                  }}
                 >
                   GitHub
                 </Button>
@@ -197,20 +279,43 @@ export default function Home() {
                   variant="outlined" 
                   href="tel:+919633134324"
                   startIcon={<PhoneIcon />}
-                  sx={{ borderColor: 'rgba(255, 255, 255, 0.15)', color: 'text.primary', px: 2.5, py: 1.2, textTransform: 'none', '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } }}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.15)', 
+                    color: 'text.primary', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
+                  }}
                 >
                   +91 96331 34324
                 </Button>
-              </Stack>
+              </Box>
             </Box>
 
             {/* --- IMPACT METRICS --- */}
             <Grid container spacing={2}>
               {impactStats.map((stat, i) => (
                 <Grid size={{ xs: 6, sm: 3 }} key={i}>
-                  <Card variant="outlined" sx={{ textAlign: 'center', py: 2.5, px: 1, bgcolor: 'rgba(24, 24, 27, 0.4)', borderColor: 'rgba(255, 255, 255, 0.08)' }}>
-                    <Typography variant="h4" sx={{ fontWeight: 800, color: '#10b981', mb: 0.5 }}>{stat.value}</Typography>
-                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 1, fontWeight: 600, fontSize: '0.7rem' }}>{stat.label}</Typography>
+                  <Card 
+                    variant="outlined" 
+                    sx={{ 
+                      textAlign: 'center', 
+                      py: 2.5, 
+                      px: 1.5, 
+                      bgcolor: 'rgba(18, 18, 20, 0.7)', 
+                      borderColor: 'rgba(255, 255, 255, 0.08)',
+                      borderRadius: '12px',
+                      backdropFilter: 'blur(10px)'
+                    }}
+                  >
+                    <Typography variant="h4" sx={{ fontWeight: 800, color: '#10b981', mb: 0.5, fontSize: { xs: '1.6rem', sm: '2rem' } }}>
+                      {stat.value}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'uppercase', letterSpacing: 0.8, fontWeight: 600, fontSize: '0.68rem', display: 'block' }}>
+                      {stat.label}
+                    </Typography>
                   </Card>
                 </Grid>
               ))}
@@ -221,27 +326,35 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 About Me
               </Typography>
-              <Typography variant="h3" sx={{ mb: 2, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+              <Typography variant="h3" sx={{ mb: 2, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Engineering Leadership & Full-Stack Craftsmanship
               </Typography>
 
-              <Card variant="outlined" sx={{ p: { xs: 2.5, md: 4 }, borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
-                <Grid container spacing={3} >
+              <Card 
+                variant="outlined" 
+                sx={{ 
+                  p: { xs: 2.5, md: 4 }, 
+                  borderColor: 'rgba(255, 255, 255, 0.08)', 
+                  bgcolor: 'rgba(18, 18, 20, 0.6)',
+                  borderRadius: '16px' 
+                }}
+              >
+                <Grid container spacing={3}>
                   <Grid size={{ xs: 12, md: 8 }}>
-                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2, fontSize: '1.05rem' }}>
-                      With over a decade of software engineering experience**, I build resilient, high-performance web and mobile applications from scratch. My focus centers on building clean architectural patterns using modern JavaScript/TypeScript ecosystems, optimizing heavy database operations, and crafting intuitive end-user interfaces.
+                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, mb: 2, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
+                      With over a decade of software engineering experience, I build resilient, high-performance web and mobile applications from scratch. My focus centers on building clean architectural patterns using modern JavaScript/TypeScript ecosystems, optimizing heavy database operations, and crafting intuitive end-user interfaces.
                     </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: '1.05rem' }}>
-                      Whether scaling enterprise platforms like **Isentia** or real-time event engines like **Comeonda**, I thrive on tackling backend synchronization bottlenecks, server-side rendering optimizations, and multi-tenant database designs.
+                    <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.8, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
+                      Whether scaling enterprise platforms like <Box component="strong" sx={{ color: '#ffffff', fontWeight: 600 }}>Isentia</Box> or real-time event engines like <Box component="strong" sx={{ color: '#ffffff', fontWeight: 600 }}>Comeonda</Box>, I thrive on tackling backend synchronization bottlenecks, server-side rendering optimizations, and multi-tenant database designs.
                     </Typography>
                   </Grid>
                   <Grid size={{ xs: 12, md: 4 }}>
                     <Stack spacing={1.5}>
-                      <Box sx={{ p: 2, borderRadius: 1, bgcolor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                      <Box sx={{ p: 2, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>Core Strength</Typography>
                         <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#10b981' }}>Full-Lifecycle Product Architecture</Typography>
                       </Box>
-                      <Box sx={{ p: 2, borderRadius: 1, bgcolor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                      <Box sx={{ p: 2, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>Specialization</Typography>
                         <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#a855f7' }}>SSR/SSG Optimizations & SQL/NoSQL Aggregation</Typography>
                       </Box>
@@ -256,7 +369,7 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 Portfolio
               </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Project Showcase
               </Typography>
 
@@ -270,18 +383,20 @@ export default function Home() {
                         display: 'flex', 
                         flexDirection: 'column', 
                         justifyContent: 'space-between', 
-                        p: 0.5,
+                        p: 1,
                         borderColor: 'rgba(255, 255, 255, 0.08)',
-                        bgcolor: 'rgba(24, 24, 27, 0.4)',
-                        transition: 'transform 0.2s ease, border-color 0.2s ease',
+                        bgcolor: 'rgba(18, 18, 20, 0.5)',
+                        borderRadius: '12px',
+                        transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease',
                         '&:hover': {
-                          transform: 'translateY(-3px)',
+                          transform: 'translateY(-4px)',
                           borderColor: 'rgba(255, 255, 255, 0.2)',
-                          bgcolor: 'rgba(24, 24, 27, 0.8)'
+                          bgcolor: 'rgba(24, 24, 27, 0.9)',
+                          boxShadow: '0 10px 30px -10px rgba(0,0,0,0.5)'
                         }
                       }}
                     >
-                      <CardContent>
+                      <CardContent sx={{ p: 2 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
                           <Chip 
                             label={project.category} 
@@ -295,13 +410,13 @@ export default function Home() {
                             }} 
                           />
                         </Box>
-                        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>{project.title}</Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, fontSize: '1.15rem' }}>{project.title}</Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.88rem' }}>
                           {project.description}
                         </Typography>
                       </CardContent>
                       <Box sx={{ p: 2, pt: 0 }}>
-                        <Typography variant="caption" sx={{ fontFamily: 'monospace', color: 'text.secondary', fontSize: '0.75rem' }}>
+                        <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#10b981', fontSize: '0.75rem', display: 'block' }}>
                           {project.tech}
                         </Typography>
                       </Box>
@@ -316,17 +431,17 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#a855f7', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 Stack
               </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Technical Expertise
               </Typography>
 
               <Grid container spacing={2.5}>
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 20, 0.5)', borderRadius: '12px' }}>
                     <CardContent>
                       <CodeIcon sx={{ color: '#10b981', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Frontend Development</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
                         React.js, Next.js, Angular, AngularJS, TypeScript, JavaScript (ES6+), HTML5/CSS3, UI/UX Implementation, SSR/SSG.
                       </Typography>
                     </CardContent>
@@ -334,11 +449,11 @@ export default function Home() {
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 20, 0.5)', borderRadius: '12px' }}>
                     <CardContent>
                       <LayersIcon sx={{ color: '#a855f7', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Backend & Mobile</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
                         Node.js, NestJS, Express.js, Meteor, RESTful APIs, GraphQL, Cordova, Hybrid Mobile Apps, WebSockets.
                       </Typography>
                     </CardContent>
@@ -346,11 +461,11 @@ export default function Home() {
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 20, 0.5)', borderRadius: '12px' }}>
                     <CardContent>
                       <StorageIcon sx={{ color: '#3b82f6', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Databases & Tools</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
                         MongoDB (Schema Design & Aggregation), PostgreSQL, MySQL, DynamoDB, Redis, AWS, Netlify, GitHub, CI/CD.
                       </Typography>
                     </CardContent>
@@ -364,17 +479,17 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 Philosophy
               </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Engineering Principles
               </Typography>
 
               <Grid container spacing={2.5}>
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 20, 0.5)', borderRadius: '12px' }}>
                     <CardContent>
                       <SpeedIcon sx={{ color: '#f59e0b', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Performance Optimization</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
                         Leveraging server-side caching, bundle splitting, and query indexing to deliver rapid page loads and minimal latency.
                       </Typography>
                     </CardContent>
@@ -382,11 +497,11 @@ export default function Home() {
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 20, 0.5)', borderRadius: '12px' }}>
                     <CardContent>
                       <ArchitectureIcon sx={{ color: '#f59e0b', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Scalable System Design</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
                         Designing decoupled modular services and reusable component architecture built to withstand evolving business needs.
                       </Typography>
                     </CardContent>
@@ -394,11 +509,11 @@ export default function Home() {
                 </Grid>
 
                 <Grid size={{ xs: 12, md: 4 }}>
-                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(24, 24, 27, 0.4)' }}>
+                  <Card variant="outlined" sx={{ p: 1, height: '100%', borderColor: 'rgba(255, 255, 255, 0.08)', bgcolor: 'rgba(18, 18, 20, 0.5)', borderRadius: '12px' }}>
                     <CardContent>
                       <SecurityIcon sx={{ color: '#f59e0b', mb: 1, fontSize: 28 }} />
                       <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>Maintainability & Clean Code</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.9rem' }}>
                         Enforcing strict TypeScript typing, modular directory organization, and automated testing patterns across teams.
                       </Typography>
                     </CardContent>
@@ -412,29 +527,29 @@ export default function Home() {
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#3b82f6', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
                 History
               </Typography>
-              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.8rem', md: '2.3rem' } }}>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 700, fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
                 Work Experience
               </Typography>
 
               <Stack spacing={3}>
-                <Box sx={{ pl: 3, borderLeft: '2px solid rgba(255, 255, 255, 0.12)', position: 'relative' }}>
+                <Box sx={{ pl: 3, borderLeft: '2px solid rgba(16, 185, 129, 0.5)', position: 'relative' }}>
                   <Box sx={{ position: 'absolute', left: '-6px', top: '6px', width: '10px', height: '10px', borderRadius: '50%', bgcolor: '#10b981' }} />
-                  <Typography variant="h6" sx={{ fontWeight: 700 }}>Full Stack Developer</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1.1rem' }}>Full Stack Developer</Typography>
                   <Typography variant="caption" sx={{ fontFamily: 'monospace', color: 'text.secondary', display: 'block', mb: 0.5 }}>
                     Xminds Technopark • Sep 2018 - Present
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ maxWidth: '800px', lineHeight: 1.6 }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ maxWidth: '800px', lineHeight: 1.6, fontSize: '0.92rem' }}>
                     Architected 8+ web applications, optimized database queries by 35%, and improved web app performance by 40% using Next.js SSR/SSG.
                   </Typography>
                 </Box>
 
-                <Box sx={{ pl: 3, borderLeft: '2px solid rgba(255, 255, 255, 0.12)', position: 'relative' }}>
+                <Box sx={{ pl: 3, borderLeft: '2px solid rgba(255, 255, 255, 0.15)', position: 'relative' }}>
                   <Box sx={{ position: 'absolute', left: '-6px', top: '6px', width: '10px', height: '10px', borderRadius: '50%', bgcolor: '#3f3f46' }} />
-                  <Typography variant="h6" sx={{ fontWeight: 700 }}>Software Engineer</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1.1rem' }}>Software Engineer</Typography>
                   <Typography variant="caption" sx={{ fontFamily: 'monospace', color: 'text.secondary', display: 'block', mb: 0.5 }}>
                     Cordova Cloud Solutions • Apr 2016 - Aug 2018
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ maxWidth: '800px', lineHeight: 1.6 }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ maxWidth: '800px', lineHeight: 1.6, fontSize: '0.92rem' }}>
                     Developed hybrid Android/iOS applications using Apache Cordova and Angular. Engineered backend RESTful APIs with Node.js and MongoDB.
                   </Typography>
                 </Box>
@@ -442,17 +557,42 @@ export default function Home() {
             </Box>
 
             {/* --- CONTACT CALLOUT --- */}
-            <Card variant="outlined" sx={{ p: { xs: 3, md: 5 }, textAlign: 'center', borderColor: 'rgba(255, 255, 255, 0.12)', bgcolor: 'rgba(24, 24, 27, 0.6)' }}>
-              <Typography variant="h4" sx={{ fontWeight: 800, mb: 1.5 }}>Let&apos;s Build Something Exceptional</Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '650px', mx: 'auto', mb: 3, lineHeight: 1.6 }}>
+            <Card 
+              variant="outlined" 
+              sx={{ 
+                p: { xs: 3, md: 5 }, 
+                textAlign: 'center', 
+                borderColor: 'rgba(255, 255, 255, 0.12)', 
+                bgcolor: 'rgba(18, 18, 20, 0.8)',
+                borderRadius: '16px',
+                backgroundImage: 'radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.1), transparent)'
+              }}
+            >
+              <Typography variant="h4" sx={{ fontWeight: 800, mb: 1.5, fontSize: { xs: '1.5rem', sm: '2rem' } }}>
+                Let&apos;s Build Something Exceptional
+              </Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '650px', mx: 'auto', mb: 3, lineHeight: 1.6, fontSize: { xs: '0.9rem', sm: '1rem' } }}>
                 Open to senior lead positions, full-stack architecture roles, or high-impact technical consulting across Next.js, React, and Node.js ecosystems.
               </Typography>
-              <Stack  spacing={2}  direction="row" sx={{ gap: 2, flexWrap: 'wrap',justifyContent: 'center', }}>
+              <Stack 
+                direction={{ xs: 'column', sm: 'row' }} 
+                spacing={2} 
+                sx={{ justifyContent: 'center', maxWidth: { xs: '100%', sm: '400px' }, mx: 'auto' }}
+              >
                 <Button 
                   variant="contained" 
                   href="mailto:akhilrameshk@gmail.com"
                   startIcon={<EmailIcon />}
-                  sx={{ bgcolor: '#ffffff', color: '#000000', px: 3.5, py: 1.3, fontWeight: 700, textTransform: 'none', '&:hover': { bgcolor: '#e4e4e7' } }}
+                  fullWidth
+                  sx={{ 
+                    bgcolor: '#ffffff', 
+                    color: '#000000', 
+                    py: 1.3, 
+                    fontWeight: 700, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#e4e4e7' } 
+                  }}
                 >
                   Send Email
                 </Button>
@@ -460,7 +600,15 @@ export default function Home() {
                   variant="outlined" 
                   href="tel:+919633134324"
                   startIcon={<PhoneIcon />}
-                  sx={{ borderColor: 'rgba(255, 255, 255, 0.2)', color: 'text.primary', px: 3, py: 1.3, textTransform: 'none', '&:hover': { bgcolor: '#18181b' } }}
+                  fullWidth
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.2)', 
+                    color: 'text.primary', 
+                    py: 1.3, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#18181b' } 
+                  }}
                 >
                   Call Directly
                 </Button>
@@ -474,7 +622,7 @@ export default function Home() {
               <Typography variant="caption" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
                 © {new Date().getFullYear()} Akhil Ramesh K. All rights reserved.
               </Typography>
-              <Stack direction="row" spacing={1.5} useFlexGap sx={{ gap: 1.5, flexWrap: 'wrap' }}>
+              <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
                 <Button size="small" href="https://linkedin.com/in/akhil-ramesh-a0270648" target="_blank" startIcon={<LinkedInIcon />} sx={{ color: 'text.secondary', textTransform: 'none' }}>
                   LinkedIn
                 </Button>
