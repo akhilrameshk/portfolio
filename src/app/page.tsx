@@ -20,7 +20,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   AppBar,
-  Toolbar
+  Toolbar,
+  Fab
 } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EmailIcon from '@mui/icons-material/Email';
@@ -39,6 +40,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import WorkIcon from '@mui/icons-material/Work';
 import LaunchIcon from '@mui/icons-material/Launch';
 import TerminalIcon from '@mui/icons-material/Terminal';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { motion } from 'framer-motion';
 import { darkTheme } from '@/theme/theme';
 
@@ -167,6 +170,14 @@ export default function Home() {
     ? projectsList 
     : projectsList.filter(p => p.category === filter);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  };
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -183,7 +194,6 @@ export default function Home() {
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: '64px', px: { xs: 1, sm: 0 } }}>
-            {/* FULL NAME ON TOP */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <TerminalIcon sx={{ color: '#10b981', fontSize: 22 }} />
               <Typography 
@@ -206,7 +216,6 @@ export default function Home() {
               <Button href="#experience" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Experience</Button>
             </Stack>
 
-            {/* TOP RIGHT ACTION BUTTONS WITH WHATSAPP */}
             <Stack direction="row" spacing={1}>
               <Button 
                 variant="contained" 
@@ -255,7 +264,7 @@ export default function Home() {
           bgcolor: '#0a0a0c', 
           color: 'text.primary', 
           minHeight: '100vh', 
-          pb: { xs: 6, md: 10 },
+          pb: { xs: 10, md: 12 },
           pt: { xs: 2, md: 5 },
           position: 'relative',
           overflow: 'hidden',
@@ -276,7 +285,6 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               sx={{ pt: { xs: 2, md: 4 } }}
             >
-              {/* NO TRUNCATION BADGES */}
               <Stack direction="row" spacing={1} sx={{ mb: 2.5, flexWrap: 'wrap', gap: 1 }}>
                 <Chip 
                   label="Senior / Lead Full Stack Developer" 
@@ -335,12 +343,12 @@ export default function Home() {
                 <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
               </Typography>
 
-              {/* Action Buttons with WhatsApp */}
+              {/* ACTION BUTTONS WITH ALL SOCIAL AND CONTACT LINKS RESTORED */}
               <Box 
                 sx={{ 
                   display: 'flex', 
                   flexWrap: 'wrap', 
-                  gap: 1.5, 
+                  gap: 1.2, 
                   '& > *': { flexGrow: { xs: 1, sm: 0 } } 
                 }}
               >
@@ -352,7 +360,7 @@ export default function Home() {
                     bgcolor: '#10b981', 
                     color: '#000000', 
                     px: 3, 
-                    py: 1.3, 
+                    py: 1.2, 
                     textTransform: 'none', 
                     fontWeight: 700, 
                     borderRadius: '8px',
@@ -360,7 +368,7 @@ export default function Home() {
                     '&:hover': { bgcolor: '#059669' } 
                   }}
                 >
-                  View Featured Projects
+                  View Projects
                 </Button>
                 <Button 
                   variant="contained" 
@@ -370,8 +378,8 @@ export default function Home() {
                   sx={{ 
                     bgcolor: '#25D366', 
                     color: '#ffffff', 
-                    px: 2.5, 
-                    py: 1.3, 
+                    px: 2, 
+                    py: 1.2, 
                     textTransform: 'none', 
                     fontWeight: 700, 
                     borderRadius: '8px',
@@ -382,6 +390,74 @@ export default function Home() {
                 </Button>
                 <Button 
                   variant="outlined" 
+                  href="mailto:akhilrameshk@gmail.com"
+                  startIcon={<EmailIcon />}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.15)', 
+                    color: '#ffffff', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    fontWeight: 600, 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.05)', borderColor: '#ffffff' } 
+                  }}
+                >
+                  Email
+                </Button>
+                <Button 
+                  variant="outlined" 
+                  href="tel:+919633134324"
+                  startIcon={<PhoneIcon />}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.15)', 
+                    color: '#ffffff', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    fontWeight: 600, 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.05)', borderColor: '#ffffff' } 
+                  }}
+                >
+                  Call
+                </Button>
+                <Button 
+                  variant="outlined" 
+                  href="https://linkedin.com/in/akhil-ramesh-a0270648"
+                  target="_blank"
+                  startIcon={<LinkedInIcon />}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.12)', 
+                    color: 'text.primary', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
+                  }}
+                >
+                  LinkedIn
+                </Button>
+                <Button 
+                  variant="outlined" 
+                  href="https://github.com/akhilrameshk/"
+                  target="_blank"
+                  startIcon={<GitHubIcon />}
+                  sx={{ 
+                    borderColor: 'rgba(255, 255, 255, 0.12)', 
+                    color: 'text.primary', 
+                    px: 2, 
+                    py: 1.2, 
+                    textTransform: 'none', 
+                    borderRadius: '8px',
+                    '&:hover': { bgcolor: '#18181b', borderColor: '#3f3f46' } 
+                  }}
+                >
+                  GitHub
+                </Button>
+                <Button 
+                  variant="outlined" 
                   href="/Akhil_Ramesh_FullStack.pdf" 
                   target="_blank"
                   download
@@ -389,8 +465,8 @@ export default function Home() {
                   sx={{ 
                     borderColor: 'rgba(255, 255, 255, 0.15)', 
                     color: '#ffffff', 
-                    px: 2.5, 
-                    py: 1.3, 
+                    px: 2, 
+                    py: 1.2, 
                     textTransform: 'none', 
                     fontWeight: 600, 
                     borderRadius: '8px',
@@ -415,11 +491,7 @@ export default function Home() {
                       bgcolor: 'rgba(18, 18, 22, 0.5)', 
                       borderColor: 'rgba(255, 255, 255, 0.08)',
                       borderRadius: '12px',
-                      backdropFilter: 'blur(12px)',
-                      transition: 'border-color 0.2s ease',
-                      '&:hover': {
-                        borderColor: 'rgba(16, 185, 129, 0.3)'
-                      }
+                      backdropFilter: 'blur(12px)'
                     }}
                   >
                     <Typography variant="h3" sx={{ fontWeight: 800, color: '#10b981', mb: 0.5, fontSize: { xs: '1.8rem', sm: '2.4rem' } }}>
@@ -640,69 +712,6 @@ export default function Home() {
               </Stack>
             </Box>
 
-            {/* --- CONTACT CALLOUT --- */}
-            <Card 
-              variant="outlined" 
-              sx={{ 
-                p: { xs: 3, md: 6 }, 
-                textAlign: 'center', 
-                borderColor: 'rgba(16, 185, 129, 0.25)', 
-                bgcolor: 'rgba(18, 18, 22, 0.7)',
-                borderRadius: '16px',
-                backgroundImage: 'radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.12), transparent 70%)',
-                boxShadow: '0 10px 40px -15px rgba(0, 0, 0, 0.5)'
-              }}
-            >
-              <Typography variant="h4" sx={{ fontWeight: 800, mb: 1.5, fontSize: { xs: '1.5rem', sm: '2.2rem' } }}>
-                Let&apos;s Build Something Exceptional
-              </Typography>
-              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '650px', mx: 'auto', mb: 3.5, lineHeight: 1.6, fontSize: { xs: '0.9rem', sm: '1.05rem' } }}>
-                Open to senior lead positions, full-stack architecture roles, or high-impact technical consulting across Next.js, React, and Node.js ecosystems.
-              </Typography>
-              <Stack 
-                direction={{ xs: 'column', sm: 'row' }} 
-                spacing={1.5} 
-                sx={{ justifyContent: 'center', maxWidth: { xs: '100%', sm: '500px' }, mx: 'auto' }}
-              >
-                <Button 
-                  variant="contained" 
-                  href="https://wa.me/919633134324"
-                  target="_blank"
-                  startIcon={<WhatsAppIcon />}
-                  fullWidth
-                  sx={{ 
-                    bgcolor: '#25D366', 
-                    color: '#ffffff', 
-                    py: 1.3, 
-                    fontWeight: 700, 
-                    textTransform: 'none', 
-                    borderRadius: '8px',
-                    '&:hover': { bgcolor: '#1ebc57' } 
-                  }}
-                >
-                  WhatsApp
-                </Button>
-                <Button 
-                  variant="contained" 
-                  href="mailto:akhilrameshk@gmail.com"
-                  startIcon={<EmailIcon />}
-                  fullWidth
-                  sx={{ 
-                    bgcolor: '#10b981', 
-                    color: '#000000', 
-                    py: 1.3, 
-                    fontWeight: 700, 
-                    textTransform: 'none', 
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 15px rgba(16, 185, 129, 0.25)',
-                    '&:hover': { bgcolor: '#059669' } 
-                  }}
-                >
-                  Email
-                </Button>
-              </Stack>
-            </Card>
-
             <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)' }} />
 
             {/* --- FOOTER --- */}
@@ -725,6 +734,96 @@ export default function Home() {
 
           </Stack>
         </Container>
+
+        {/* --- FLOATING QUICK ACTION BAR (RIGHT BOTTOM) + SCROLL TOP/BOTTOM TOGGLE --- */}
+        <Box 
+          sx={{ 
+            position: 'fixed', 
+            bottom: 20, 
+            right: 20, 
+            zIndex: 1000,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+            gap: 1.2
+          }}
+        >
+          {/* Scroll Navigation Arrows */}
+          <Stack direction="row" spacing={1}>
+            <Fab 
+              size="small" 
+              onClick={scrollToTop} 
+              aria-label="scroll to top"
+              sx={{ 
+                bgcolor: 'rgba(24, 24, 27, 0.85)', 
+                color: '#ffffff', 
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                '&:hover': { bgcolor: '#10b981', color: '#000000' } 
+              }}
+            >
+              <KeyboardArrowUpIcon fontSize="small" />
+            </Fab>
+            <Fab 
+              size="small" 
+              onClick={scrollToBottom} 
+              aria-label="scroll to bottom"
+              sx={{ 
+                bgcolor: 'rgba(24, 24, 27, 0.85)', 
+                color: '#ffffff', 
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                '&:hover': { bgcolor: '#10b981', color: '#000000' } 
+              }}
+            >
+              <KeyboardArrowDownIcon fontSize="small" />
+            </Fab>
+          </Stack>
+
+          {/* Quick Contact Actions */}
+          <Stack 
+            direction="row" 
+            spacing={1} 
+            sx={{ 
+              bgcolor: 'rgba(18, 18, 22, 0.9)', 
+              p: 0.8, 
+              borderRadius: '30px', 
+              border: '1px solid rgba(255, 255, 255, 0.12)',
+              backdropFilter: 'blur(16px)',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.5)'
+            }}
+          >
+            <Fab 
+              size="small" 
+              component="a" 
+              href="https://wa.me/919633134324" 
+              target="_blank" 
+              aria-label="WhatsApp"
+              sx={{ bgcolor: '#25D366', color: '#ffffff', '&:hover': { bgcolor: '#1ebc57' } }}
+            >
+              <WhatsAppIcon fontSize="small" />
+            </Fab>
+            <Fab 
+              size="small" 
+              component="a" 
+              href="mailto:akhilrameshk@gmail.com" 
+              aria-label="Email"
+              sx={{ bgcolor: '#ffffff', color: '#000000', '&:hover': { bgcolor: '#e4e4e7' } }}
+            >
+              <EmailIcon fontSize="small" />
+            </Fab>
+            <Fab 
+              size="small" 
+              component="a" 
+              href="tel:+919633134324" 
+              aria-label="Call Direct"
+              sx={{ bgcolor: '#10b981', color: '#000000', '&:hover': { bgcolor: '#059669' } }}
+            >
+              <PhoneIcon fontSize="small" />
+            </Fab>
+          </Stack>
+        </Box>
+
       </Box>
     </ThemeProvider>
   );
