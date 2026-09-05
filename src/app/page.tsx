@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ThemeProvider, 
   CssBaseline, 
@@ -21,7 +21,8 @@ import {
   AccordionDetails,
   AppBar,
   Toolbar,
-  Fab
+  Fab,
+  Tooltip
 } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EmailIcon from '@mui/icons-material/Email';
@@ -29,17 +30,10 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import CodeIcon from '@mui/icons-material/Code';
-import LayersIcon from '@mui/icons-material/Layers';
-import StorageIcon from '@mui/icons-material/Storage';
 import DownloadIcon from '@mui/icons-material/Download';
-import SpeedIcon from '@mui/icons-material/Speed';
-import ArchitectureIcon from '@mui/icons-material/Architecture';
-import SecurityIcon from '@mui/icons-material/Security';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import WorkIcon from '@mui/icons-material/Work';
 import LaunchIcon from '@mui/icons-material/Launch';
-import TerminalIcon from '@mui/icons-material/Terminal';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { motion } from 'framer-motion';
@@ -163,6 +157,7 @@ export default function Home() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [filter, setFilter] = useState('All');
+  const [isAtBottom, setIsAtBottom] = useState(false);
 
   const categories = ['All', 'Full Stack', 'Frontend', 'Backend', 'Mobile'];
 
@@ -170,19 +165,36 @@ export default function Home() {
     ? projectsList 
     : projectsList.filter(p => p.category === filter);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-  const scrollToBottom = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      if (scrollTop + windowHeight >= documentHeight - 300) {
+        setIsAtBottom(true);
+      } else {
+        setIsAtBottom(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleScrollToggle = () => {
+    if (isAtBottom) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
   };
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      {/* --- TOP NAVBAR --- */}
+      {/* --- CLEAN HEADER (NO ICONS) --- */}
       <AppBar 
         position="sticky" 
         elevation={0}
@@ -194,25 +206,21 @@ export default function Home() {
       >
         <Container maxWidth="lg">
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', height: '64px', px: { xs: 1, sm: 0 } }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <TerminalIcon sx={{ color: '#10b981', fontSize: 22 }} />
-              <Typography 
-                variant="subtitle1" 
-                sx={{ 
-                  fontWeight: 800, 
-                  letterSpacing: '-0.02em', 
-                  color: '#fff', 
-                  fontSize: { xs: '0.95rem', sm: '1.1rem' } 
-                }}
-              >
-                Akhil Ramesh K
-              </Typography>
-            </Box>
+            <Typography 
+              variant="subtitle1" 
+              sx={{ 
+                fontWeight: 800, 
+                letterSpacing: '-0.02em', 
+                color: '#fff', 
+                fontSize: { xs: '0.95rem', sm: '1.1rem' } 
+              }}
+            >
+              Akhil Ramesh K
+            </Typography>
 
             <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button href="#about" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>About</Button>
               <Button href="#projects" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Projects</Button>
-              <Button href="#skills" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Skills</Button>
               <Button href="#experience" sx={{ color: 'text.secondary', textTransform: 'none', fontSize: '0.88rem', '&:hover': { color: '#fff' } }}>Experience</Button>
             </Stack>
 
@@ -222,14 +230,13 @@ export default function Home() {
                 href="https://wa.me/919633134324" 
                 target="_blank"
                 size="small"
-                startIcon={<WhatsAppIcon />}
                 sx={{ 
                   bgcolor: '#25D366', 
                   color: '#ffffff', 
                   fontWeight: 700, 
                   textTransform: 'none', 
                   borderRadius: '6px',
-                  px: { xs: 1.2, sm: 2 },
+                  px: { xs: 1.5, sm: 2 },
                   fontSize: { xs: '0.75rem', sm: '0.85rem' },
                   '&:hover': { bgcolor: '#1ebc57' } 
                 }}
@@ -240,14 +247,13 @@ export default function Home() {
                 variant="contained" 
                 href="mailto:akhilrameshk@gmail.com" 
                 size="small"
-                startIcon={<EmailIcon />}
                 sx={{ 
                   bgcolor: '#ffffff', 
                   color: '#000000', 
                   fontWeight: 700, 
                   textTransform: 'none', 
                   borderRadius: '6px',
-                  px: { xs: 1.2, sm: 2 },
+                  px: { xs: 1.5, sm: 2 },
                   fontSize: { xs: '0.75rem', sm: '0.85rem' },
                   '&:hover': { bgcolor: '#e4e4e7' } 
                 }}
@@ -343,7 +349,7 @@ export default function Home() {
                 <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
               </Typography>
 
-              {/* ACTION BUTTONS WITH ALL SOCIAL AND CONTACT LINKS RESTORED */}
+              {/* ACTION BUTTONS WITH SOCIAL AND CONTACT LINKS */}
               <Box 
                 sx={{ 
                   display: 'flex', 
@@ -735,94 +741,94 @@ export default function Home() {
           </Stack>
         </Container>
 
-        {/* --- FLOATING QUICK ACTION BAR (RIGHT BOTTOM) + SCROLL TOP/BOTTOM TOGGLE --- */}
-        <Box 
+        {/* --- FLOATING VERTICAL QUICK ACTIONS + DYNAMIC SCROLL ARROW TOGGLE --- */}
+        <Stack 
+          direction="column"
+          spacing={1.2}
           sx={{ 
             position: 'fixed', 
             bottom: 20, 
             right: 20, 
             zIndex: 1000,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-            gap: 1.2
+            alignItems: 'center'
           }}
         >
-          {/* Scroll Navigation Arrows */}
-          <Stack direction="row" spacing={1}>
+          {/* Dynamic Scroll Toggle Button (Top -> Down Arrow, Bottom -> Up Arrow) */}
+          <Tooltip title={isAtBottom ? "Scroll to Top" : "Scroll to Bottom"} placement="left">
             <Fab 
               size="small" 
-              onClick={scrollToTop} 
-              aria-label="scroll to top"
+              onClick={handleScrollToggle} 
+              aria-label="scroll toggle"
               sx={{ 
-                bgcolor: 'rgba(24, 24, 27, 0.85)', 
-                color: '#ffffff', 
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                '&:hover': { bgcolor: '#10b981', color: '#000000' } 
+                bgcolor: '#10b981', 
+                color: '#000000', 
+                boxShadow: '0 4px 15px rgba(16, 185, 129, 0.4)',
+                '&:hover': { bgcolor: '#059669', color: '#ffffff' } 
               }}
             >
-              <KeyboardArrowUpIcon fontSize="small" />
+              {isAtBottom ? (
+                <KeyboardArrowUpIcon fontSize="small" />
+              ) : (
+                <KeyboardArrowDownIcon fontSize="small" />
+              )}
             </Fab>
-            <Fab 
-              size="small" 
-              onClick={scrollToBottom} 
-              aria-label="scroll to bottom"
-              sx={{ 
-                bgcolor: 'rgba(24, 24, 27, 0.85)', 
-                color: '#ffffff', 
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(10px)',
-                '&:hover': { bgcolor: '#10b981', color: '#000000' } 
-              }}
-            >
-              <KeyboardArrowDownIcon fontSize="small" />
-            </Fab>
-          </Stack>
+          </Tooltip>
 
-          {/* Quick Contact Actions */}
-          <Stack 
-            direction="row" 
-            spacing={1} 
-            sx={{ 
-              bgcolor: 'rgba(18, 18, 22, 0.9)', 
-              p: 0.8, 
-              borderRadius: '30px', 
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(16px)',
-              boxShadow: '0 8px 30px rgba(0,0,0,0.5)'
-            }}
-          >
+          {/* Quick Contact Actions arranged Vertically */}
+          <Tooltip title="WhatsApp" placement="left">
             <Fab 
               size="small" 
               component="a" 
               href="https://wa.me/919633134324" 
               target="_blank" 
               aria-label="WhatsApp"
-              sx={{ bgcolor: '#25D366', color: '#ffffff', '&:hover': { bgcolor: '#1ebc57' } }}
+              sx={{ 
+                bgcolor: '#25D366', 
+                color: '#ffffff', 
+                boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)',
+                '&:hover': { bgcolor: '#1ebc57' } 
+              }}
             >
               <WhatsAppIcon fontSize="small" />
             </Fab>
+          </Tooltip>
+
+          <Tooltip title="Email" placement="left">
             <Fab 
               size="small" 
               component="a" 
               href="mailto:akhilrameshk@gmail.com" 
               aria-label="Email"
-              sx={{ bgcolor: '#ffffff', color: '#000000', '&:hover': { bgcolor: '#e4e4e7' } }}
+              sx={{ 
+                bgcolor: '#ffffff', 
+                color: '#000000', 
+                boxShadow: '0 4px 15px rgba(255, 255, 255, 0.2)',
+                '&:hover': { bgcolor: '#e4e4e7' } 
+              }}
             >
               <EmailIcon fontSize="small" />
             </Fab>
+          </Tooltip>
+
+          <Tooltip title="Call Direct" placement="left">
             <Fab 
               size="small" 
               component="a" 
               href="tel:+919633134324" 
               aria-label="Call Direct"
-              sx={{ bgcolor: '#10b981', color: '#000000', '&:hover': { bgcolor: '#059669' } }}
+              sx={{ 
+                bgcolor: 'rgba(24, 24, 27, 0.9)', 
+                color: '#ffffff', 
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.5)',
+                '&:hover': { bgcolor: '#3f3f46' } 
+              }}
             >
               <PhoneIcon fontSize="small" />
             </Fab>
-          </Stack>
-        </Box>
+          </Tooltip>
+        </Stack>
 
       </Box>
     </ThemeProvider>
