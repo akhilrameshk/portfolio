@@ -161,7 +161,7 @@ export default function PortfolioPage() {
 
   return (
     <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10 }}>
-      {/* HEADER NAVBAR - WhatsApp & Contact removed */}
+      {/* HEADER NAVBAR */}
       <AppBar
         position="sticky"
         elevation={0}
@@ -175,8 +175,8 @@ export default function PortfolioPage() {
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
             <Typography
               variant="h6"
-              fontWeight="900"
               sx={{
+                fontWeight: 900,
                 background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -242,7 +242,7 @@ export default function PortfolioPage() {
                   variant="outlined"
                 />
 
-                <Typography variant="h2" component="h1" fontWeight="900" letterSpacing="-0.03em" sx={{ fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 1 }}>
+                <Typography variant="h2" component="h1" letterSpacing="-0.03em" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 1 }}>
                   Senior Full Stack Developer & Team Lead
                 </Typography>
 
@@ -311,14 +311,14 @@ export default function PortfolioPage() {
                       mb: 2,
                       bgcolor: '#2563eb',
                       fontSize: '2.2rem',
-                      fontWeight: '900',
+                      fontWeight: 900,
                       border: '3px solid rgba(255, 255, 255, 0.2)',
                     }}
                   >
                     AR
                   </Avatar>
 
-                  <Typography variant="h6" fontWeight="800">Akhil Ramesh K</Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 800 }}>Akhil Ramesh K</Typography>
                   <Typography variant="caption" color="#9ca3af" display="block" sx={{ mb: 3 }}>
                     Alappuzha, Kerala, India
                   </Typography>
@@ -327,19 +327,19 @@ export default function PortfolioPage() {
 
                   <Grid container spacing={2}>
                     <Grid item xs={6}>
-                      <Typography variant="h5" fontWeight="900" color="#60a5fa">10+</Typography>
+                      <Typography variant="h5" color="#60a5fa" sx={{ fontWeight: 900 }}>10+</Typography>
                       <Typography variant="caption" color="#9ca3af">Years Exp.</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography variant="h5" fontWeight="900" color="#34d399">40%</Typography>
+                      <Typography variant="h5" color="#34d399" sx={{ fontWeight: 900 }}>40%</Typography>
                       <Typography variant="caption" color="#9ca3af">Core Web Vitals</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography variant="h5" fontWeight="900" color="#a855f7">5+ Devs</Typography>
+                      <Typography variant="h5" color="#a855f7" sx={{ fontWeight: 900 }}>5+ Devs</Typography>
                       <Typography variant="caption" color="#9ca3af">Team Lead</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                      <Typography variant="h5" fontWeight="900" color="#f59e0b">35%</Typography>
+                      <Typography variant="h5" color="#f59e0b" sx={{ fontWeight: 900 }}>35%</Typography>
                       <Typography variant="caption" color="#9ca3af">Latency Cut</Typography>
                     </Grid>
                   </Grid>
@@ -356,7 +356,7 @@ export default function PortfolioPage() {
           <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700, display: 'block', mb: 1 }}>
             CAREER TRACK
           </Typography>
-          <Typography variant="h4" fontWeight="900" gutterBottom sx={{ mb: 4 }}>
+          <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, mb: 4 }}>
             Professional Work Experience
           </Typography>
 
@@ -374,10 +374,10 @@ export default function PortfolioPage() {
                 >
                   <CardContent sx={{ p: 3 }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
-                      <Typography variant="h6" fontWeight="800" color="#f3f4f6">{exp.role}</Typography>
+                      <Typography variant="h6" color="#f3f4f6" sx={{ fontWeight: 800 }}>{exp.role}</Typography>
                       <Chip label={exp.period} size="small" variant="outlined" sx={{ color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.3)', fontSize: '0.7rem' }} />
                     </Box>
-                    <Typography variant="subtitle2" color="#38bdf8" fontWeight="700" gutterBottom sx={{ mb: 2 }}>{exp.company}</Typography>
+                    <Typography variant="subtitle2" color="#38bdf8" gutterBottom sx={{ fontWeight: 700, mb: 2 }}>{exp.company}</Typography>
                     <Typography variant="body2" color="#9ca3af" sx={{ mb: 2, lineHeight: 1.6 }}>{exp.description}</Typography>
 
                     <Stack spacing={1}>
@@ -406,7 +406,7 @@ export default function PortfolioPage() {
                 CLIENT & ENTERPRISE DELIVERABLES
               </Typography>
             </Stack>
-            <Typography variant="h4" fontWeight="900" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
               Main Production Projects
             </Typography>
 
@@ -426,7 +426,7 @@ export default function PortfolioPage() {
                   >
                     <CardContent sx={{ flexGrow: 1, p: 3 }}>
                       <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', fontWeight: 700, mb: 2 }} />
-                      <Typography variant="h5" fontWeight="800" gutterBottom>{project.title}</Typography>
+                      <Typography variant="h5" gutterBottom sx={{ fontWeight: 800 }}>{project.title}</Typography>
                       <Typography variant="body2" color="#9ca3af" sx={{ mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
                       <Stack direction="row" spacing={1} flexWrap="wrap" gap={1} sx={{ mb: 3 }}>
@@ -437,7 +437,7 @@ export default function PortfolioPage() {
 
                       <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important' }}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
-                          <Typography variant="caption" fontWeight="bold" color="#9ca3af">ARCHITECTURE & SOLUTION</Typography>
+                          <Typography variant="caption" color="#9ca3af" sx={{ fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                           <Typography variant="body2" color="#d1d5db" sx={{ mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
@@ -458,7 +458,7 @@ export default function PortfolioPage() {
                 INDEPENDENT DEVELOPMENT
               </Typography>
             </Stack>
-            <Typography variant="h4" fontWeight="900" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
               Personal & Side Projects
             </Typography>
 
@@ -478,7 +478,7 @@ export default function PortfolioPage() {
                   >
                     <CardContent sx={{ flexGrow: 1, p: 3 }}>
                       <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(52, 211, 153, 0.15)', color: '#34d399', fontWeight: 700, mb: 2 }} />
-                      <Typography variant="h5" fontWeight="800" gutterBottom>{project.title}</Typography>
+                      <Typography variant="h5" gutterBottom sx={{ fontWeight: 800 }}>{project.title}</Typography>
                       <Typography variant="body2" color="#9ca3af" sx={{ mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
                       <Stack direction="row" spacing={1} flexWrap="wrap" gap={1} sx={{ mb: 3 }}>
@@ -489,7 +489,7 @@ export default function PortfolioPage() {
 
                       <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important', mb: 2 }}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
-                          <Typography variant="caption" fontWeight="bold" color="#9ca3af">ARCHITECTURE & SOLUTION</Typography>
+                          <Typography variant="caption" color="#9ca3af" sx={{ fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                           <Typography variant="body2" color="#d1d5db" sx={{ mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
@@ -530,7 +530,7 @@ export default function PortfolioPage() {
               textAlign: 'center',
             }}
           >
-            <Typography variant="h4" fontWeight="900" gutterBottom>
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
               Get In Touch
             </Typography>
             <Typography variant="body1" color="#9ca3af" sx={{ maxWidth: '600px', mx: 'auto', mb: 4 }}>
