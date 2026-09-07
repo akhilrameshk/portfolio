@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -14,9 +14,11 @@ import {
   Divider,
   Avatar,
   Paper,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
 
-// --- WORKING MUI ICON IMPORTS ---
+// --- ICONS ---
 import StorageIcon from '@mui/icons-material/Storage';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -24,6 +26,11 @@ import EmailIcon from '@mui/icons-material/Email';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import DownloadIcon from '@mui/icons-material/Download';
+import CodeIcon from '@mui/icons-material/Code';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 // --- DATA DEFINITIONS ---
 export const skillCategories = [
@@ -139,6 +146,19 @@ export const personalProjects = [
 
 export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState('about');
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     setActiveTab(id);
@@ -148,12 +168,21 @@ export default function PortfolioPage() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const openWhatsApp = () => {
     window.open('https://wa.me/919633134324?text=Hi%20Akhil,%20I%20reviewed%20your%20portfolio!', '_blank');
   };
 
+  const openLinkedIn = () => {
+    window.open('https://linkedin.com/in/akhilrameshk', '_blank');
+  };
+
   return (
-    <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10 }}>
+    <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10, position: 'relative' }}>
+      
       {/* NAVBAR */}
       <Box
         component="header"
@@ -161,16 +190,16 @@ export default function PortfolioPage() {
           position: 'sticky',
           top: 0,
           zIndex: 1100,
-          bgcolor: 'rgba(11, 15, 25, 0.85)',
+          bgcolor: 'rgba(11, 15, 25, 0.9)',
           backdropFilter: 'blur(12px)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           py: 2,
           px: { xs: 2, sm: 4, md: 8 },
         }}
       >
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1.5 }}>
           <Typography
-            variant="h6"
+            variant="subtitle1"
             sx={{
               fontWeight: 900,
               background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
@@ -178,31 +207,39 @@ export default function PortfolioPage() {
               WebkitTextFillColor: 'transparent',
               cursor: 'pointer',
               letterSpacing: '-0.02em',
+              whiteSpace: 'nowrap',
             }}
             onClick={() => scrollToSection('about')}
           >
             AKHIL RAMESH K
           </Typography>
 
-          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          <Box sx={{ display: 'flex', gap: { xs: 1.5, sm: 3 }, alignItems: 'center', overflowX: 'auto', py: 0.5 }}>
             <Button
               size="small"
               onClick={() => scrollToSection('about')}
-              sx={{ color: activeTab === 'about' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+              sx={{ color: activeTab === 'about' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
             >
               About
             </Button>
             <Button
               size="small"
+              onClick={() => scrollToSection('skills')}
+              sx={{ color: activeTab === 'skills' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
+            >
+              Skills
+            </Button>
+            <Button
+              size="small"
               onClick={() => scrollToSection('experience')}
-              sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+              sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
             >
               Experience
             </Button>
             <Button
               size="small"
               onClick={() => scrollToSection('projects')}
-              sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+              sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
             >
               Projects
             </Button>
@@ -210,10 +247,11 @@ export default function PortfolioPage() {
         </Box>
       </Box>
 
-      {/* MAIN CONTENT WRAPPER */}
-      <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 4, md: 6 }, pt: 5 }}>
+      {/* MAIN CONTAINER */}
+      <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 4, md: 6 }, pt: 4 }}>
+        
         {/* HERO / ABOUT SECTION */}
-        <Box id="about" sx={{ pt: 2, pb: 8 }}>
+        <Box id="about" sx={{ pt: 2, pb: 6 }}>
           <Paper
             elevation={0}
             sx={{
@@ -228,9 +266,9 @@ export default function PortfolioPage() {
                 <Chip
                   label="Available for Lead & Architect Roles"
                   sx={{
-                    bgcolor: 'rgba(16, 185, 129, 0.1)',
+                    bgcolor: 'rgba(16, 185, 129, 0.15)',
                     color: '#34d399',
-                    borderColor: 'rgba(16, 185, 129, 0.3)',
+                    borderColor: 'rgba(16, 185, 129, 0.4)',
                     fontWeight: 700,
                     borderRadius: '10px',
                     mb: 2,
@@ -238,82 +276,123 @@ export default function PortfolioPage() {
                   variant="outlined"
                 />
 
-                <Typography variant="h2" component="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 1, letterSpacing: '-0.03em' }}>
+                <Typography variant="h2" component="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 2, letterSpacing: '-0.03em', color: '#ffffff' }}>
                   Senior Full Stack Developer & Team Lead
                 </Typography>
 
-                <Typography variant="body1" sx={{ color: '#d1d5db', fontSize: '1.1rem', lineHeight: 1.7, mb: 4, mt: 2 }}>
+                <Typography variant="body1" sx={{ color: '#e5e7eb', fontSize: '1.1rem', lineHeight: 1.7, mb: 4 }}>
                   10+ years of experience architecting, building, and scaling web applications. Leading engineering teams of 5+ developers, owning sprint delivery, and driving architectural choices for platforms serving 10,000+ active users.
                 </Typography>
 
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
+                {/* ACTION BUTTONS: WHATSAPP, RESUME, LINKEDIN, EMAIL */}
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
                   <Button
                     variant="contained"
-                    size="large"
-                    endIcon={<ArrowDownwardIcon />}
-                    onClick={() => scrollToSection('projects')}
-                    sx={{
-                      borderRadius: '12px',
-                      py: 1.5,
-                      px: 3.5,
-                      fontWeight: 800,
-                      textTransform: 'none',
-                      fontSize: '1rem',
-                      background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                      boxShadow: '0 8px 25px rgba(59, 130, 246, 0.4)',
-                    }}
-                  >
-                    View Projects
-                  </Button>
-
-                  <Button
-                    variant="outlined"
                     size="large"
                     startIcon={<WhatsAppIcon />}
                     onClick={openWhatsApp}
                     sx={{
                       borderRadius: '12px',
-                      py: 1.5,
-                      px: 3,
+                      py: 1.2,
+                      px: 2.5,
                       fontWeight: 700,
                       textTransform: 'none',
-                      fontSize: '1rem',
-                      borderColor: 'rgba(255, 255, 255, 0.2)',
-                      color: '#f3f4f6',
-                      '&:hover': { borderColor: '#22c55e', bgcolor: 'rgba(34, 197, 94, 0.05)' },
+                      bgcolor: '#22c55e',
+                      '&:hover': { bgcolor: '#16a34a' },
                     }}
                   >
-                    WhatsApp Chat
+                    WhatsApp
+                  </Button>
+
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    startIcon={<LinkedInIcon />}
+                    onClick={openLinkedIn}
+                    sx={{
+                      borderRadius: '12px',
+                      py: 1.2,
+                      px: 2.5,
+                      fontWeight: 700,
+                      textTransform: 'none',
+                      color: '#60a5fa',
+                      borderColor: 'rgba(96, 165, 250, 0.4)',
+                      '&:hover': { bgcolor: 'rgba(96, 165, 250, 0.1)' },
+                    }}
+                  >
+                    LinkedIn
+                  </Button>
+
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    startIcon={<EmailIcon />}
+                    href="mailto:akhilrameshk@gmail.com"
+                    sx={{
+                      borderRadius: '12px',
+                      py: 1.2,
+                      px: 2.5,
+                      fontWeight: 700,
+                      textTransform: 'none',
+                      color: '#f3f4f6',
+                      borderColor: 'rgba(255, 255, 255, 0.2)',
+                    }}
+                  >
+                    Email
                   </Button>
                 </Box>
+
+                <Button
+                  variant="text"
+                  size="small"
+                  startIcon={<DownloadIcon />}
+                  href="#contact"
+                  sx={{ color: '#a855f7', fontWeight: 700, textTransform: 'none' }}
+                >
+                  Download Resume & Full CV Pack
+                </Button>
               </Box>
 
+              {/* PROFILE CARD */}
               <Paper
                 elevation={10}
                 sx={{
                   p: 4,
                   borderRadius: '24px',
-                  bgcolor: 'rgba(17, 24, 39, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  bgcolor: 'rgba(17, 24, 39, 0.85)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
                   textAlign: 'center',
                 }}
               >
-                <Avatar
-                  sx={{
-                    width: 100,
-                    height: 100,
-                    mx: 'auto',
-                    mb: 2,
-                    bgcolor: '#2563eb',
-                    fontSize: '2.2rem',
-                    fontWeight: 900,
-                    border: '3px solid rgba(255, 255, 255, 0.2)',
-                  }}
-                >
-                  AR
-                </Avatar>
+                <Box sx={{ position: 'relative', display: 'inline-block', mb: 2 }}>
+                  <Avatar
+                    sx={{
+                      width: 110,
+                      height: 110,
+                      mx: 'auto',
+                      bgcolor: '#2563eb',
+                      fontSize: '2.5rem',
+                      fontWeight: 900,
+                      border: '3px solid rgba(255, 255, 255, 0.2)',
+                    }}
+                  >
+                    AR
+                  </Avatar>
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 4,
+                      right: 4,
+                      width: 20,
+                      height: 20,
+                      bgcolor: '#22c55e',
+                      borderRadius: '50%',
+                      border: '3px solid #111827',
+                    }}
+                  />
+                </Box>
 
-                <Typography variant="h6" sx={{ fontWeight: 800 }}>Akhil Ramesh K</Typography>
+                <Typography variant="h6" sx={{ fontWeight: 800, color: '#ffffff' }}>Akhil Ramesh K</Typography>
                 <Typography variant="caption" sx={{ color: '#9ca3af', display: 'block', mb: 3 }}>
                   Alappuzha, Kerala, India
                 </Typography>
@@ -345,12 +424,58 @@ export default function PortfolioPage() {
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
 
+        {/* SKILLS SECTION (RESTORED & ENHANCED) */}
+        <Box id="skills" sx={{ py: 6 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+            <CodeIcon sx={{ color: '#60a5fa' }} />
+            <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700 }}>
+              TECHNICAL EXPERTISE
+            </Typography>
+          </Box>
+          <Typography variant="h4" sx={{ fontWeight: 900, mb: 4, color: '#ffffff' }}>
+            Core Skill Sets
+          </Typography>
+
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' }, gap: 3 }}>
+            {skillCategories.map((cat, idx) => (
+              <Card
+                key={idx}
+                variant="outlined"
+                sx={{
+                  height: '100%',
+                  borderRadius: '20px',
+                  bgcolor: 'rgba(17, 24, 39, 0.6)',
+                  borderColor: 'rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <CardContent sx={{ p: 3 }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 800, color: '#60a5fa', mb: 2 }}>
+                    {cat.title}
+                  </Typography>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    {cat.skills.map((skill, sIdx) => (
+                      <Box key={sIdx} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <CheckCircleIcon sx={{ fontSize: '1rem', color: '#34d399' }} />
+                        <Typography variant="body2" sx={{ color: '#e5e7eb', fontWeight: 500 }}>
+                          {skill}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </Box>
+
+        <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
+
         {/* WORK EXPERIENCE */}
         <Box id="experience" sx={{ py: 6 }}>
           <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700, display: 'block', mb: 1 }}>
             CAREER TRACK
           </Typography>
-          <Typography variant="h4" sx={{ fontWeight: 900, mb: 4 }}>
+          <Typography variant="h4" sx={{ fontWeight: 900, mb: 4, color: '#ffffff' }}>
             Professional Work Experience
           </Typography>
 
@@ -367,18 +492,18 @@ export default function PortfolioPage() {
                 }}
               >
                 <CardContent sx={{ p: 3 }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
-                    <Typography variant="h6" sx={{ color: '#f3f4f6', fontWeight: 800 }}>{exp.role}</Typography>
-                    <Chip label={exp.period} size="small" variant="outlined" sx={{ color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.3)', fontSize: '0.7rem' }} />
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1, gap: 1 }}>
+                    <Typography variant="h6" sx={{ color: '#ffffff', fontWeight: 800 }}>{exp.role}</Typography>
+                    <Chip label={exp.period} size="small" variant="outlined" sx={{ color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.3)', fontSize: '0.7rem', whiteSpace: 'nowrap' }} />
                   </Box>
                   <Typography variant="subtitle2" sx={{ color: '#38bdf8', fontWeight: 700, mb: 2 }}>{exp.company}</Typography>
-                  <Typography variant="body2" sx={{ color: '#9ca3af', mb: 2, lineHeight: 1.6 }}>{exp.description}</Typography>
+                  <Typography variant="body2" sx={{ color: '#e5e7eb', mb: 2, lineHeight: 1.6 }}>{exp.description}</Typography>
 
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
                     {exp.achievements.map((ach, i) => (
                       <Box key={i} sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
                         <Typography variant="caption" sx={{ color: '#34d399', fontWeight: 'bold', lineHeight: 1.4 }}>✓</Typography>
-                        <Typography variant="caption" sx={{ color: '#d1d5db', lineHeight: 1.4 }}>{ach}</Typography>
+                        <Typography variant="caption" sx={{ color: '#e5e7eb', lineHeight: 1.4 }}>{ach}</Typography>
                       </Box>
                     ))}
                   </Box>
@@ -399,7 +524,7 @@ export default function PortfolioPage() {
                 CLIENT & ENTERPRISE DELIVERABLES
               </Typography>
             </Box>
-            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2, color: '#ffffff' }}>
               Main Production Projects
             </Typography>
 
@@ -419,22 +544,22 @@ export default function PortfolioPage() {
                 >
                   <CardContent sx={{ flexGrow: 1, p: 3 }}>
                     <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', fontWeight: 700, mb: 2 }} />
-                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>{project.title}</Typography>
-                    <Typography variant="body2" sx={{ color: '#9ca3af', mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
+                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: '#ffffff' }}>{project.title}</Typography>
+                    <Typography variant="body2" sx={{ color: '#e5e7eb', mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
                       {project.tech.map((t) => (
-                        <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
+                        <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.06)', color: '#f3f4f6', fontSize: '0.72rem' }} />
                       ))}
                     </Box>
 
                     <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important' }}>
                       <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
-                        <Typography variant="caption" sx={{ color: '#9ca3af', fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
+                        <Typography variant="caption" sx={{ color: '#d1d5db', fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography variant="body2" sx={{ color: '#d1d5db', mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
-                        <Typography variant="body2" sx={{ color: '#d1d5db' }}><strong>Solution:</strong> {project.solution}</Typography>
+                        <Typography variant="body2" sx={{ color: '#e5e7eb', mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
+                        <Typography variant="body2" sx={{ color: '#e5e7eb' }}><strong>Solution:</strong> {project.solution}</Typography>
                       </AccordionDetails>
                     </Accordion>
                   </CardContent>
@@ -450,7 +575,7 @@ export default function PortfolioPage() {
                 INDEPENDENT DEVELOPMENT
               </Typography>
             </Box>
-            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2, color: '#ffffff' }}>
               Personal & Side Projects
             </Typography>
 
@@ -470,22 +595,22 @@ export default function PortfolioPage() {
                 >
                   <CardContent sx={{ flexGrow: 1, p: 3 }}>
                     <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(52, 211, 153, 0.15)', color: '#34d399', fontWeight: 700, mb: 2 }} />
-                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>{project.title}</Typography>
-                    <Typography variant="body2" sx={{ color: '#9ca3af', mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
+                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1, color: '#ffffff' }}>{project.title}</Typography>
+                    <Typography variant="body2" sx={{ color: '#e5e7eb', mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
                       {project.tech.map((t) => (
-                        <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
+                        <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.06)', color: '#f3f4f6', fontSize: '0.72rem' }} />
                       ))}
                     </Box>
 
                     <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important', mb: 2 }}>
                       <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
-                        <Typography variant="caption" sx={{ color: '#9ca3af', fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
+                        <Typography variant="caption" sx={{ color: '#d1d5db', fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
                       </AccordionSummary>
                       <AccordionDetails>
-                        <Typography variant="body2" sx={{ color: '#d1d5db', mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
-                        <Typography variant="body2" sx={{ color: '#d1d5db' }}><strong>Solution:</strong> {project.solution}</Typography>
+                        <Typography variant="body2" sx={{ color: '#e5e7eb', mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
+                        <Typography variant="body2" sx={{ color: '#e5e7eb' }}><strong>Solution:</strong> {project.solution}</Typography>
                       </AccordionDetails>
                     </Accordion>
 
@@ -516,19 +641,19 @@ export default function PortfolioPage() {
             sx={{
               p: { xs: 4, md: 6 },
               borderRadius: '24px',
-              bgcolor: 'rgba(17, 24, 39, 0.8)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              bgcolor: 'rgba(17, 24, 39, 0.85)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               textAlign: 'center',
             }}
           >
-            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2 }}>
-              Get In Touch
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2, color: '#ffffff' }}>
+              Get In Touch & Download CV
             </Typography>
-            <Typography variant="body1" sx={{ color: '#9ca3af', maxWidth: '600px', mx: 'auto', mb: 4 }}>
+            <Typography variant="body1" sx={{ color: '#d1d5db', maxWidth: '600px', mx: 'auto', mb: 4 }}>
               Direct contact channels for full-stack engineering opportunities, technical advisory, or project collaboration.
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, justifyContent: 'center', alignItems: 'center' }}>
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
               <Button
                 variant="contained"
                 size="large"
@@ -537,6 +662,16 @@ export default function PortfolioPage() {
                 sx={{ borderRadius: '12px', py: 1.5, px: 3, fontWeight: 700, textTransform: 'none', bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' } }}
               >
                 WhatsApp (+91 96331 34324)
+              </Button>
+
+              <Button
+                variant="outlined"
+                size="large"
+                startIcon={<LinkedInIcon />}
+                onClick={openLinkedIn}
+                sx={{ borderRadius: '12px', py: 1.5, px: 3, fontWeight: 700, textTransform: 'none', color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.4)' }}
+              >
+                LinkedIn Profile
               </Button>
 
               <Button
@@ -552,6 +687,53 @@ export default function PortfolioPage() {
           </Paper>
         </Box>
       </Box>
+
+      {/* FLOATING BOTTOM-RIGHT QUICK ACTIONS (SCROLL TO TOP & WHATSAPP) */}
+      {showScrollTop && (
+        <Box
+          sx={{
+            position: 'fixed',
+            bottom: 24,
+            right: 24,
+            zIndex: 1200,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 1.5,
+          }}
+        >
+          <Tooltip title="Chat on WhatsApp" placement="left">
+            <IconButton
+              onClick={openWhatsApp}
+              sx={{
+                bgcolor: '#22c55e',
+                color: '#ffffff',
+                boxShadow: '0 4px 20px rgba(34, 197, 94, 0.5)',
+                '&:hover': { bgcolor: '#16a34a' },
+                width: 48,
+                height: 48,
+              }}
+            >
+              <WhatsAppIcon />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Scroll to Top" placement="left">
+            <IconButton
+              onClick={scrollToTop}
+              sx={{
+                bgcolor: '#2563eb',
+                color: '#ffffff',
+                boxShadow: '0 4px 20px rgba(37, 99, 235, 0.5)',
+                '&:hover': { bgcolor: '#1d4ed8' },
+                width: 48,
+                height: 48,
+              }}
+            >
+              <KeyboardArrowUpIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      )}
     </Box>
   );
 }
