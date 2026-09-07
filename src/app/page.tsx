@@ -313,6 +313,42 @@ export default function PortfolioPage() {
               border: '1px solid rgba(255, 255, 255, 0.12)',
             }}
           >
+            {/* ATTRACTIVE STATUS CHIP */}
+            <Box sx={{ mb: 2 }}>
+              <Chip
+                icon={
+                  <Box
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      bgcolor: '#34d399',
+                      boxShadow: '0 0 8px #34d399',
+                      ml: '8px !important',
+                    }}
+                  />
+                }
+                label="Senior / Lead Full Stack Developer"
+                sx={{
+                  bgcolor: 'rgba(59, 130, 246, 0.12)',
+                  color: '#60a5fa',
+                  border: '1px solid rgba(96, 165, 250, 0.3)',
+                  fontWeight: 800,
+                  fontSize: { xs: '0.72rem', sm: '0.8rem' },
+                  letterSpacing: '0.02em',
+                  px: 1,
+                  py: 0.5,
+                  height: 'auto',
+                  backdropFilter: 'blur(6px)',
+                  boxShadow: '0 2px 12px rgba(59, 130, 246, 0.15)',
+                  '& .MuiChip-label': {
+                    px: 1,
+                    py: 0.5,
+                  },
+                }}
+              />
+            </Box>
+
             <Typography 
               variant="body1" 
               component="h1" 
@@ -328,7 +364,7 @@ export default function PortfolioPage() {
               I&apos;m Akhil Ramesh K, a Senior Full Stack Engineer & Team Lead with 10+ years of experience building scalable web applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
-            {/* ACTION BUTTONS (Icon-only on mobile xs, text labels on sm+) */}
+            {/* ACTION BUTTONS */}
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 2, alignItems: 'center' }}>
               <Button
                 variant="contained"
