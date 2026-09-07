@@ -340,7 +340,7 @@ export default function PortfolioPage() {
                 fontWeight: 500
               }}
             >
-              I&apos;m Akhil Ramesh K—a Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
+              I&apos;m Akhil Ramesh K —  Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
             {/* ACTION BUTTONS (Single Lines & Complete Contact Integration) */}
@@ -459,7 +459,7 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Download Resume
+                Resume
               </Button>
             </Box>
 
@@ -556,7 +556,7 @@ export default function PortfolioPage() {
 
         {/* ATTRACTIVE SKILLS SECTION */}
         <Box id="skills" sx={{ py: 2 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.1 }}>
             <CodeIcon sx={{ color: '#60a5fa', fontSize: '0.9rem' }} />
             <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 1.5, fontWeight: 700 }}>
               COMPREHENSIVE TECH STACK
@@ -566,7 +566,7 @@ export default function PortfolioPage() {
             variant="h5" 
             sx={{ 
               fontWeight: 900, 
-              mb: 2.5, 
+              mb: 0.5, 
               color: '#ffffff', 
               fontSize: { xs: '1.3rem', sm: '1.5rem' },
               lineHeight: 1.2,
