@@ -43,21 +43,25 @@ export const skillCategories = [
   {
     title: 'Frontend Architecture',
     color: '#3b82f6',
+    icon: <CodeIcon fontSize="small" />,
     skills: ['React.js', 'Next.js', 'Angular', 'TypeScript', 'JavaScript (ES6+)', 'Material UI', 'Tailwind CSS', 'HTML5/CSS3'],
   },
   {
     title: 'Backend & APIs',
     color: '#a855f7',
+    icon: <CodeIcon fontSize="small" />,
     skills: ['Node.js', 'NestJS', 'Express.js', 'RESTful APIs', 'GraphQL', 'WebSockets', 'Microservices'],
   },
   {
     title: 'Databases & Storage',
     color: '#34d399',
+    icon: <CodeIcon fontSize="small" />,
     skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Database Indexing', 'Aggregation Pipelines'],
   },
   {
     title: 'Cloud, DevOps & Tooling',
     color: '#f59e0b',
+    icon: <CodeIcon fontSize="small" />,
     skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'Git', 'Vercel', 'Jest', 'Cypress'],
   },
 ];
@@ -168,20 +172,7 @@ export const personalProjects = [
 
 export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState('about');
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToSection = (id: string) => {
     setActiveTab(id);
@@ -213,7 +204,7 @@ export default function PortfolioPage() {
   };
 
   return (
-    <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10, position: 'relative' }}>
+    <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 14, position: 'relative' }}>
       
       {/* HEADER / NAVBAR */}
       <Box
@@ -327,28 +318,24 @@ export default function PortfolioPage() {
                 borderColor: 'rgba(16, 185, 129, 0.4)',
                 fontWeight: 700,
                 borderRadius: '10px',
-                mb: 2,
+                mb: 3,
               }}
               variant="outlined"
             />
 
             <Typography 
-              variant="h2" 
+              variant="body1" 
               component="h1" 
               sx={{ 
-                fontWeight: 900, 
-                fontSize: { xs: '1.75rem', sm: '2.4rem', md: '3rem' }, 
-                mb: 2, 
-                letterSpacing: '-0.02em', 
-                color: '#ffffff',
-                lineHeight: 1.25 
+                color: '#e5e7eb', 
+                fontSize: { xs: '1.05rem', sm: '1.2rem' }, 
+                lineHeight: 1.7, 
+                mb: 4, 
+                maxWidth: '900px',
+                fontWeight: 500
               }}
             >
-              Architecting Scalable Web Applications & Leading Engineering Excellence
-            </Typography>
-
-            <Typography variant="body1" sx={{ color: '#e5e7eb', fontSize: '1.05rem', lineHeight: 1.7, mb: 4, maxWidth: '900px' }}>
-              Hi, I&apos;m Akhil Ramesh K—a Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
+              I&apos;m Akhil Ramesh K—a Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
             {/* ACTION BUTTONS */}
@@ -479,24 +466,55 @@ export default function PortfolioPage() {
               border: '1px solid rgba(255, 255, 255, 0.08)',
             }}
           >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <PersonIcon sx={{ color: '#60a5fa' }} />
-              <Typography variant="h5" sx={{ fontWeight: 800, color: '#ffffff' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px', mb: 2 }}>
+              <Box
+                sx={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '10px',
+                  bgcolor: 'rgba(59, 130, 246, 0.15)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#60a5fa',
+                  flexShrink: 0,
+                }}
+              >
+                <PersonIcon fontSize="small" />
+              </Box>
+              <Typography variant="h5" sx={{ fontWeight: 800, color: '#ffffff', m: 0 }}>
                 About Me & Leadership Philosophy
               </Typography>
             </Box>
+
             <Typography variant="body1" sx={{ color: '#d1d5db', lineHeight: 1.8, mb: 2 }}>
-              Throughout my career, I have focused on bridging the gap between complex business logic and intuitive, lightning-fast user interfaces. As a Team Lead at Xminds, I guide engineering squads through agile sprint planning, rigorous code reviews, and high-performance system design.
+              Throughout my professional journey as a full-stack software engineer and team lead, I have deeply focused on bridging the gap between complex business logic and lightning-fast user interfaces. I guide cross-functional engineering squads through agile sprint planning, meticulous code reviews, and robust system architecture design.
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#d1d5db', lineHeight: 1.8, mb: 2 }}>
+              Whether architecting real-time engagement frameworks, optimizing database query structures, or mentoring development peers, my goal centers on clean architecture, secure code standards, and seamless performance.
             </Typography>
             <Typography variant="body1" sx={{ color: '#d1d5db', lineHeight: 1.8 }}>
-              Whether architecting real-time event platforms, optimizing database query pipelines, or mentoring junior and mid-level developers, my goal is always maintainable architecture, secure code standards, and exceptional digital experiences.
+              To explore how these technical fundamentals drive everyday development results, look into my{' '}
+              <Box
+                component="span"
+                onClick={() => scrollToSection('skills')}
+                sx={{
+                  color: '#60a5fa',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  '&:hover': { color: '#93c5fd' },
+                }}
+              >
+                technical core skill sets and architecture stacks below
+              </Box>.
             </Typography>
           </Paper>
         </Box>
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
 
-        {/* ATTRACTIVE SKILLS SECTION */}
+        {/* ATTRACTIVE SKILLS SECTION - FIXED MOBILE LAYOUT */}
         <Box id="skills" sx={{ py: 6 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <CodeIcon sx={{ color: '#60a5fa' }} />
@@ -526,26 +544,38 @@ export default function PortfolioPage() {
                   },
                 }}
               >
-                <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  <Box
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '12px',
-                      bgcolor: `${cat.color}22`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      mb: 2,
-                      color: cat.color,
-                      flexShrink: 0,
-                    }}
-                  >
-                    <CodeIcon />
+                <CardContent sx={{ p: { xs: 2, sm: 3 }, display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  {/* FIXED: ICON & HEADING SIDE BY SIDE ON A SINGLE LINE */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px', mb: 2.5 }}>
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '8px',
+                        bgcolor: `${cat.color}22`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: cat.color,
+                        flexShrink: 0,
+                      }}
+                    >
+                      {cat.icon}
+                    </Box>
+                    <Typography 
+                      variant="h6" 
+                      sx={{ 
+                        fontWeight: 800, 
+                        color: '#ffffff', 
+                        m: 0, 
+                        fontSize: { xs: '0.95rem', sm: '1.05rem' },
+                        lineHeight: 1.3
+                      }}
+                    >
+                      {cat.title}
+                    </Typography>
                   </Box>
-                  <Typography variant="h6" sx={{ fontWeight: 800, color: '#ffffff', mb: 2 }}>
-                    {cat.title}
-                  </Typography>
+
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 'auto' }}>
                     {cat.skills.map((skill, sIdx) => (
                       <Chip
@@ -803,52 +833,68 @@ export default function PortfolioPage() {
         </Box>
       </Box>
 
-      {/* FLOATING ACTION BUTTONS */}
-      {showScrollTop && (
-        <Box
-          sx={{
-            position: 'fixed',
-            bottom: 24,
-            right: 24,
-            zIndex: 1200,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 1.5,
-          }}
-        >
-          <Tooltip title="Chat on WhatsApp" placement="left">
-            <IconButton
-              onClick={openWhatsApp}
-              sx={{
-                bgcolor: '#22c55e',
-                color: '#ffffff',
-                boxShadow: '0 4px 20px rgba(34, 197, 94, 0.5)',
-                '&:hover': { bgcolor: '#16a34a' },
-                width: 48,
-                height: 48,
-              }}
-            >
-              <WhatsAppIcon />
-            </IconButton>
-          </Tooltip>
+      {/* RIGHT-BOTTOM FLOATING ACTION BUTTONS */}
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: 24,
+          right: 24,
+          zIndex: 1200,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1.5,
+        }}
+      >
+        <Tooltip title="Send Email" placement="left">
+          <IconButton
+            component="a"
+            href="mailto:akhilrameshk@gmail.com"
+            sx={{
+              bgcolor: '#6366f1',
+              color: '#ffffff',
+              boxShadow: '0 4px 20px rgba(99, 102, 241, 0.5)',
+              '&:hover': { bgcolor: '#4f46e5' },
+              width: 48,
+              height: 48,
+            }}
+          >
+            <EmailIcon />
+          </IconButton>
+        </Tooltip>
 
-          <Tooltip title="Scroll to Top" placement="left">
-            <IconButton
-              onClick={scrollToTop}
-              sx={{
-                bgcolor: '#2563eb',
-                color: '#ffffff',
-                boxShadow: '0 4px 20px rgba(37, 99, 235, 0.5)',
-                '&:hover': { bgcolor: '#1d4ed8' },
-                width: 48,
-                height: 48,
-              }}
-            >
-              <KeyboardArrowUpIcon />
-            </IconButton>
-          </Tooltip>
-        </Box>
-      )}
+        <Tooltip title="Chat on WhatsApp" placement="left">
+          <IconButton
+            onClick={openWhatsApp}
+            sx={{
+              bgcolor: '#22c55e',
+              color: '#ffffff',
+              boxShadow: '0 4px 20px rgba(34, 197, 94, 0.5)',
+              '&:hover': { bgcolor: '#16a34a' },
+              width: 48,
+              height: 48,
+            }}
+          >
+            <WhatsAppIcon />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Scroll to Top" placement="left">
+          <IconButton
+            onClick={scrollToTop}
+            sx={{
+              bgcolor: '#2563eb',
+              color: '#ffffff',
+              boxShadow: '0 4px 20px rgba(37, 99, 235, 0.5)',
+              '&:hover': { bgcolor: '#1d4ed8' },
+              width: 48,
+              height: 48,
+            }}
+          >
+            <KeyboardArrowUpIcon />
+          </IconButton>
+        </Tooltip>
+      </Box>
+
     </Box>
   );
 }
