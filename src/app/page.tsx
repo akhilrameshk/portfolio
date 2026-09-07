@@ -325,6 +325,7 @@ export default function PortfolioPage() {
                       bgcolor: '#34d399',
                       boxShadow: '0 0 8px #34d399',
                       ml: '8px !important',
+                      Mr: 1,
                     }}
                   />
                 }
