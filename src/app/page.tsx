@@ -36,6 +36,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
+import DownloadIcon from '@mui/icons-material/Download';
 
 // --- DATA DEFINITIONS ---
 export const skillCategories = [
@@ -203,6 +204,14 @@ export default function PortfolioPage() {
     window.open('https://linkedin.com/in/akhilrameshk', '_blank');
   };
 
+  const openGitHub = () => {
+    window.open('https://github.com/akhilrameshk', '_blank');
+  };
+
+  const downloadResume = () => {
+    window.open('/resume.pdf', '_blank');
+  };
+
   return (
     <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10, position: 'relative' }}>
       
@@ -245,7 +254,7 @@ export default function PortfolioPage() {
             <Button onClick={() => scrollToSection('contact')} sx={{ color: activeTab === 'contact' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none' }}>Contact</Button>
           </Box>
 
-          {/* MOBILE HAMBURGER MENU ICON AT RIGHT */}
+          {/* MOBILE HAMBURGER MENU ICON */}
           <IconButton
             sx={{ display: { xs: 'flex', md: 'none' }, color: '#ffffff' }}
             onClick={() => setMobileMenuOpen(true)}
@@ -323,43 +332,54 @@ export default function PortfolioPage() {
               variant="outlined"
             />
 
-            <Typography variant="h2" component="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.4rem' }, mb: 2, letterSpacing: '-0.03em', color: '#ffffff' }}>
+            <Typography 
+              variant="h2" 
+              component="h1" 
+              sx={{ 
+                fontWeight: 900, 
+                fontSize: { xs: '1.75rem', sm: '2.4rem', md: '3rem' }, 
+                mb: 2, 
+                letterSpacing: '-0.02em', 
+                color: '#ffffff',
+                lineHeight: 1.25 
+              }}
+            >
               Architecting Scalable Web Applications & Leading Engineering Excellence
             </Typography>
 
-            <Typography variant="body1" sx={{ color: '#e5e7eb', fontSize: '1.15rem', lineHeight: 1.7, mb: 4, maxWidth: '900px' }}>
+            <Typography variant="body1" sx={{ color: '#e5e7eb', fontSize: '1.05rem', lineHeight: 1.7, mb: 4, maxWidth: '900px' }}>
               Hi, I&apos;m Akhil Ramesh K—a Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
             {/* ACTION BUTTONS */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 5 }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1.5, mb: 5 }}>
               <Button
                 variant="contained"
-                size="large"
+                size="medium"
                 startIcon={<WhatsAppIcon />}
                 onClick={openWhatsApp}
                 sx={{
-                  borderRadius: '12px',
-                  py: 1.2,
-                  px: 2.5,
+                  borderRadius: '10px',
+                  py: 1,
+                  px: 2,
                   fontWeight: 700,
                   textTransform: 'none',
                   bgcolor: '#22c55e',
                   '&:hover': { bgcolor: '#16a34a' },
                 }}
               >
-                Connect on WhatsApp
+                WhatsApp
               </Button>
 
               <Button
                 variant="outlined"
-                size="large"
+                size="medium"
                 startIcon={<LinkedInIcon />}
                 onClick={openLinkedIn}
                 sx={{
-                  borderRadius: '12px',
-                  py: 1.2,
-                  px: 2.5,
+                  borderRadius: '10px',
+                  py: 1,
+                  px: 2,
                   fontWeight: 700,
                   textTransform: 'none',
                   color: '#60a5fa',
@@ -367,25 +387,62 @@ export default function PortfolioPage() {
                   '&:hover': { bgcolor: 'rgba(96, 165, 250, 0.1)' },
                 }}
               >
-                LinkedIn Profile
+                LinkedIn
               </Button>
 
               <Button
                 variant="outlined"
-                size="large"
+                size="medium"
+                startIcon={<GitHubIcon />}
+                onClick={openGitHub}
+                sx={{
+                  borderRadius: '10px',
+                  py: 1,
+                  px: 2,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  color: '#f3f4f6',
+                  borderColor: 'rgba(255, 255, 255, 0.25)',
+                  '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+                }}
+              >
+                GitHub
+              </Button>
+
+              <Button
+                variant="outlined"
+                size="medium"
                 startIcon={<EmailIcon />}
                 href="mailto:akhilrameshk@gmail.com"
                 sx={{
-                  borderRadius: '12px',
-                  py: 1.2,
-                  px: 2.5,
+                  borderRadius: '10px',
+                  py: 1,
+                  px: 2,
                   fontWeight: 700,
                   textTransform: 'none',
                   color: '#f3f4f6',
                   borderColor: 'rgba(255, 255, 255, 0.2)',
                 }}
               >
-                Email Me
+                Email
+              </Button>
+
+              <Button
+                variant="contained"
+                size="medium"
+                startIcon={<DownloadIcon />}
+                onClick={downloadResume}
+                sx={{
+                  borderRadius: '10px',
+                  py: 1,
+                  px: 2,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  bgcolor: '#3b82f6',
+                  '&:hover': { bgcolor: '#2563eb' },
+                }}
+              >
+                Download Resume
               </Button>
             </Box>
 
@@ -469,26 +526,27 @@ export default function PortfolioPage() {
                   },
                 }}
               >
-                <CardContent sx={{ p: 3.5 }}>
+                <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', height: '100%' }}>
                   <Box
                     sx={{
-                      width: 42,
-                      height: 42,
+                      width: 40,
+                      height: 40,
                       borderRadius: '12px',
                       bgcolor: `${cat.color}22`,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      mb: 2.5,
+                      mb: 2,
                       color: cat.color,
+                      flexShrink: 0,
                     }}
                   >
                     <CodeIcon />
                   </Box>
-                  <Typography variant="h6" sx={{ fontWeight: 800, color: '#ffffff', mb: 2.5 }}>
+                  <Typography variant="h6" sx={{ fontWeight: 800, color: '#ffffff', mb: 2 }}>
                     {cat.title}
                   </Typography>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 'auto' }}>
                     {cat.skills.map((skill, sIdx) => (
                       <Chip
                         key={sIdx}
@@ -498,9 +556,10 @@ export default function PortfolioPage() {
                           bgcolor: 'rgba(255, 255, 255, 0.05)',
                           color: '#e5e7eb',
                           fontWeight: 600,
-                          fontSize: '0.78rem',
-                          borderRadius: '8px',
-                          border: '1px solid rgba(255, 255, 255, 0.06)',
+                          fontSize: '0.75rem',
+                          borderRadius: '6px',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          height: '28px',
                         }}
                       />
                     ))}
@@ -718,6 +777,16 @@ export default function PortfolioPage() {
                 sx={{ borderRadius: '12px', py: 1.5, px: 3, fontWeight: 700, textTransform: 'none', color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.4)' }}
               >
                 LinkedIn Profile
+              </Button>
+
+              <Button
+                variant="outlined"
+                size="large"
+                startIcon={<GitHubIcon />}
+                onClick={openGitHub}
+                sx={{ borderRadius: '12px', py: 1.5, px: 3, fontWeight: 700, textTransform: 'none', color: '#f3f4f6', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+              >
+                GitHub Profile
               </Button>
 
               <Button
