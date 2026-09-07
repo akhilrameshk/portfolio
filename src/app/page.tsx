@@ -33,6 +33,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DownloadIcon from '@mui/icons-material/Download';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import WorkIcon from '@mui/icons-material/Work';
+import SchoolIcon from '@mui/icons-material/School';
 import LaunchIcon from '@mui/icons-material/Launch';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -40,20 +41,65 @@ import { motion } from 'framer-motion';
 import { darkTheme } from '@/theme/theme';
 
 const impactStats = [
-  { value: '10+', label: 'Years Commercial Exp.' },
-  { value: '10+', label: 'Production Apps' },
+  { value: '10+', label: 'Years Experience' },
+  { value: '5+', label: 'Engineers Led' },
   { value: '40%', label: 'Web Vitals Boost' },
-  { value: '35%', label: 'DB Query Optimization' },
+  { value: '35%', label: 'Latency Reduced' },
 ];
 
 const projectsList = [
+  {
+    title: 'Cricksy',
+    category: 'Full Stack',
+    type: 'Cricket Match Platform',
+    color: '#0284c7',
+    description: 'Early-stage cricket platform designed to load live local and international match details.',
+    tech: ['TypeScript', 'React', 'Next.js', 'Node.js', 'REST APIs'],
+    github: 'https://github.com/akhilrameshk/Cricksy'
+  },
+  {
+    title: 'Kayal Vista',
+    category: 'Full Stack',
+    type: 'Houseboat & Room Booking',
+    color: '#06b6d4',
+    description: 'Initial-stage product platform for booking houseboats and rooms currently focused on Alappuzha backwaters.',
+    tech: ['Next.js', 'TypeScript', 'Node.js', 'MongoDB'],
+    github: 'https://github.com/akhilrameshk/kayal-vista'
+  },
+  {
+    title: 'Optical Shop',
+    category: 'Frontend',
+    type: 'Local Shop Showcase',
+    color: '#f59e0b',
+    description: 'Digital catalog designed to display and showcase local optical products available in-shop.',
+    tech: ['TypeScript', 'HTML5', 'CSS3', 'Responsive UI'],
+    github: 'https://github.com/akhilrameshk/optical-shop'
+  },
+  {
+    title: 'Marriage Invitation',
+    category: 'Frontend',
+    type: 'Web Template',
+    color: '#8b5cf6',
+    description: 'Custom wedding invitation web template built for Anandhanunni & Amrutha with responsive animations and venue details.',
+    tech: ['HTML5', 'CSS3', 'JavaScript'],
+    github: 'https://github.com/akhilrameshk/AnandhanunniAmrutha'
+  },
+  {
+    title: 'Resume Builder',
+    category: 'Frontend',
+    type: 'Resume Generator Tool',
+    color: '#ef4444',
+    description: 'Early-stage utility tool built to dynamic generate and export structured developer resumes.',
+    tech: ['JavaScript', 'HTML5', 'CSS3', 'PDF Export'],
+    github: 'https://github.com/akhilrameshk/resume-builder'
+  },
   {
     title: 'Pixovo',
     category: 'Full Stack',
     type: 'LMS Platform',
     color: '#10b981',
     description: 'Scalable educational platform featuring multi-tier course management, interactive grading rubrics, automated quiz systems, and integrated payment gateways.',
-    tech: ['React', 'Next.js', 'Node.js', 'MongoDB'],
+    tech: ['React', 'Next.js', 'Node.js', 'MongoDB', 'Stripe'],
   },
   {
     title: 'Comeonda',
@@ -72,84 +118,59 @@ const projectsList = [
     tech: ['ReactJS', 'Data Aggregation', 'Charting'],
   },
   {
-    title: 'GOSME',
-    category: 'Full Stack',
-    type: 'B2B Enterprise Platform',
-    color: '#f59e0b',
-    description: 'B2B platform for small and medium enterprises built with a high-performance, scalable backend architecture.',
-    tech: ['Angular', 'NestJS', 'Node.js'],
-  },
-  {
-    title: 'Thickler',
-    category: 'Frontend',
-    type: 'Web Application',
-    color: '#ef4444',
-    description: 'Full-featured web application built using modern React and Next.js architectural patterns.',
-    tech: ['React', 'Next.js', 'Node.js'],
-  },
-  {
     title: 'Isentia',
     category: 'Full Stack',
-    type: 'Enterprise Media',
+    type: 'Workflow Automation',
     color: '#ec4899',
-    description: 'Enterprise media monitoring & automated workflow reconciliation platform managing complex administrative approvals.',
-    tech: ['Angular', 'Node.js', 'REST APIs'],
-  },
-  {
-    title: 'Loopshare',
-    category: 'Backend',
-    type: 'Sharing Economy Platform',
-    color: '#06b6d4',
-    description: 'Backend platform powering sharing economy features, user access control, and transaction workflows.',
-    tech: ['Node.js', 'Express', 'MongoDB'],
-  },
-  {
-    title: 'Hello Cabs',
-    category: 'Mobile',
-    type: 'Taxi Booking Application',
-    color: '#eab308',
-    description: 'Taxi booking and fleet management system built as a cross-platform hybrid mobile application.',
-    tech: ['Cordova', 'JavaScript', 'Mobile Web'],
-  },
-  {
-    title: 'Educore',
-    category: 'Mobile',
-    type: 'EdTech Multi-Platform',
-    color: '#6366f1',
-    description: 'All-in-one education management system streamlining administration, communication, and student workflows.',
-    tech: ['Meteor', 'AngularJS', 'Cordova', 'MongoDB', 'Node.js'],
-  },
-  {
-    title: 'Eye of Sharjah',
-    category: 'Frontend',
-    type: 'Government Portal',
-    color: '#14b8a6',
-    description: 'Government complaint and suggestion portal designed for public civic engagement and ticket tracking.',
-    tech: ['Angular', 'Mobile Web', 'REST APIs'],
-  },
+    description: 'Automated expense reconciliation engine managing complex compliance rules, multi-stage reimbursement workflows, and approval hierarchies.',
+    tech: ['Angular', 'Node.js', 'REST APIs', 'PostgreSQL'],
+  }
 ];
 
 const workHistory = [
   {
-    role: 'Senior / Lead Full Stack Developer',
+    role: 'Senior Full Stack Developer / Team Lead',
     company: 'Xminds Technopark',
     period: 'Sep 2018 - Present',
     highlights: [
-      'Architected 8+ enterprise web applications using Next.js, React, Node.js, and MongoDB.',
-      'Optimized database aggregation queries by 35% across high-volume production datasets.',
-      'Boosted web application performance by 40% utilizing Next.js Server-Side Rendering (SSR) and Static Site Generation (SSG).'
+      'Led a cross-functional team of 5+ developers across 8+ production-ready enterprise applications, owning sprint planning, code reviews, and delivery timelines.',
+      'Mentored team members through 1:1 coaching and technical guidance, improving overall sprint delivery velocity and onboarding efficiency.',
+      'Partnered with stakeholders to formulate technical roadmaps, balancing scope and engineering velocity across React, Next.js, Node.js, and NestJS.',
+      'Boosted Core Web Vitals performance by 40% and reduced API response latency by 35% through SSR, SSG, caching, and database query optimizations.',
+      'Directed integrations with 15+ third-party systems and payment gateways (Stripe, Razorpay).'
     ],
-    skills: ['Next.js', 'React', 'Node.js', 'MongoDB', 'TypeScript', 'Express', 'SSR/SSG']
+    skills: ['Next.js', 'React', 'Node.js', 'NestJS', 'MongoDB', 'PostgreSQL', 'TypeScript', 'AWS', 'Team Leadership']
   },
   {
-    role: 'Software Developer',
+    role: 'Senior Software Engineer',
     company: 'Cordova Cloud Solutions',
     period: 'Apr 2016 - Aug 2018',
     highlights: [
-      'Engineered hybrid mobile apps for iOS and Android using Apache Cordova and Angular.',
-      'Designed and deployed scalable RESTful APIs with Node.js and MongoDB backend integrations.'
+      'Led development and deployment of hybrid Android and iOS mobile applications using Angular, Node.js, and Apache Cordova.',
+      'Designed and built scalable RESTful APIs with Express.js and MongoDB to support real-time features.',
+      'Increased user engagement by 25% through responsive interface enhancements and real-time syncing pipelines.'
     ],
-    skills: ['Apache Cordova', 'Angular', 'Node.js', 'MongoDB', 'JavaScript', 'REST APIs']
+    skills: ['Apache Cordova', 'Angular', 'Node.js', 'Express', 'MongoDB', 'REST APIs', 'Hybrid Mobile']
+  },
+  {
+    role: 'Junior Developer',
+    company: 'Achariya Techno Solutions',
+    period: 'Jul 2015 - Mar 2016',
+    highlights: [
+      'Built modular, responsive web client interfaces using JavaScript, AngularJS, HTML5, and CSS3.',
+      'Developed a reusable UI component library, reducing maintenance overhead and front-end build stability.'
+    ],
+    skills: ['JavaScript', 'AngularJS', 'HTML5', 'CSS3', 'UI Components']
+  },
+  {
+    role: 'Junior Developer',
+    company: 'Neologic',
+    period: 'Aug 2014 - Jun 2015',
+    highlights: [
+      'Contributed full-stack code across frontend views and relational data storage systems.',
+      'Resolved production issues and cross-browser styling inconsistencies across modern desktop and mobile browsers.'
+    ],
+    skills: ['JavaScript', 'HTML5', 'CSS3', 'SQL', 'Full Stack']
   }
 ];
 
@@ -159,7 +180,7 @@ export default function Home() {
   const [filter, setFilter] = useState('All');
   const [isAtBottom, setIsAtBottom] = useState(false);
 
-  const categories = ['All', 'Full Stack', 'Frontend', 'Backend', 'Mobile'];
+  const categories = ['All', 'Full Stack', 'Frontend'];
 
   const filteredProjects = filter === 'All' 
     ? projectsList 
@@ -194,7 +215,7 @@ export default function Home() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      {/* --- HEADER (CLEAN TEXT-ONLY CONTACT BUTTONS) --- */}
+      {/* --- HEADER --- */}
       <AppBar 
         position="sticky" 
         elevation={0}
@@ -293,7 +314,7 @@ export default function Home() {
             >
               <Stack direction="row" spacing={1} sx={{ mb: 2.5, flexWrap: 'wrap', gap: 1 }}>
                 <Chip 
-                  label="Senior / Lead Full Stack Developer" 
+                  label="Senior Full Stack Developer & Team Lead" 
                   size="small"
                   sx={{ 
                     borderColor: 'rgba(16, 185, 129, 0.3)', 
@@ -305,7 +326,7 @@ export default function Home() {
                   }} 
                 />
                 <Chip 
-                  label="10+ Years Experience" 
+                  label="10+ Years Exp." 
                   size="small"
                   sx={{ 
                     borderColor: 'rgba(168, 85, 247, 0.3)', 
@@ -344,12 +365,12 @@ export default function Home() {
                   fontSize: { xs: '1rem', sm: '1.25rem', md: '1.38rem' } 
                 }}
               >
-                Senior Full Stack Web & Mobile Software Developer specializing in{' '}
-                <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>Next.js, React, Angular, Node.js</Box>, and{' '}
-                <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL, MySQL & DynamoDB</Box>.
+                Senior Full Stack Developer and Team Lead with 10+ years architecting web & mobile platforms across{' '}
+                <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>React, Next.js, Angular, Node.js, NestJS</Box>, and{' '}
+                <Box component="span" sx={{ color: '#ffffff', fontWeight: 600 }}>MongoDB, PostgreSQL & Redis</Box>.
               </Typography>
 
-              {/* HERO ACTION BUTTONS WITH SOCIAL & CONTACT LINKS */}
+              {/* HERO ACTION BUTTONS */}
               <Box 
                 sx={{ 
                   display: 'flex', 
@@ -517,7 +538,7 @@ export default function Home() {
                 About Me
               </Typography>
               <Typography variant="h3" sx={{ mb: 2.5, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
-                Engineering Leadership & Full-Stack Craftsmanship
+                Technical Leadership & Scalable System Architecture
               </Typography>
 
               <Card 
@@ -533,21 +554,21 @@ export default function Home() {
                 <Grid container spacing={4}>
                   <Grid size={{ xs: 12, md: 8 }}>
                     <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.85, mb: 2, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
-                      With over a decade of software engineering experience, I build resilient, high-performance web and mobile applications from scratch. My focus centers on building clean architectural patterns using modern JavaScript/TypeScript ecosystems, optimizing heavy database operations, and crafting intuitive end-user interfaces.
+                      Senior Full Stack Developer and Team Lead with over 10 years of experience architecting and scaling enterprise-grade web and mobile platforms. I lead engineering teams of 5+ developers, owning sprint planning, code delivery, system architecture, and stakeholder alignment for products supporting over 10,000+ active users.
                     </Typography>
                     <Typography variant="body1" color="text.secondary" sx={{ lineHeight: 1.85, fontSize: { xs: '0.95rem', md: '1.05rem' } }}>
-                      Whether scaling enterprise platforms like <Box component="strong" sx={{ color: '#ffffff', fontWeight: 600 }}>Isentia</Box> or real-time event engines like <Box component="strong" sx={{ color: '#ffffff', fontWeight: 600 }}>Comeonda</Box>, I thrive on tackling backend synchronization bottlenecks, server-side rendering optimizations, and multi-tenant database designs.
+                      My core focus combines hands-on engineering across Next.js, React, Node.js, NestJS, and cloud databases (MongoDB, PostgreSQL) with leadership initiatives that boost delivery speed, developer growth, and core performance metrics.
                     </Typography>
                   </Grid>
                   <Grid size={{ xs: 12, md: 4 }}>
                     <Stack spacing={2}>
                       <Box sx={{ p: 2, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5, textTransform: 'uppercase', fontFamily: 'monospace' }}>Core Focus</Typography>
-                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#10b981', fontSize: '0.9rem' }}>Full-Lifecycle Product Architecture</Typography>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#10b981', fontSize: '0.9rem' }}>Team Leadership & System Architecture</Typography>
                       </Box>
                       <Box sx={{ p: 2, borderRadius: '10px', bgcolor: 'rgba(255, 255, 255, 0.02)', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
                         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5, textTransform: 'uppercase', fontFamily: 'monospace' }}>Specialization</Typography>
-                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#a855f7', fontSize: '0.9rem' }}>SSR/SSG Optimizations & SQL/NoSQL Aggregation</Typography>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 700, color: '#a855f7', fontSize: '0.9rem' }}>Full-Stack JS/TS, SSR, CI/CD & Microservices</Typography>
                       </Box>
                     </Stack>
                   </Grid>
@@ -561,7 +582,7 @@ export default function Home() {
                 Portfolio
               </Typography>
               <Typography variant="h3" sx={{ mb: 2, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
-                Featured Projects Showcase
+                Featured Projects & Repositories
               </Typography>
 
               {/* Category Filter Pills */}
@@ -624,7 +645,18 @@ export default function Home() {
                               fontSize: '0.72rem'
                             }} 
                           />
-                          <LaunchIcon sx={{ fontSize: 16, color: 'text.secondary', opacity: 0.5 }} />
+                          {project.github ? (
+                            <Button 
+                              href={project.github} 
+                              target="_blank" 
+                              size="small"
+                              sx={{ minWidth: 'auto', p: 0.5, color: 'text.secondary', '&:hover': { color: '#fff' } }}
+                            >
+                              <GitHubIcon sx={{ fontSize: 18 }} />
+                            </Button>
+                          ) : (
+                            <LaunchIcon sx={{ fontSize: 16, color: 'text.secondary', opacity: 0.5 }} />
+                          )}
                         </Box>
                         <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, fontSize: '1.15rem' }}>{project.title}</Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6, fontSize: '0.88rem', mb: 2 }}>
@@ -661,7 +693,7 @@ export default function Home() {
                 Experience
               </Typography>
               <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
-                Career History
+                Career Journey
               </Typography>
 
               <Stack spacing={2}>
@@ -718,6 +750,52 @@ export default function Home() {
               </Stack>
             </Box>
 
+            {/* --- EDUCATION SECTION --- */}
+            <Box>
+              <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#f59e0b', textTransform: 'uppercase', letterSpacing: 2, fontWeight: 600 }}>
+                Education
+              </Typography>
+              <Typography variant="h3" sx={{ mb: 3, mt: 0.5, fontWeight: 800, letterSpacing: '-0.02em', fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
+                Academic Background
+              </Typography>
+
+              <Card 
+                variant="outlined" 
+                sx={{ 
+                  p: 3, 
+                  borderColor: 'rgba(255, 255, 255, 0.08)', 
+                  bgcolor: 'rgba(18, 18, 22, 0.5)',
+                  borderRadius: '12px'
+                }}
+              >
+                <Stack spacing={2}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <SchoolIcon sx={{ color: '#f59e0b' }} />
+                    <Box>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                        B.Tech in Information Technology
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        College of Engineering Poonjar, Kerala (2007 - 2011)
+                      </Typography>
+                    </Box>
+                  </Box>
+                  <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.05)' }} />
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <SchoolIcon sx={{ color: 'text.secondary' }} />
+                    <Box>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                        Higher Secondary Education (Plus Two)
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        SDV HSS, Alappuzha, Kerala (2005 - 2007)
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Stack>
+              </Card>
+            </Box>
+
             <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)' }} />
 
             {/* --- FOOTER --- */}
@@ -741,7 +819,7 @@ export default function Home() {
           </Stack>
         </Container>
 
-        {/* --- FLOATING VERTICAL QUICK ACTIONS (DYNAMIC ARROW AT BOTTOM) --- */}
+        {/* --- FLOATING VERTICAL QUICK ACTIONS --- */}
         <Stack 
           direction="column"
           spacing={1.2}
@@ -807,7 +885,6 @@ export default function Home() {
             </Fab>
           </Tooltip>
 
-          {/* Dynamic Scroll Toggle Button - At the bottom of the stack */}
           <Tooltip title={isAtBottom ? "Scroll to Top" : "Scroll to Bottom"} placement="left">
             <Fab 
               size="small" 
