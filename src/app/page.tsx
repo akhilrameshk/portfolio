@@ -23,8 +23,6 @@ import {
 } from '@mui/material';
 
 // --- WORKING MUI ICON IMPORTS ---
-import WorkIcon from '@mui/icons-material/Work';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StorageIcon from '@mui/icons-material/Storage';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -364,12 +362,9 @@ export default function PortfolioPage() {
 
         {/* WORK EXPERIENCE */}
         <Box id="experience" sx={{ py: 6 }}>
-          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
-            <WorkIcon sx={{ color: '#60a5fa' }} />
-            <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700 }}>
-              CAREER TRACK
-            </Typography>
-          </Stack>
+          <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700, display: 'block', mb: 1 }}>
+            CAREER TRACK
+          </Typography>
           <Typography variant="h4" fontWeight="900" gutterBottom sx={{ mb: 4 }}>
             Professional Work Experience
           </Typography>
@@ -397,7 +392,7 @@ export default function PortfolioPage() {
                     <Stack spacing={1}>
                       {exp.achievements.map((ach, i) => (
                         <Stack direction="row" spacing={1} alignItems="flex-start" key={i}>
-                          <CheckIcon sx={{ fontSize: '1rem', color: '#34d399', mt: '3px' }} />
+                          <Typography variant="caption" color="#34d399" sx={{ fontWeight: 'bold', lineHeight: 1.4 }}>✓</Typography>
                           <Typography variant="caption" color="#d1d5db" sx={{ lineHeight: 1.4 }}>{ach}</Typography>
                         </Stack>
                       ))}
