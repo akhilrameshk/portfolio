@@ -284,7 +284,11 @@ export default function PortfolioPage() {
               <ListItemButton onClick={() => scrollToSection(section)} sx={{ borderRadius: '10px', '&:hover': { bgcolor: 'rgba(59, 130, 246, 0.15)' } }}>
                 <ListItemText
                   primary={section.charAt(0).toUpperCase() + section.slice(1)}
-                  primaryTypographyProps={{ fontWeight: 700, color: activeTab === section ? '#60a5fa' : '#d1d5db' }}
+                  slotProps={{
+                    primary: {
+                      sx: { fontWeight: 700, color: activeTab === section ? '#60a5fa' : '#d1d5db' },
+                    },
+                  }}
                 />
               </ListItemButton>
             </ListItem>
