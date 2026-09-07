@@ -27,7 +27,6 @@ import StorageIcon from '@mui/icons-material/Storage';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -82,6 +81,7 @@ export const workExperience = [
   },
 ];
 
+// Reordered Enterprise Projects
 export const mainEnterpriseProjects = [
   {
     id: 'p1',
@@ -161,7 +161,7 @@ export default function PortfolioPage() {
 
   return (
     <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10 }}>
-      {/* HEADER NAVBAR */}
+      {/* HEADER NAVBAR - WhatsApp & Contact removed */}
       <AppBar
         position="sticky"
         elevation={0}
@@ -189,35 +189,26 @@ export default function PortfolioPage() {
             </Typography>
 
             <Stack direction="row" spacing={{ xs: 1, sm: 2 }} alignItems="center">
-              <Button size="small" onClick={() => scrollToSection('about')} sx={{ color: activeTab === 'about' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
+              <Button
+                size="small"
+                onClick={() => scrollToSection('about')}
+                sx={{ color: activeTab === 'about' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+              >
                 About
               </Button>
-              <Button size="small" onClick={() => scrollToSection('experience')} sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
+              <Button
+                size="small"
+                onClick={() => scrollToSection('experience')}
+                sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+              >
                 Experience
               </Button>
-              <Button size="small" onClick={() => scrollToSection('projects')} sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
-                Projects
-              </Button>
-              <Button size="small" onClick={() => scrollToSection('contact')} sx={{ color: activeTab === 'contact' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
-                Contact
-              </Button>
-
               <Button
-                variant="contained"
                 size="small"
-                color="success"
-                startIcon={<WhatsAppIcon />}
-                onClick={openWhatsApp}
-                sx={{
-                  borderRadius: '20px',
-                  fontWeight: 700,
-                  textTransform: 'none',
-                  px: 2,
-                  bgcolor: '#22c55e',
-                  '&:hover': { bgcolor: '#16a34a' },
-                }}
+                onClick={() => scrollToSection('projects')}
+                sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
               >
-                WhatsApp
+                Projects
               </Button>
             </Stack>
           </Toolbar>
@@ -527,7 +518,7 @@ export default function PortfolioPage() {
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
 
-        {/* CONTACT SECTION */}
+        {/* FOOTER CONTACT SECTION */}
         <Box id="contact" sx={{ py: 6 }}>
           <Paper
             elevation={0}
