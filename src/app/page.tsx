@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
@@ -37,31 +37,35 @@ import CloseIcon from '@mui/icons-material/Close';
 import PersonIcon from '@mui/icons-material/Person';
 import WorkIcon from '@mui/icons-material/Work';
 import DownloadIcon from '@mui/icons-material/Download';
+import LayoutIcon from '@mui/icons-material/ViewAgenda';
+import ServerIcon from '@mui/icons-material/Storage';
+import DatabaseIcon from '@mui/icons-material/Storage';
+import CloudIcon from '@mui/icons-material/Cloud';
 
 // --- DATA DEFINITIONS ---
 export const skillCategories = [
   {
     title: 'Frontend Architecture',
     color: '#3b82f6',
-    icon: <CodeIcon fontSize="small" />,
+    icon: <LayoutIcon fontSize="small" />,
     skills: ['React.js', 'Next.js', 'Angular', 'TypeScript', 'JavaScript (ES6+)', 'Material UI', 'Tailwind CSS', 'HTML5/CSS3'],
   },
   {
     title: 'Backend & APIs',
     color: '#a855f7',
-    icon: <CodeIcon fontSize="small" />,
+    icon: <ServerIcon fontSize="small" />,
     skills: ['Node.js', 'NestJS', 'Express.js', 'RESTful APIs', 'GraphQL', 'WebSockets', 'Microservices'],
   },
   {
     title: 'Databases & Storage',
     color: '#34d399',
-    icon: <CodeIcon fontSize="small" />,
+    icon: <DatabaseIcon fontSize="small" />,
     skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Database Indexing', 'Aggregation Pipelines'],
   },
   {
     title: 'Cloud, DevOps & Tooling',
     color: '#f59e0b',
-    icon: <CodeIcon fontSize="small" />,
+    icon: <CloudIcon fontSize="small" />,
     skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'Git', 'Vercel', 'Jest', 'Cypress'],
   },
 ];
@@ -204,7 +208,7 @@ export default function PortfolioPage() {
   };
 
   return (
-    <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 14, position: 'relative' }}>
+    <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 16, position: 'relative' }}>
       
       {/* HEADER / NAVBAR */}
       <Box
@@ -514,7 +518,7 @@ export default function PortfolioPage() {
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
 
-        {/* ATTRACTIVE SKILLS SECTION - FIXED MOBILE LAYOUT */}
+        {/* ATTRACTIVE SKILLS SECTION - FIXED CARD OVERFLOW AND HEIGHT ISSUES */}
         <Box id="skills" sx={{ py: 6 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <CodeIcon sx={{ color: '#60a5fa' }} />
@@ -532,11 +536,14 @@ export default function PortfolioPage() {
                 key={idx}
                 variant="outlined"
                 sx={{
-                  height: '100%',
+                  height: 'auto',
+                  minHeight: '320px',
                   borderRadius: '24px',
                   bgcolor: 'rgba(17, 24, 39, 0.75)',
                   borderColor: 'rgba(255, 255, 255, 0.1)',
                   transition: 'all 0.3s ease-in-out',
+                  display: 'flex',
+                  flexDirection: 'column',
                   '&:hover': {
                     borderColor: cat.color,
                     transform: 'translateY(-4px)',
@@ -544,14 +551,14 @@ export default function PortfolioPage() {
                   },
                 }}
               >
-                <CardContent sx={{ p: { xs: 2, sm: 3 }, display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  {/* FIXED: ICON & HEADING SIDE BY SIDE ON A SINGLE LINE */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px', mb: 2.5 }}>
+                <CardContent sx={{ p: { xs: 2.5, sm: 3 }, pb: '24px !important', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                  {/* ICON & HEADING SIDE BY SIDE ON A SINGLE LINE */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px', mb: 3 }}>
                     <Box
                       sx={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: '8px',
+                        width: 36,
+                        height: 36,
+                        borderRadius: '10px',
                         bgcolor: `${cat.color}22`,
                         display: 'flex',
                         alignItems: 'center',
