@@ -3,23 +3,17 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Container,
   Typography,
   Chip,
-  Grid,
   Card,
   CardContent,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Button,
-  Stack,
   Divider,
   Avatar,
   Paper,
-  AppBar,
-  Toolbar,
-  Container as MuiContainer,
 } from '@mui/material';
 
 // --- WORKING MUI ICON IMPORTS ---
@@ -160,61 +154,64 @@ export default function PortfolioPage() {
 
   return (
     <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10 }}>
-      {/* HEADER NAVBAR */}
-      <AppBar
-        position="sticky"
-        elevation={0}
+      {/* NAVBAR */}
+      <Box
+        component="header"
         sx={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 1100,
           bgcolor: 'rgba(11, 15, 25, 0.85)',
           backdropFilter: 'blur(12px)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          py: 2,
+          px: { xs: 2, sm: 4, md: 8 },
         }}
       >
-        <MuiContainer maxWidth="lg">
-          <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 900,
-                background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                cursor: 'pointer',
-                letterSpacing: '-0.02em',
-              }}
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 900,
+              background: 'linear-gradient(45deg, #3b82f6, #a855f7)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              cursor: 'pointer',
+              letterSpacing: '-0.02em',
+            }}
+            onClick={() => scrollToSection('about')}
+          >
+            AKHIL RAMESH K
+          </Typography>
+
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Button
+              size="small"
               onClick={() => scrollToSection('about')}
+              sx={{ color: activeTab === 'about' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
             >
-              AKHIL RAMESH K
-            </Typography>
+              About
+            </Button>
+            <Button
+              size="small"
+              onClick={() => scrollToSection('experience')}
+              sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+            >
+              Experience
+            </Button>
+            <Button
+              size="small"
+              onClick={() => scrollToSection('projects')}
+              sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
+            >
+              Projects
+            </Button>
+          </Box>
+        </Box>
+      </Box>
 
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-              <Button
-                size="small"
-                onClick={() => scrollToSection('about')}
-                sx={{ color: activeTab === 'about' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
-              >
-                About
-              </Button>
-              <Button
-                size="small"
-                onClick={() => scrollToSection('experience')}
-                sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
-              >
-                Experience
-              </Button>
-              <Button
-                size="small"
-                onClick={() => scrollToSection('projects')}
-                sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}
-              >
-                Projects
-              </Button>
-            </Box>
-          </Toolbar>
-        </MuiContainer>
-      </AppBar>
-
-      <Container maxWidth="lg" sx={{ pt: 5 }}>
+      {/* MAIN CONTENT WRAPPER */}
+      <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 4, md: 6 }, pt: 5 }}>
         {/* HERO / ABOUT SECTION */}
         <Box id="about" sx={{ pt: 2, pb: 8 }}>
           <Paper
@@ -226,8 +223,8 @@ export default function PortfolioPage() {
               border: '1px solid rgba(255, 255, 255, 0.12)',
             }}
           >
-            <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} md={7}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 380px' }, gap: 4, alignItems: 'center' }}>
+              <Box>
                 <Chip
                   label="Available for Lead & Architect Roles"
                   sx={{
@@ -241,7 +238,7 @@ export default function PortfolioPage() {
                   variant="outlined"
                 />
 
-                <Typography variant="h2" component="h1" letterSpacing="-0.03em" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 1 }}>
+                <Typography variant="h2" component="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 1, letterSpacing: '-0.03em' }}>
                   Senior Full Stack Developer & Team Lead
                 </Typography>
 
@@ -289,62 +286,60 @@ export default function PortfolioPage() {
                     WhatsApp Chat
                   </Button>
                 </Box>
-              </Grid>
+              </Box>
 
-              <Grid item xs={12} md={5}>
-                <Paper
-                  elevation={10}
+              <Paper
+                elevation={10}
+                sx={{
+                  p: 4,
+                  borderRadius: '24px',
+                  bgcolor: 'rgba(17, 24, 39, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  textAlign: 'center',
+                }}
+              >
+                <Avatar
                   sx={{
-                    p: 4,
-                    borderRadius: '24px',
-                    bgcolor: 'rgba(17, 24, 39, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    textAlign: 'center',
+                    width: 100,
+                    height: 100,
+                    mx: 'auto',
+                    mb: 2,
+                    bgcolor: '#2563eb',
+                    fontSize: '2.2rem',
+                    fontWeight: 900,
+                    border: '3px solid rgba(255, 255, 255, 0.2)',
                   }}
                 >
-                  <Avatar
-                    sx={{
-                      width: 100,
-                      height: 100,
-                      mx: 'auto',
-                      mb: 2,
-                      bgcolor: '#2563eb',
-                      fontSize: '2.2rem',
-                      fontWeight: 900,
-                      border: '3px solid rgba(255, 255, 255, 0.2)',
-                    }}
-                  >
-                    AR
-                  </Avatar>
+                  AR
+                </Avatar>
 
-                  <Typography variant="h6" sx={{ fontWeight: 800 }}>Akhil Ramesh K</Typography>
-                  <Typography variant="caption" color="#9ca3af" display="block" sx={{ mb: 3 }}>
-                    Alappuzha, Kerala, India
-                  </Typography>
+                <Typography variant="h6" sx={{ fontWeight: 800 }}>Akhil Ramesh K</Typography>
+                <Typography variant="caption" sx={{ color: '#9ca3af', display: 'block', mb: 3 }}>
+                  Alappuzha, Kerala, India
+                </Typography>
 
-                  <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', mb: 3 }} />
+                <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', mb: 3 }} />
 
-                  <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                      <Typography variant="h5" color="#60a5fa" sx={{ fontWeight: 900 }}>10+</Typography>
-                      <Typography variant="caption" color="#9ca3af">Years Exp.</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="h5" color="#34d399" sx={{ fontWeight: 900 }}>40%</Typography>
-                      <Typography variant="caption" color="#9ca3af">Core Web Vitals</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="h5" color="#a855f7" sx={{ fontWeight: 900 }}>5+ Devs</Typography>
-                      <Typography variant="caption" color="#9ca3af">Team Lead</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <Typography variant="h5" color="#f59e0b" sx={{ fontWeight: 900 }}>35%</Typography>
-                      <Typography variant="caption" color="#9ca3af">Latency Cut</Typography>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
-            </Grid>
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
+                  <Box>
+                    <Typography variant="h5" sx={{ color: '#60a5fa', fontWeight: 900 }}>10+</Typography>
+                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Years Exp.</Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="h5" sx={{ color: '#34d399', fontWeight: 900 }}>40%</Typography>
+                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Core Web Vitals</Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="h5" sx={{ color: '#a855f7', fontWeight: 900 }}>5+ Devs</Typography>
+                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Team Lead</Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="h5" sx={{ color: '#f59e0b', fontWeight: 900 }}>35%</Typography>
+                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Latency Cut</Typography>
+                  </Box>
+                </Box>
+              </Paper>
+            </Box>
           </Paper>
         </Box>
 
@@ -355,43 +350,42 @@ export default function PortfolioPage() {
           <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700, display: 'block', mb: 1 }}>
             CAREER TRACK
           </Typography>
-          <Typography variant="h4" gutterBottom sx={{ fontWeight: 900, mb: 4 }}>
+          <Typography variant="h4" sx={{ fontWeight: 900, mb: 4 }}>
             Professional Work Experience
           </Typography>
 
-          <Grid container spacing={3}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3 }}>
             {workExperience.map((exp, idx) => (
-              <Grid item xs={12} md={6} key={idx}>
-                <Card
-                  variant="outlined"
-                  sx={{
-                    height: '100%',
-                    borderRadius: '20px',
-                    bgcolor: 'rgba(17, 24, 39, 0.6)',
-                    borderColor: 'rgba(255, 255, 255, 0.08)',
-                  }}
-                >
-                  <CardContent sx={{ p: 3 }}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
-                      <Typography variant="h6" color="#f3f4f6" sx={{ fontWeight: 800 }}>{exp.role}</Typography>
-                      <Chip label={exp.period} size="small" variant="outlined" sx={{ color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.3)', fontSize: '0.7rem' }} />
-                    </Box>
-                    <Typography variant="subtitle2" color="#38bdf8" gutterBottom sx={{ fontWeight: 700, mb: 2 }}>{exp.company}</Typography>
-                    <Typography variant="body2" color="#9ca3af" sx={{ mb: 2, lineHeight: 1.6 }}>{exp.description}</Typography>
+              <Card
+                key={idx}
+                variant="outlined"
+                sx={{
+                  height: '100%',
+                  borderRadius: '20px',
+                  bgcolor: 'rgba(17, 24, 39, 0.6)',
+                  borderColor: 'rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <CardContent sx={{ p: 3 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1 }}>
+                    <Typography variant="h6" sx={{ color: '#f3f4f6', fontWeight: 800 }}>{exp.role}</Typography>
+                    <Chip label={exp.period} size="small" variant="outlined" sx={{ color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.3)', fontSize: '0.7rem' }} />
+                  </Box>
+                  <Typography variant="subtitle2" sx={{ color: '#38bdf8', fontWeight: 700, mb: 2 }}>{exp.company}</Typography>
+                  <Typography variant="body2" sx={{ color: '#9ca3af', mb: 2, lineHeight: 1.6 }}>{exp.description}</Typography>
 
-                    <Stack spacing={1}>
-                      {exp.achievements.map((ach, i) => (
-                        <Box key={i} sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-                          <Typography variant="caption" color="#34d399" sx={{ fontWeight: 'bold', lineHeight: 1.4 }}>✓</Typography>
-                          <Typography variant="caption" color="#d1d5db" sx={{ lineHeight: 1.4 }}>{ach}</Typography>
-                        </Box>
-                      ))}
-                    </Stack>
-                  </CardContent>
-                </Card>
-              </Grid>
+                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                    {exp.achievements.map((ach, i) => (
+                      <Box key={i} sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
+                        <Typography variant="caption" sx={{ color: '#34d399', fontWeight: 'bold', lineHeight: 1.4 }}>✓</Typography>
+                        <Typography variant="caption" sx={{ color: '#d1d5db', lineHeight: 1.4 }}>{ach}</Typography>
+                      </Box>
+                    ))}
+                  </Box>
+                </CardContent>
+              </Card>
             ))}
-          </Grid>
+          </Box>
         </Box>
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
@@ -405,49 +399,48 @@ export default function PortfolioPage() {
                 CLIENT & ENTERPRISE DELIVERABLES
               </Typography>
             </Box>
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2 }}>
               Main Production Projects
             </Typography>
 
-            <Grid container spacing={3} sx={{ mt: 1 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3, mt: 2 }}>
               {mainEnterpriseProjects.map((project) => (
-                <Grid item xs={12} md={6} key={project.id}>
-                  <Card
-                    variant="outlined"
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      borderRadius: '20px',
-                      bgcolor: 'rgba(17, 24, 39, 0.6)',
-                      borderColor: 'rgba(255, 255, 255, 0.08)',
-                    }}
-                  >
-                    <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                      <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', fontWeight: 700, mb: 2 }} />
-                      <Typography variant="h5" gutterBottom sx={{ fontWeight: 800 }}>{project.title}</Typography>
-                      <Typography variant="body2" color="#9ca3af" sx={{ mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
+                <Card
+                  key={project.id}
+                  variant="outlined"
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: '20px',
+                    bgcolor: 'rgba(17, 24, 39, 0.6)',
+                    borderColor: 'rgba(255, 255, 255, 0.08)',
+                  }}
+                >
+                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                    <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', fontWeight: 700, mb: 2 }} />
+                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>{project.title}</Typography>
+                    <Typography variant="body2" sx={{ color: '#9ca3af', mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-                        {project.tech.map((t) => (
-                          <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
-                        ))}
-                      </Box>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+                      {project.tech.map((t) => (
+                        <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
+                      ))}
+                    </Box>
 
-                      <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important' }}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
-                          <Typography variant="caption" color="#9ca3af" sx={{ fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Typography variant="body2" color="#d1d5db" sx={{ mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
-                          <Typography variant="body2" color="#d1d5db"><strong>Solution:</strong> {project.solution}</Typography>
-                        </AccordionDetails>
-                      </Accordion>
-                    </CardContent>
-                  </Card>
-                </Grid>
+                    <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important' }}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
+                        <Typography variant="caption" sx={{ color: '#9ca3af', fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant="body2" sx={{ color: '#d1d5db', mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
+                        <Typography variant="body2" sx={{ color: '#d1d5db' }}><strong>Solution:</strong> {project.solution}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
+                  </CardContent>
+                </Card>
               ))}
-            </Grid>
+            </Box>
           </Box>
 
           <Box sx={{ mt: 8 }}>
@@ -457,61 +450,60 @@ export default function PortfolioPage() {
                 INDEPENDENT DEVELOPMENT
               </Typography>
             </Box>
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2 }}>
               Personal & Side Projects
             </Typography>
 
-            <Grid container spacing={3} sx={{ mt: 1 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 3, mt: 2 }}>
               {personalProjects.map((project) => (
-                <Grid item xs={12} md={6} key={project.id}>
-                  <Card
-                    variant="outlined"
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      borderRadius: '20px',
-                      bgcolor: 'rgba(17, 24, 39, 0.6)',
-                      borderColor: 'rgba(52, 211, 153, 0.2)',
-                    }}
-                  >
-                    <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                      <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(52, 211, 153, 0.15)', color: '#34d399', fontWeight: 700, mb: 2 }} />
-                      <Typography variant="h5" gutterBottom sx={{ fontWeight: 800 }}>{project.title}</Typography>
-                      <Typography variant="body2" color="#9ca3af" sx={{ mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
+                <Card
+                  key={project.id}
+                  variant="outlined"
+                  sx={{
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: '20px',
+                    bgcolor: 'rgba(17, 24, 39, 0.6)',
+                    borderColor: 'rgba(52, 211, 153, 0.2)',
+                  }}
+                >
+                  <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                    <Chip label={project.category} size="small" sx={{ bgcolor: 'rgba(52, 211, 153, 0.15)', color: '#34d399', fontWeight: 700, mb: 2 }} />
+                    <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>{project.title}</Typography>
+                    <Typography variant="body2" sx={{ color: '#9ca3af', mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-                        {project.tech.map((t) => (
-                          <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
-                        ))}
-                      </Box>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
+                      {project.tech.map((t) => (
+                        <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
+                      ))}
+                    </Box>
 
-                      <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important', mb: 2 }}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
-                          <Typography variant="caption" color="#9ca3af" sx={{ fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Typography variant="body2" color="#d1d5db" sx={{ mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
-                          <Typography variant="body2" color="#d1d5db"><strong>Solution:</strong> {project.solution}</Typography>
-                        </AccordionDetails>
-                      </Accordion>
+                    <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important', mb: 2 }}>
+                      <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
+                        <Typography variant="caption" sx={{ color: '#9ca3af', fontWeight: 'bold' }}>ARCHITECTURE & SOLUTION</Typography>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant="body2" sx={{ color: '#d1d5db', mb: 1 }}><strong>Challenge:</strong> {project.challenge}</Typography>
+                        <Typography variant="body2" sx={{ color: '#d1d5db' }}><strong>Solution:</strong> {project.solution}</Typography>
+                      </AccordionDetails>
+                    </Accordion>
 
-                      <Button
-                        variant="outlined"
-                        size="small"
-                        startIcon={<GitHubIcon />}
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        sx={{ color: '#34d399', borderColor: 'rgba(52, 211, 153, 0.4)', textTransform: 'none', borderRadius: '8px' }}
-                      >
-                        Source Code
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </Grid>
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      startIcon={<GitHubIcon />}
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{ color: '#34d399', borderColor: 'rgba(52, 211, 153, 0.4)', textTransform: 'none', borderRadius: '8px' }}
+                    >
+                      Source Code
+                    </Button>
+                  </CardContent>
+                </Card>
               ))}
-            </Grid>
+            </Box>
           </Box>
         </Box>
 
@@ -529,10 +521,10 @@ export default function PortfolioPage() {
               textAlign: 'center',
             }}
           >
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 2 }}>
               Get In Touch
             </Typography>
-            <Typography variant="body1" color="#9ca3af" sx={{ maxWidth: '600px', mx: 'auto', mb: 4 }}>
+            <Typography variant="body1" sx={{ color: '#9ca3af', maxWidth: '600px', mx: 'auto', mb: 4 }}>
               Direct contact channels for full-stack engineering opportunities, technical advisory, or project collaboration.
             </Typography>
 
@@ -559,7 +551,7 @@ export default function PortfolioPage() {
             </Box>
           </Paper>
         </Box>
-      </Container>
+      </Box>
     </Box>
   );
 }
