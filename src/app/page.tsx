@@ -81,7 +81,6 @@ export const workExperience = [
   },
 ];
 
-// Reordered Enterprise Projects
 export const mainEnterpriseProjects = [
   {
     id: 'p1',
@@ -188,7 +187,7 @@ export default function PortfolioPage() {
               AKHIL RAMESH K
             </Typography>
 
-            <Stack direction="row" spacing={{ xs: 1, sm: 2 }} alignItems="center">
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
               <Button
                 size="small"
                 onClick={() => scrollToSection('about')}
@@ -210,7 +209,7 @@ export default function PortfolioPage() {
               >
                 Projects
               </Button>
-            </Stack>
+            </Box>
           </Toolbar>
         </MuiContainer>
       </AppBar>
@@ -250,7 +249,7 @@ export default function PortfolioPage() {
                   10+ years of experience architecting, building, and scaling web applications. Leading engineering teams of 5+ developers, owning sprint delivery, and driving architectural choices for platforms serving 10,000+ active users.
                 </Typography>
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2 }}>
                   <Button
                     variant="contained"
                     size="large"
@@ -289,7 +288,7 @@ export default function PortfolioPage() {
                   >
                     WhatsApp Chat
                   </Button>
-                </Stack>
+                </Box>
               </Grid>
 
               <Grid item xs={12} md={5}>
@@ -382,10 +381,10 @@ export default function PortfolioPage() {
 
                     <Stack spacing={1}>
                       {exp.achievements.map((ach, i) => (
-                        <Stack direction="row" spacing={1} alignItems="flex-start" key={i}>
+                        <Box key={i} sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
                           <Typography variant="caption" color="#34d399" sx={{ fontWeight: 'bold', lineHeight: 1.4 }}>✓</Typography>
                           <Typography variant="caption" color="#d1d5db" sx={{ lineHeight: 1.4 }}>{ach}</Typography>
-                        </Stack>
+                        </Box>
                       ))}
                     </Stack>
                   </CardContent>
@@ -400,12 +399,12 @@ export default function PortfolioPage() {
         {/* PROJECTS SECTION */}
         <Box id="projects" sx={{ py: 6 }}>
           <Box sx={{ mb: 6 }}>
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
               <StorageIcon sx={{ color: '#c084fc' }} />
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#c084fc', letterSpacing: 2, fontWeight: 700 }}>
                 CLIENT & ENTERPRISE DELIVERABLES
               </Typography>
-            </Stack>
+            </Box>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
               Main Production Projects
             </Typography>
@@ -429,11 +428,11 @@ export default function PortfolioPage() {
                       <Typography variant="h5" gutterBottom sx={{ fontWeight: 800 }}>{project.title}</Typography>
                       <Typography variant="body2" color="#9ca3af" sx={{ mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
-                      <Stack direction="row" spacing={1} flexWrap="wrap" gap={1} sx={{ mb: 3 }}>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
                         {project.tech.map((t) => (
                           <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
                         ))}
-                      </Stack>
+                      </Box>
 
                       <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important' }}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
@@ -452,12 +451,12 @@ export default function PortfolioPage() {
           </Box>
 
           <Box sx={{ mt: 8 }}>
-            <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
               <DynamicFeedIcon sx={{ color: '#34d399' }} />
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#34d399', letterSpacing: 2, fontWeight: 700 }}>
                 INDEPENDENT DEVELOPMENT
               </Typography>
-            </Stack>
+            </Box>
             <Typography variant="h4" gutterBottom sx={{ fontWeight: 900 }}>
               Personal & Side Projects
             </Typography>
@@ -481,11 +480,11 @@ export default function PortfolioPage() {
                       <Typography variant="h5" gutterBottom sx={{ fontWeight: 800 }}>{project.title}</Typography>
                       <Typography variant="body2" color="#9ca3af" sx={{ mb: 3, lineHeight: 1.6 }}>{project.description}</Typography>
 
-                      <Stack direction="row" spacing={1} flexWrap="wrap" gap={1} sx={{ mb: 3 }}>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
                         {project.tech.map((t) => (
                           <Chip key={t} label={t} size="small" sx={{ bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#d1d5db', fontSize: '0.72rem' }} />
                         ))}
-                      </Stack>
+                      </Box>
 
                       <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important', mb: 2 }}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
@@ -537,7 +536,7 @@ export default function PortfolioPage() {
               Direct contact channels for full-stack engineering opportunities, technical advisory, or project collaboration.
             </Typography>
 
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center" alignItems="center">
+            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, justifyContent: 'center', alignItems: 'center' }}>
               <Button
                 variant="contained"
                 size="large"
@@ -557,7 +556,7 @@ export default function PortfolioPage() {
               >
                 akhilrameshk@gmail.com
               </Button>
-            </Stack>
+            </Box>
           </Paper>
         </Box>
       </Container>
