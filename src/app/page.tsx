@@ -30,7 +30,6 @@ import EmailIcon from '@mui/icons-material/Email';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import DownloadIcon from '@mui/icons-material/Download';
 import CodeIcon from '@mui/icons-material/Code';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -262,12 +261,14 @@ export default function PortfolioPage() {
         anchor="right"
         open={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}
-        PaperProps={{
-          sx: {
-            bgcolor: '#0f172a',
-            color: '#f3f4f6',
-            width: '280px',
-            p: 2,
+        slotProps={{
+          paper: {
+            sx: {
+              bgcolor: '#0f172a',
+              color: '#f3f4f6',
+              width: '280px',
+              p: 2,
+            },
           },
         }}
       >
