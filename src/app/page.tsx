@@ -12,10 +12,14 @@ import {
   AccordionDetails,
   Button,
   Divider,
-  Avatar,
   Paper,
   IconButton,
   Tooltip,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
 } from '@mui/material';
 
 // --- ICONS ---
@@ -24,20 +28,38 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DownloadIcon from '@mui/icons-material/Download';
 import CodeIcon from '@mui/icons-material/Code';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import PersonIcon from '@mui/icons-material/Person';
+import WorkIcon from '@mui/icons-material/Work';
 
 // --- DATA DEFINITIONS ---
 export const skillCategories = [
-  { title: 'Frontend Architecture', skills: ['React.js', 'Next.js', 'Angular', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Material UI', 'Tailwind CSS'] },
-  { title: 'Backend & APIs', skills: ['Node.js', 'NestJS', 'Express.js', 'RESTful API Design', 'GraphQL', 'WebSockets', 'Microservices Architecture'] },
-  { title: 'Databases & Caching', skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Query Optimization', 'Database Indexing'] },
-  { title: 'Cloud, DevOps & Testing', skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'Git', 'Vercel', 'Jest', 'Cypress', 'Agile/Scrum'] },
+  {
+    title: 'Frontend Architecture',
+    color: '#3b82f6',
+    skills: ['React.js', 'Next.js', 'Angular', 'TypeScript', 'JavaScript (ES6+)', 'Material UI', 'Tailwind CSS', 'HTML5/CSS3'],
+  },
+  {
+    title: 'Backend & APIs',
+    color: '#a855f7',
+    skills: ['Node.js', 'NestJS', 'Express.js', 'RESTful APIs', 'GraphQL', 'WebSockets', 'Microservices'],
+  },
+  {
+    title: 'Databases & Storage',
+    color: '#34d399',
+    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Database Indexing', 'Aggregation Pipelines'],
+  },
+  {
+    title: 'Cloud, DevOps & Tooling',
+    color: '#f59e0b',
+    skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD Pipelines', 'Git', 'Vercel', 'Jest', 'Cypress'],
+  },
 ];
 
 export const workExperience = [
@@ -45,39 +67,39 @@ export const workExperience = [
     role: 'Senior Full Stack Developer / Team Lead',
     company: 'Xminds, Technopark',
     period: 'Sep 2018 – Present',
-    description: 'Lead a cross-functional team of 5+ developers across 8+ enterprise applications owning sprint planning, architectural design, and delivery end-to-end.',
+    description: 'Leading a cross-functional team of developers across multiple enterprise applications, owning sprint cycles, architecture design, and end-to-end delivery.',
     achievements: [
-      'Boosted Core Web Vitals by 40% and reduced API response latency by 35% through SSR, SSG, caching, and database indexing.',
-      'Directed 15+ third-party system and payment gateway integrations including Stripe and Razorpay.',
-      'Mentored engineers, improving sprint output efficiency and reducing new hire onboarding time.',
+      'Boosted Core Web Vitals performance by 40% and reduced API latency by 35% through strategic server-side rendering and indexing.',
+      'Engineered and directed 15+ third-party system integrations including secure payment gateways.',
+      'Mentored engineers to elevate code quality standards and shorten sprint delivery timelines.',
     ],
   },
   {
     role: 'Senior Software Engineer',
     company: 'Cordova Cloud Solutions',
     period: 'Apr 2016 – Aug 2018',
-    description: 'Led development and deployment of hybrid mobile applications using Angular, Node.js, and Apache Cordova alongside RESTful APIs.',
+    description: 'Spearheaded the development and deployment of hybrid cross-platform mobile and web applications using modern JavaScript frameworks.',
     achievements: [
-      'Built scalable RESTful APIs with Express.js and MongoDB to support real-time data sync.',
-      'Increased user engagement by 25% through responsive UI updates and performance optimizations.',
+      'Built scalable RESTful backend services utilizing Node.js, Express, and MongoDB.',
+      'Enhanced client retention by 25% through optimized responsive UIs and robust state management.',
     ],
   },
   {
-    role: 'Junior Developer',
+    role: 'Software Developer',
     company: 'Achariya Techno Solutions',
     period: 'Jul 2015 – Mar 2016',
-    description: 'Built modular, responsive web client interfaces using JavaScript, AngularJS, HTML5, and CSS3.',
+    description: 'Developed modular user client interfaces and dynamic web applications.',
     achievements: [
-      'Created a reusable UI component library that stabilized frontend build pipelines and lowered maintenance overhead.',
+      'Created reusable component libraries that stabilized frontend build pipelines.',
     ],
   },
   {
-    role: 'Junior Developer',
+    role: 'Software Developer',
     company: 'Neologic',
     period: 'Aug 2014 – Jun 2015',
-    description: 'Contributed full-stack code across frontend views and relational data storage for enterprise client platforms.',
+    description: 'Contributed full-stack code across frontend views and relational data stores for client portals.',
     achievements: [
-      'Resolved cross-browser styling issues and optimized UI performance across mobile and desktop devices.',
+      'Resolved complex cross-browser styling issues and optimized page load benchmarks.',
     ],
   },
 ];
@@ -87,37 +109,37 @@ export const mainEnterpriseProjects = [
     id: 'p1',
     title: 'Pixovo - Learning Management System',
     category: 'Enterprise LMS',
-    description: 'Architected scalable education platform featuring multi-tier course management, automated quiz/assignment systems, grading rubrics, and e-commerce payment gateways.',
+    description: 'Architected scalable education platform featuring multi-tier course management, automated quiz/assignment grading, and subscription billing.',
     tech: ['React.js', 'Node.js', 'NestJS', 'MongoDB', 'Stripe', 'AWS'],
     challenge: 'Handling high-concurrency quiz submission spikes and real-time evaluation processing.',
-    solution: 'Implemented asynchronous job queues for evaluations alongside query caching via Redis.',
+    solution: 'Implemented asynchronous job queues alongside Redis caching layers.',
   },
   {
     id: 'p2',
     title: 'Comeonda - Interactive Gaming & Event Platform',
     category: 'Real-Time Engagement',
-    description: 'Engineered real-time engagement engine featuring live quiz modules, event gamification, and sub-second data synchronization for mass audiences.',
+    description: 'Engineered real-time engagement engine featuring live quiz modules and event gamification with sub-second synchronization.',
     tech: ['React.js', 'Node.js', 'WebSockets', 'Redis', 'MongoDB'],
-    challenge: 'Maintaining sub-second state broadcasts across tens of thousands of active concurrent connections.',
-    solution: 'Utilized WebSocket clustering backed by Redis Pub/Sub channels for ultra-low latency event fan-out.',
+    challenge: 'Maintaining sub-second state broadcasts across tens of thousands of concurrent users.',
+    solution: 'Utilized WebSocket clustering backed by Redis Pub/Sub channels.',
   },
   {
     id: 'p3',
     title: 'Datazoom - Enterprise Business Analytics Dashboard',
     category: 'BI & Analytics',
-    description: 'Designed executive BI dashboard with aggregated reporting, multi-dimensional metric visualizations, and data-driven workflow insights.',
+    description: 'Designed executive BI dashboard with aggregated reporting, metric visualizations, and workflow insights.',
     tech: ['Angular', 'TypeScript', 'Node.js', 'PostgreSQL', 'Chart.js'],
     challenge: 'Rendering large multi-variable datasets smoothly without UI thread blocking.',
-    solution: 'Implemented virtual scrolling, backend pagination, and indexed aggregation pipelines.',
+    solution: 'Implemented virtual scrolling, backend pagination, and indexed aggregation queries.',
   },
   {
     id: 'p4',
     title: 'Isentia - Corporate Expense & Workflow System',
     category: 'Enterprise Automation',
-    description: 'Built automated expense reconciliation engine managing compliance rules, multi-stage reimbursement workflows, and approval hierarchies.',
+    description: 'Built automated expense reconciliation engine managing compliance rules and multi-stage approval hierarchies.',
     tech: ['React.js', 'Express.js', 'MongoDB', 'REST APIs'],
     challenge: 'Managing complex conditional multi-level approval hierarchies.',
-    solution: 'Designed a dynamic finite state machine (FSM) engine storing workflow state transitions safely in MongoDB.',
+    solution: 'Designed a dynamic finite state machine (FSM) engine storing transitions safely in MongoDB.',
   },
 ];
 
@@ -126,27 +148,28 @@ export const personalProjects = [
     id: 'side1',
     title: 'Kayal Vista',
     category: 'Booking & Tourism Platform',
-    description: 'Full-stack backwater cruise & houseboat booking platform built with Next.js App Router, custom REST API routes, and MongoDB for real-time room availability.',
+    description: 'Full-stack backwater cruise & houseboat booking platform built with Next.js App Router, custom REST APIs, and MongoDB.',
     tech: ['Next.js 14', 'TypeScript', 'Node.js', 'MongoDB', 'Material UI', 'Vercel'],
     githubUrl: 'https://github.com/akhilrameshk/kayal-vista',
-    challenge: 'Preventing double-booking risks and dynamic availability state changes during peak tour seasons.',
-    solution: 'Designed MongoDB transactional atomic updates paired with Next.js Server Actions for instant updates.',
+    challenge: 'Preventing double-booking risks and dynamic availability state changes during peak seasons.',
+    solution: 'Designed MongoDB transactional atomic updates paired with Next.js Server Actions.',
   },
   {
     id: 'side2',
     title: 'Cricksy Platform',
     category: 'Sports Information Engine',
-    description: 'TypeScript-based sports information platform managing full-stack architecture from dynamic MongoDB data schemas to custom analytical UI views.',
+    description: 'TypeScript-based sports information platform managing full-stack architecture from dynamic MongoDB schemas to custom UI views.',
     tech: ['Next.js', 'React.js', 'Node.js', 'MongoDB', 'TypeScript', 'GraphQL'],
     githubUrl: 'https://github.com/akhilrameshk/Cricksy',
     challenge: 'Streaming real-time score updates without exhausting backend API throughput limits.',
-    solution: 'Leveraged MongoDB Change Streams with cached GraphQL and API routes in Next.js.',
+    solution: 'Leveraged MongoDB Change Streams with cached GraphQL and custom API routes.',
   },
 ];
 
 export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState('about');
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -162,6 +185,7 @@ export default function PortfolioPage() {
 
   const scrollToSection = (id: string) => {
     setActiveTab(id);
+    setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -183,7 +207,7 @@ export default function PortfolioPage() {
   return (
     <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10, position: 'relative' }}>
       
-      {/* NAVBAR */}
+      {/* HEADER / NAVBAR */}
       <Box
         component="header"
         sx={{
@@ -197,7 +221,7 @@ export default function PortfolioPage() {
           px: { xs: 2, sm: 4, md: 8 },
         }}
       >
-        <Box sx={{ maxWidth: '1200px', mx: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1.5 }}>
+        <Box sx={{ maxWidth: '1200px', mx: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Typography
             variant="subtitle1"
             sx={{
@@ -207,50 +231,70 @@ export default function PortfolioPage() {
               WebkitTextFillColor: 'transparent',
               cursor: 'pointer',
               letterSpacing: '-0.02em',
-              whiteSpace: 'nowrap',
             }}
             onClick={() => scrollToSection('about')}
           >
             AKHIL RAMESH K
           </Typography>
 
-          <Box sx={{ display: 'flex', gap: { xs: 1.5, sm: 3 }, alignItems: 'center', overflowX: 'auto', py: 0.5 }}>
-            <Button
-              size="small"
-              onClick={() => scrollToSection('about')}
-              sx={{ color: activeTab === 'about' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
-            >
-              About
-            </Button>
-            <Button
-              size="small"
-              onClick={() => scrollToSection('skills')}
-              sx={{ color: activeTab === 'skills' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
-            >
-              Skills
-            </Button>
-            <Button
-              size="small"
-              onClick={() => scrollToSection('experience')}
-              sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
-            >
-              Experience
-            </Button>
-            <Button
-              size="small"
-              onClick={() => scrollToSection('projects')}
-              sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none', minWidth: 'auto' }}
-            >
-              Projects
-            </Button>
+          {/* DESKTOP NAV LINKS */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
+            <Button onClick={() => scrollToSection('about')} sx={{ color: activeTab === 'about' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none' }}>About Me</Button>
+            <Button onClick={() => scrollToSection('skills')} sx={{ color: activeTab === 'skills' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none' }}>Skills</Button>
+            <Button onClick={() => scrollToSection('experience')} sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none' }}>Experience</Button>
+            <Button onClick={() => scrollToSection('projects')} sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none' }}>Projects</Button>
+            <Button onClick={() => scrollToSection('contact')} sx={{ color: activeTab === 'contact' ? '#60a5fa' : '#d1d5db', fontWeight: 700, textTransform: 'none' }}>Contact</Button>
           </Box>
+
+          {/* MOBILE HAMBURGER MENU ICON AT RIGHT */}
+          <IconButton
+            sx={{ display: { xs: 'flex', md: 'none' }, color: '#ffffff' }}
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label="open menu"
+          >
+            <MenuIcon />
+          </IconButton>
         </Box>
       </Box>
+
+      {/* MOBILE NAVIGATION DRAWER */}
+      <Drawer
+        anchor="right"
+        open={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        PaperProps={{
+          sx: {
+            bgcolor: '#0f172a',
+            color: '#f3f4f6',
+            width: '280px',
+            p: 2,
+          },
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 900, color: '#60a5fa' }}>Navigation</Typography>
+          <IconButton onClick={() => setMobileMenuOpen(false)} sx={{ color: '#ffffff' }}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <List>
+          {['about', 'skills', 'experience', 'projects', 'contact'].map((section) => (
+            <ListItem key={section} disablePadding sx={{ mb: 1 }}>
+              <ListItemButton onClick={() => scrollToSection(section)} sx={{ borderRadius: '10px', '&:hover': { bgcolor: 'rgba(59, 130, 246, 0.15)' } }}>
+                <ListItemText
+                  primary={section.charAt(0).toUpperCase() + section.slice(1)}
+                  primaryTypographyProps={{ fontWeight: 700, color: activeTab === section ? '#60a5fa' : '#d1d5db' }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
 
       {/* MAIN CONTAINER */}
       <Box sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 4, md: 6 }, pt: 4 }}>
         
-        {/* HERO / ABOUT SECTION */}
+        {/* HERO SECTION */}
         <Box id="about" sx={{ pt: 2, pb: 6 }}>
           <Paper
             elevation={0}
@@ -261,175 +305,141 @@ export default function PortfolioPage() {
               border: '1px solid rgba(255, 255, 255, 0.12)',
             }}
           >
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 380px' }, gap: 4, alignItems: 'center' }}>
-              <Box>
-                <Chip
-                  label="Available for Lead & Architect Roles"
-                  sx={{
-                    bgcolor: 'rgba(16, 185, 129, 0.15)',
-                    color: '#34d399',
-                    borderColor: 'rgba(16, 185, 129, 0.4)',
-                    fontWeight: 700,
-                    borderRadius: '10px',
-                    mb: 2,
-                  }}
-                  variant="outlined"
-                />
+            <Chip
+              label="Available for Senior Full Stack & Team Lead Roles"
+              sx={{
+                bgcolor: 'rgba(16, 185, 129, 0.15)',
+                color: '#34d399',
+                borderColor: 'rgba(16, 185, 129, 0.4)',
+                fontWeight: 700,
+                borderRadius: '10px',
+                mb: 2,
+              }}
+              variant="outlined"
+            />
 
-                <Typography variant="h2" component="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.2rem' }, mb: 2, letterSpacing: '-0.03em', color: '#ffffff' }}>
-                  Senior Full Stack Developer & Team Lead
-                </Typography>
+            <Typography variant="h2" component="h1" sx={{ fontWeight: 900, fontSize: { xs: '2.2rem', md: '3.4rem' }, mb: 2, letterSpacing: '-0.03em', color: '#ffffff' }}>
+              Architecting Scalable Web Applications & Leading Engineering Excellence
+            </Typography>
 
-                <Typography variant="body1" sx={{ color: '#e5e7eb', fontSize: '1.1rem', lineHeight: 1.7, mb: 4 }}>
-                  10+ years of experience architecting, building, and scaling web applications. Leading engineering teams of 5+ developers, owning sprint delivery, and driving architectural choices for platforms serving 10,000+ active users.
-                </Typography>
+            <Typography variant="body1" sx={{ color: '#e5e7eb', fontSize: '1.15rem', lineHeight: 1.7, mb: 4, maxWidth: '900px' }}>
+              Hi, I&apos;m Akhil Ramesh K—a Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
+            </Typography>
 
-                {/* ACTION BUTTONS: WHATSAPP, RESUME, LINKEDIN, EMAIL */}
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3 }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    startIcon={<WhatsAppIcon />}
-                    onClick={openWhatsApp}
-                    sx={{
-                      borderRadius: '12px',
-                      py: 1.2,
-                      px: 2.5,
-                      fontWeight: 700,
-                      textTransform: 'none',
-                      bgcolor: '#22c55e',
-                      '&:hover': { bgcolor: '#16a34a' },
-                    }}
-                  >
-                    WhatsApp
-                  </Button>
-
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    startIcon={<LinkedInIcon />}
-                    onClick={openLinkedIn}
-                    sx={{
-                      borderRadius: '12px',
-                      py: 1.2,
-                      px: 2.5,
-                      fontWeight: 700,
-                      textTransform: 'none',
-                      color: '#60a5fa',
-                      borderColor: 'rgba(96, 165, 250, 0.4)',
-                      '&:hover': { bgcolor: 'rgba(96, 165, 250, 0.1)' },
-                    }}
-                  >
-                    LinkedIn
-                  </Button>
-
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    startIcon={<EmailIcon />}
-                    href="mailto:akhilrameshk@gmail.com"
-                    sx={{
-                      borderRadius: '12px',
-                      py: 1.2,
-                      px: 2.5,
-                      fontWeight: 700,
-                      textTransform: 'none',
-                      color: '#f3f4f6',
-                      borderColor: 'rgba(255, 255, 255, 0.2)',
-                    }}
-                  >
-                    Email
-                  </Button>
-                </Box>
-
-                <Button
-                  variant="text"
-                  size="small"
-                  startIcon={<DownloadIcon />}
-                  href="#contact"
-                  sx={{ color: '#a855f7', fontWeight: 700, textTransform: 'none' }}
-                >
-                  Download Resume & Full CV Pack
-                </Button>
-              </Box>
-
-              {/* PROFILE CARD */}
-              <Paper
-                elevation={10}
+            {/* ACTION BUTTONS */}
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 5 }}>
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={<WhatsAppIcon />}
+                onClick={openWhatsApp}
                 sx={{
-                  p: 4,
-                  borderRadius: '24px',
-                  bgcolor: 'rgba(17, 24, 39, 0.85)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  textAlign: 'center',
+                  borderRadius: '12px',
+                  py: 1.2,
+                  px: 2.5,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  bgcolor: '#22c55e',
+                  '&:hover': { bgcolor: '#16a34a' },
                 }}
               >
-                <Box sx={{ position: 'relative', display: 'inline-block', mb: 2 }}>
-                  <Avatar
-                    sx={{
-                      width: 110,
-                      height: 110,
-                      mx: 'auto',
-                      bgcolor: '#2563eb',
-                      fontSize: '2.5rem',
-                      fontWeight: 900,
-                      border: '3px solid rgba(255, 255, 255, 0.2)',
-                    }}
-                  >
-                    AR
-                  </Avatar>
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 4,
-                      right: 4,
-                      width: 20,
-                      height: 20,
-                      bgcolor: '#22c55e',
-                      borderRadius: '50%',
-                      border: '3px solid #111827',
-                    }}
-                  />
-                </Box>
+                Connect on WhatsApp
+              </Button>
 
-                <Typography variant="h6" sx={{ fontWeight: 800, color: '#ffffff' }}>Akhil Ramesh K</Typography>
-                <Typography variant="caption" sx={{ color: '#9ca3af', display: 'block', mb: 3 }}>
-                  Alappuzha, Kerala, India
-                </Typography>
+              <Button
+                variant="outlined"
+                size="large"
+                startIcon={<LinkedInIcon />}
+                onClick={openLinkedIn}
+                sx={{
+                  borderRadius: '12px',
+                  py: 1.2,
+                  px: 2.5,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  color: '#60a5fa',
+                  borderColor: 'rgba(96, 165, 250, 0.4)',
+                  '&:hover': { bgcolor: 'rgba(96, 165, 250, 0.1)' },
+                }}
+              >
+                LinkedIn Profile
+              </Button>
 
-                <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', mb: 3 }} />
-
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
-                  <Box>
-                    <Typography variant="h5" sx={{ color: '#60a5fa', fontWeight: 900 }}>10+</Typography>
-                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Years Exp.</Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="h5" sx={{ color: '#34d399', fontWeight: 900 }}>40%</Typography>
-                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Core Web Vitals</Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="h5" sx={{ color: '#a855f7', fontWeight: 900 }}>5+ Devs</Typography>
-                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Team Lead</Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="h5" sx={{ color: '#f59e0b', fontWeight: 900 }}>35%</Typography>
-                    <Typography variant="caption" sx={{ color: '#9ca3af' }}>Latency Cut</Typography>
-                  </Box>
-                </Box>
-              </Paper>
+              <Button
+                variant="outlined"
+                size="large"
+                startIcon={<EmailIcon />}
+                href="mailto:akhilrameshk@gmail.com"
+                sx={{
+                  borderRadius: '12px',
+                  py: 1.2,
+                  px: 2.5,
+                  fontWeight: 700,
+                  textTransform: 'none',
+                  color: '#f3f4f6',
+                  borderColor: 'rgba(255, 255, 255, 0.2)',
+                }}
+              >
+                Email Me
+              </Button>
             </Box>
+
+            {/* METRICS GRID */}
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: 'repeat(2, 1fr)', sm: 'repeat(4, 1fr)' }, gap: 3, pt: 3, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <Box>
+                <Typography variant="h4" sx={{ color: '#60a5fa', fontWeight: 900 }}>10+</Typography>
+                <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 500 }}>Years Experience</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h4" sx={{ color: '#34d399', fontWeight: 900 }}>40%</Typography>
+                <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 500 }}>Core Web Vitals Gain</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h4" sx={{ color: '#a855f7', fontWeight: 900 }}>5+ Devs</Typography>
+                <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 500 }}>Cross-Functional Lead</Typography>
+              </Box>
+              <Box>
+                <Typography variant="h4" sx={{ color: '#f59e0b', fontWeight: 900 }}>35%</Typography>
+                <Typography variant="body2" sx={{ color: '#9ca3af', fontWeight: 500 }}>API Latency Reduction</Typography>
+              </Box>
+            </Box>
+          </Paper>
+        </Box>
+
+        {/* DETAILED ABOUT ME SECTION */}
+        <Box sx={{ pb: 6 }}>
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, sm: 4 },
+              borderRadius: '24px',
+              bgcolor: 'rgba(17, 24, 39, 0.6)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+              <PersonIcon sx={{ color: '#60a5fa' }} />
+              <Typography variant="h5" sx={{ fontWeight: 800, color: '#ffffff' }}>
+                About Me & Leadership Philosophy
+              </Typography>
+            </Box>
+            <Typography variant="body1" sx={{ color: '#d1d5db', lineHeight: 1.8, mb: 2 }}>
+              Throughout my career, I have focused on bridging the gap between complex business logic and intuitive, lightning-fast user interfaces. As a Team Lead at Xminds, I guide engineering squads through agile sprint planning, rigorous code reviews, and high-performance system design.
+            </Typography>
+            <Typography variant="body1" sx={{ color: '#d1d5db', lineHeight: 1.8 }}>
+              Whether architecting real-time event platforms, optimizing database query pipelines, or mentoring junior and mid-level developers, my goal is always maintainable architecture, secure code standards, and exceptional digital experiences.
+            </Typography>
           </Paper>
         </Box>
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
 
-        {/* SKILLS SECTION (RESTORED & ENHANCED) */}
+        {/* ATTRACTIVE SKILLS SECTION */}
         <Box id="skills" sx={{ py: 6 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
             <CodeIcon sx={{ color: '#60a5fa' }} />
             <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700 }}>
-              TECHNICAL EXPERTISE
+              COMPREHENSIVE TECH STACK
             </Typography>
           </Box>
           <Typography variant="h4" sx={{ fontWeight: 900, mb: 4, color: '#ffffff' }}>
@@ -443,23 +453,51 @@ export default function PortfolioPage() {
                 variant="outlined"
                 sx={{
                   height: '100%',
-                  borderRadius: '20px',
-                  bgcolor: 'rgba(17, 24, 39, 0.6)',
-                  borderColor: 'rgba(255, 255, 255, 0.08)',
+                  borderRadius: '24px',
+                  bgcolor: 'rgba(17, 24, 39, 0.75)',
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    borderColor: cat.color,
+                    transform: 'translateY(-4px)',
+                    boxShadow: `0 10px 30px -10px ${cat.color}33`,
+                  },
                 }}
               >
-                <CardContent sx={{ p: 3 }}>
-                  <Typography variant="subtitle1" sx={{ fontWeight: 800, color: '#60a5fa', mb: 2 }}>
+                <CardContent sx={{ p: 3.5 }}>
+                  <Box
+                    sx={{
+                      width: 42,
+                      height: 42,
+                      borderRadius: '12px',
+                      bgcolor: `${cat.color}22`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mb: 2.5,
+                      color: cat.color,
+                    }}
+                  >
+                    <CodeIcon />
+                  </Box>
+                  <Typography variant="h6" sx={{ fontWeight: 800, color: '#ffffff', mb: 2.5 }}>
                     {cat.title}
                   </Typography>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                     {cat.skills.map((skill, sIdx) => (
-                      <Box key={sIdx} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <CheckCircleIcon sx={{ fontSize: '1rem', color: '#34d399' }} />
-                        <Typography variant="body2" sx={{ color: '#e5e7eb', fontWeight: 500 }}>
-                          {skill}
-                        </Typography>
-                      </Box>
+                      <Chip
+                        key={sIdx}
+                        label={skill}
+                        size="small"
+                        sx={{
+                          bgcolor: 'rgba(255, 255, 255, 0.05)',
+                          color: '#e5e7eb',
+                          fontWeight: 600,
+                          fontSize: '0.78rem',
+                          borderRadius: '8px',
+                          border: '1px solid rgba(255, 255, 255, 0.06)',
+                        }}
+                      />
                     ))}
                   </Box>
                 </CardContent>
@@ -472,9 +510,12 @@ export default function PortfolioPage() {
 
         {/* WORK EXPERIENCE */}
         <Box id="experience" sx={{ py: 6 }}>
-          <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700, display: 'block', mb: 1 }}>
-            CAREER TRACK
-          </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+            <WorkIcon sx={{ color: '#a855f7' }} />
+            <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#a855f7', letterSpacing: 2, fontWeight: 700 }}>
+              CAREER TRACK
+            </Typography>
+          </Box>
           <Typography variant="h4" sx={{ fontWeight: 900, mb: 4, color: '#ffffff' }}>
             Professional Work Experience
           </Typography>
@@ -647,10 +688,10 @@ export default function PortfolioPage() {
             }}
           >
             <Typography variant="h4" sx={{ fontWeight: 900, mb: 2, color: '#ffffff' }}>
-              Get In Touch & Download CV
+              Let&apos;s Build Together
             </Typography>
             <Typography variant="body1" sx={{ color: '#d1d5db', maxWidth: '600px', mx: 'auto', mb: 4 }}>
-              Direct contact channels for full-stack engineering opportunities, technical advisory, or project collaboration.
+              Direct contact channels for senior full-stack roles, technical leadership, or project consulting.
             </Typography>
 
             <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -688,7 +729,7 @@ export default function PortfolioPage() {
         </Box>
       </Box>
 
-      {/* FLOATING BOTTOM-RIGHT QUICK ACTIONS (SCROLL TO TOP & WHATSAPP) */}
+      {/* FLOATING ACTION BUTTONS */}
       {showScrollTop && (
         <Box
           sx={{
