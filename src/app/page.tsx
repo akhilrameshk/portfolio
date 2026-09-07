@@ -22,66 +22,17 @@ import {
   Container as MuiContainer,
 } from '@mui/material';
 
-// --- INLINE SVG ICONS (Zero external dependencies needed!) ---
-const CheckIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginTop: '3px' }}>
-    <polyline points="20 6 9 17 4 12"></polyline>
-  </svg>
-);
-
-const WorkIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-  </svg>
-);
-
-const StorageIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a855f7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-    <path d="M21 19c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-  </svg>
-);
-
-const TerminalIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="4 17 10 11 4 5"></polyline>
-    <line x1="12" y1="19" x2="20" y2="19"></line>
-  </svg>
-);
-
-const WhatsAppIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-  </svg>
-);
-
-const ChevronDownIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="6 9 12 15 18 9"></polyline>
-  </svg>
-);
-
-const ArrowDownIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="12" y1="5" x2="12" y2="19"></line>
-    <polyline points="19 12 12 19 5 12"></polyline>
-  </svg>
-);
-
-const GitHubIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-  </svg>
-);
-
-const MailIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-    <polyline points="22,6 12,13 2,6"></polyline>
-  </svg>
-);
+// --- WORKING MUI ICON IMPORTS ---
+import WorkIcon from '@mui/icons-material/Work';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import StorageIcon from '@mui/icons-material/Storage';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 // --- DATA DEFINITIONS ---
 export const skillCategories = [
@@ -212,8 +163,7 @@ export default function PortfolioPage() {
 
   return (
     <Box sx={{ bgcolor: '#0b0f19', color: '#f3f4f6', minHeight: '100vh', pb: 10 }}>
-      
-      {/* HEADER NAVBAR WITH WHATSAPP & CONTACT TABS */}
+      {/* HEADER NAVBAR */}
       <AppBar
         position="sticky"
         elevation={0}
@@ -225,7 +175,6 @@ export default function PortfolioPage() {
       >
         <MuiContainer maxWidth="lg">
           <Toolbar disableGutters sx={{ justifyContent: 'space-between', py: 1 }}>
-            
             <Typography
               variant="h6"
               fontWeight="900"
@@ -245,15 +194,12 @@ export default function PortfolioPage() {
               <Button size="small" onClick={() => scrollToSection('about')} sx={{ color: activeTab === 'about' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
                 About
               </Button>
-
               <Button size="small" onClick={() => scrollToSection('experience')} sx={{ color: activeTab === 'experience' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
                 Experience
               </Button>
-
               <Button size="small" onClick={() => scrollToSection('projects')} sx={{ color: activeTab === 'projects' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
                 Projects
               </Button>
-
               <Button size="small" onClick={() => scrollToSection('contact')} sx={{ color: activeTab === 'contact' ? '#60a5fa' : '#9ca3af', fontWeight: 600, textTransform: 'none' }}>
                 Contact
               </Button>
@@ -281,8 +227,7 @@ export default function PortfolioPage() {
       </AppBar>
 
       <Container maxWidth="lg" sx={{ pt: 5 }}>
-        
-        {/* HERO / ABOUT ME SECTION */}
+        {/* HERO / ABOUT SECTION */}
         <Box id="about" sx={{ pt: 2, pb: 8 }}>
           <Paper
             elevation={0}
@@ -294,7 +239,6 @@ export default function PortfolioPage() {
             }}
           >
             <Grid container spacing={4} alignItems="center">
-              
               <Grid item xs={12} md={7}>
                 <Chip
                   label="Available for Lead & Architect Roles"
@@ -314,14 +258,14 @@ export default function PortfolioPage() {
                 </Typography>
 
                 <Typography variant="body1" sx={{ color: '#d1d5db', fontSize: '1.1rem', lineHeight: 1.7, mb: 4, mt: 2 }}>
-                  10+ years of experience architecting, building, and scaling web applications. Leading engineering teams of 5+ developers, owning sprint delivery, and driving architectural choices for platforms serving 10,000+ active users[span_0](start_span)[span_0](end_span).
+                  10+ years of experience architecting, building, and scaling web applications. Leading engineering teams of 5+ developers, owning sprint delivery, and driving architectural choices for platforms serving 10,000+ active users.
                 </Typography>
 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
                   <Button
                     variant="contained"
                     size="large"
-                    endIcon={<ArrowDownIcon />}
+                    endIcon={<ArrowDownwardIcon />}
                     onClick={() => scrollToSection('projects')}
                     sx={{
                       borderRadius: '12px',
@@ -359,7 +303,6 @@ export default function PortfolioPage() {
                 </Stack>
               </Grid>
 
-              {/* CARD & BADGES */}
               <Grid item xs={12} md={5}>
                 <Paper
                   elevation={10}
@@ -413,17 +356,16 @@ export default function PortfolioPage() {
                   </Grid>
                 </Paper>
               </Grid>
-
             </Grid>
           </Paper>
         </Box>
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
 
-        {/* EXPERIENCE SECTION */}
+        {/* WORK EXPERIENCE */}
         <Box id="experience" sx={{ py: 6 }}>
           <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
-            <WorkIcon />
+            <WorkIcon sx={{ color: '#60a5fa' }} />
             <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#60a5fa', letterSpacing: 2, fontWeight: 700 }}>
               CAREER TRACK
             </Typography>
@@ -455,7 +397,7 @@ export default function PortfolioPage() {
                     <Stack spacing={1}>
                       {exp.achievements.map((ach, i) => (
                         <Stack direction="row" spacing={1} alignItems="flex-start" key={i}>
-                          <CheckIcon />
+                          <CheckIcon sx={{ fontSize: '1rem', color: '#34d399', mt: '3px' }} />
                           <Typography variant="caption" color="#d1d5db" sx={{ lineHeight: 1.4 }}>{ach}</Typography>
                         </Stack>
                       ))}
@@ -471,11 +413,9 @@ export default function PortfolioPage() {
 
         {/* PROJECTS SECTION */}
         <Box id="projects" sx={{ py: 6 }}>
-          
-          {/* MAIN / ENTERPRISE PROJECTS */}
           <Box sx={{ mb: 6 }}>
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
-              <StorageIcon />
+              <StorageIcon sx={{ color: '#c084fc' }} />
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#c084fc', letterSpacing: 2, fontWeight: 700 }}>
                 CLIENT & ENTERPRISE DELIVERABLES
               </Typography>
@@ -510,7 +450,7 @@ export default function PortfolioPage() {
                       </Stack>
 
                       <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important' }}>
-                        <AccordionSummary expandIcon={<ChevronDownIcon />}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
                           <Typography variant="caption" fontWeight="bold" color="#9ca3af">ARCHITECTURE & SOLUTION</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -525,10 +465,9 @@ export default function PortfolioPage() {
             </Grid>
           </Box>
 
-          {/* PERSONAL / OWN PROJECTS BELOW MAIN PROJECTS */}
           <Box sx={{ mt: 8 }}>
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
-              <TerminalIcon />
+              <DynamicFeedIcon sx={{ color: '#34d399' }} />
               <Typography variant="caption" sx={{ fontFamily: 'monospace', color: '#34d399', letterSpacing: 2, fontWeight: 700 }}>
                 INDEPENDENT DEVELOPMENT
               </Typography>
@@ -563,7 +502,7 @@ export default function PortfolioPage() {
                       </Stack>
 
                       <Accordion variant="outlined" disableGutters sx={{ bgcolor: 'rgba(0,0,0,0.2)', borderColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '10px !important', mb: 2 }}>
-                        <AccordionSummary expandIcon={<ChevronDownIcon />}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: '#9ca3af' }} />}>
                           <Typography variant="caption" fontWeight="bold" color="#9ca3af">ARCHITECTURE & SOLUTION</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
@@ -589,7 +528,6 @@ export default function PortfolioPage() {
               ))}
             </Grid>
           </Box>
-
         </Box>
 
         <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.08)', my: 4 }} />
@@ -627,7 +565,7 @@ export default function PortfolioPage() {
               <Button
                 variant="outlined"
                 size="large"
-                startIcon={<MailIcon />}
+                startIcon={<EmailIcon />}
                 href="mailto:akhilrameshk@gmail.com"
                 sx={{ borderRadius: '12px', py: 1.5, px: 3, fontWeight: 700, textTransform: 'none', color: '#f3f4f6', borderColor: 'rgba(255, 255, 255, 0.2)' }}
               >
@@ -636,7 +574,6 @@ export default function PortfolioPage() {
             </Stack>
           </Paper>
         </Box>
-
       </Container>
     </Box>
   );
