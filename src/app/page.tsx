@@ -313,48 +313,33 @@ export default function PortfolioPage() {
               border: '1px solid rgba(255, 255, 255, 0.12)',
             }}
           >
-            <Chip
-              label="Available for Senior Full Stack & Team Lead Roles"
-              size="small"
-              sx={{
-                bgcolor: 'rgba(16, 185, 129, 0.15)',
-                color: '#34d399',
-                borderColor: 'rgba(16, 185, 129, 0.4)',
-                fontWeight: 700,
-                borderRadius: '6px',
-                mb: 1,
-                height: '22px',
-                fontSize: '0.7rem',
-              }}
-              variant="outlined"
-            />
-
             <Typography 
               variant="body1" 
               component="h1" 
               sx={{ 
                 color: '#e5e7eb', 
                 fontSize: { xs: '0.875rem', sm: '1.05rem' }, 
-                lineHeight: 1.45, 
-                mb: 1.5, 
+                lineHeight: 1.5, 
+                mb: 2, 
                 maxWidth: '900px',
                 fontWeight: 500
               }}
             >
-              I&apos;m Akhil Ramesh K, Senior Full Stack Developer and Team Lead based in Alappuzha, Kerala, India. With over 10 years of professional software engineering experience, I specialize in building resilient full-stack applications using Next.js, React, Node.js, TypeScript, and MongoDB.
+              I&apos;m Akhil Ramesh K, a Senior Full Stack Engineer & Team Lead with 10+ years of experience building scalable web applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
-            {/* ACTION BUTTONS */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 2 }}>
+            {/* ACTION BUTTONS (Icon-only on mobile xs, text labels on sm+) */}
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 2, alignItems: 'center' }}>
               <Button
                 variant="contained"
                 size="small"
-                startIcon={<WhatsAppIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={openWhatsApp}
+                aria-label="WhatsApp"
                 sx={{
                   borderRadius: '6px',
-                  py: 0.4,
-                  px: 1.2,
+                  py: 0.6,
+                  px: { xs: 1, sm: 1.2 },
+                  minWidth: { xs: '36px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.75rem',
                   textTransform: 'none',
@@ -363,18 +348,20 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                WhatsApp
+                <WhatsAppIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>WhatsApp</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<LinkedInIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={openLinkedIn}
+                aria-label="LinkedIn"
                 sx={{
                   borderRadius: '6px',
-                  py: 0.4,
-                  px: 1.2,
+                  py: 0.6,
+                  px: { xs: 1, sm: 1.2 },
+                  minWidth: { xs: '36px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.75rem',
                   textTransform: 'none',
@@ -384,18 +371,20 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                LinkedIn
+                <LinkedInIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>LinkedIn</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<GitHubIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={openGitHub}
+                aria-label="GitHub"
                 sx={{
                   borderRadius: '6px',
-                  py: 0.4,
-                  px: 1.2,
+                  py: 0.6,
+                  px: { xs: 1, sm: 1.2 },
+                  minWidth: { xs: '36px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.75rem',
                   textTransform: 'none',
@@ -405,18 +394,20 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                GitHub
+                <GitHubIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>GitHub</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<EmailIcon sx={{ fontSize: '0.9rem !important' }} />}
                 href="mailto:akhilrameshk@gmail.com"
+                aria-label="Email"
                 sx={{
                   borderRadius: '6px',
-                  py: 0.4,
-                  px: 1.2,
+                  py: 0.6,
+                  px: { xs: 1, sm: 1.2 },
+                  minWidth: { xs: '36px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.75rem',
                   textTransform: 'none',
@@ -425,17 +416,17 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Email
+                <EmailIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>Email</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<PhoneIcon sx={{ fontSize: '0.9rem !important' }} />}
                 href="tel:+919633134324"
                 sx={{
                   borderRadius: '6px',
-                  py: 0.4,
+                  py: 0.6,
                   px: 1.2,
                   fontWeight: 700,
                   fontSize: '0.75rem',
@@ -446,17 +437,17 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                +91 96331 34324
+                <PhoneIcon sx={{ fontSize: '0.9rem !important', mr: 0.75 }} />
+                <span>+91 96331 34324</span>
               </Button>
 
               <Button
                 variant="contained"
                 size="small"
-                startIcon={<DownloadIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={downloadResume}
                 sx={{
                   borderRadius: '6px',
-                  py: 0.4,
+                  py: 0.6,
                   px: 1.2,
                   fontWeight: 700,
                   fontSize: '0.75rem',
@@ -466,7 +457,8 @@ export default function PortfolioPage() {
                   whiteSpace: 'nowrap',
                 }}
               >
-                Resume
+                <DownloadIcon sx={{ fontSize: '0.9rem !important', mr: 0.75 }} />
+                <span>Resume</span>
               </Button>
             </Box>
 
@@ -871,55 +863,59 @@ export default function PortfolioPage() {
               Direct contact channels for senior full-stack roles, technical leadership, or project consulting.
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 0.75, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Box sx={{ display: 'flex', gap: 0.75, justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
               <Button
                 variant="contained"
                 size="small"
-                startIcon={<WhatsAppIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={openWhatsApp}
-                sx={{ borderRadius: '6px', py: 0.4, px: 1.5, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' }, whiteSpace: 'nowrap' }}
+                aria-label="WhatsApp"
+                sx={{ borderRadius: '6px', py: 0.6, px: { xs: 1, sm: 1.5 }, minWidth: { xs: '36px', sm: 'auto' }, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', bgcolor: '#22c55e', '&:hover': { bgcolor: '#16a34a' }, whiteSpace: 'nowrap' }}
               >
-                WhatsApp
+                <WhatsAppIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>WhatsApp</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<LinkedInIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={openLinkedIn}
-                sx={{ borderRadius: '6px', py: 0.4, px: 1.5, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.4)', whiteSpace: 'nowrap' }}
+                aria-label="LinkedIn"
+                sx={{ borderRadius: '6px', py: 0.6, px: { xs: 1, sm: 1.5 }, minWidth: { xs: '36px', sm: 'auto' }, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#60a5fa', borderColor: 'rgba(96, 165, 250, 0.4)', whiteSpace: 'nowrap' }}
               >
-                LinkedIn
+                <LinkedInIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>LinkedIn</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<GitHubIcon sx={{ fontSize: '0.9rem !important' }} />}
                 onClick={openGitHub}
-                sx={{ borderRadius: '6px', py: 0.4, px: 1.5, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#f3f4f6', borderColor: 'rgba(255, 255, 255, 0.3)', whiteSpace: 'nowrap' }}
+                aria-label="GitHub"
+                sx={{ borderRadius: '6px', py: 0.6, px: { xs: 1, sm: 1.5 }, minWidth: { xs: '36px', sm: 'auto' }, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#f3f4f6', borderColor: 'rgba(255, 255, 255, 0.3)', whiteSpace: 'nowrap' }}
               >
-                GitHub
+                <GitHubIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>GitHub</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<EmailIcon sx={{ fontSize: '0.9rem !important' }} />}
                 href="mailto:akhilrameshk@gmail.com"
-                sx={{ borderRadius: '6px', py: 0.4, px: 1.5, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#f3f4f6', borderColor: 'rgba(255, 255, 255, 0.2)', whiteSpace: 'nowrap' }}
+                aria-label="Email"
+                sx={{ borderRadius: '6px', py: 0.6, px: { xs: 1, sm: 1.5 }, minWidth: { xs: '36px', sm: 'auto' }, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#f3f4f6', borderColor: 'rgba(255, 255, 255, 0.2)', whiteSpace: 'nowrap' }}
               >
-                Email
+                <EmailIcon sx={{ fontSize: '0.9rem !important' }} />
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' }, ml: 0.75 }}>Email</Box>
               </Button>
 
               <Button
                 variant="outlined"
                 size="small"
-                startIcon={<PhoneIcon sx={{ fontSize: '0.9rem !important' }} />}
                 href="tel:+919633134324"
-                sx={{ borderRadius: '6px', py: 0.4, px: 1.5, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#34d399', borderColor: 'rgba(52, 211, 153, 0.4)', whiteSpace: 'nowrap' }}
+                sx={{ borderRadius: '6px', py: 0.6, px: 1.5, fontWeight: 700, fontSize: '0.75rem', textTransform: 'none', color: '#34d399', borderColor: 'rgba(52, 211, 153, 0.4)', whiteSpace: 'nowrap' }}
               >
-                +91 96331 34324
+                <PhoneIcon sx={{ fontSize: '0.9rem !important', mr: 0.75 }} />
+                <span>+91 96331 34324</span>
               </Button>
             </Box>
           </Paper>
