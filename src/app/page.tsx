@@ -375,8 +375,19 @@ export default function PortfolioPage() {
               I&apos;m Akhil Ramesh K, a Senior Full Stack Engineer & Team Lead with 10+ years of experience building scalable web applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
-            {/* ACTION BUTTONS */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3, alignItems: 'center', justifyContent: { xs: 'center', sm: 'flex-start' } }}>
+            {/* ACTION BUTTONS: ALL BUTTONS SWITCH TO ICON-ONLY ON xs FOR PERFECT SINGLE-ROW FIT */}
+            <Box 
+              sx={{ 
+                display: 'flex', 
+                flexWrap: 'nowrap', 
+                gap: { xs: 0.75, sm: 1 }, 
+                mb: 3, 
+                alignItems: 'center', 
+                justifyContent: { xs: 'center', sm: 'flex-start' },
+                overflowX: 'auto',
+                py: 0.5,
+              }}
+            >
               <Button
                 variant="contained"
                 size="medium"
@@ -386,15 +397,17 @@ export default function PortfolioPage() {
                 sx={{
                   borderRadius: '8px',
                   py: 0.8,
-                  px: 2,
+                  px: { xs: 1, sm: 2 },
+                  minWidth: { xs: '38px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.825rem',
                   textTransform: 'none',
                   bgcolor: '#22c55e',
                   '&:hover': { bgcolor: '#16a34a' },
+                  '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } },
                 }}
               >
-                WhatsApp
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>WhatsApp</Box>
               </Button>
 
               <Button
@@ -406,16 +419,18 @@ export default function PortfolioPage() {
                 sx={{
                   borderRadius: '8px',
                   py: 0.8,
-                  px: 2,
+                  px: { xs: 1, sm: 2 },
+                  minWidth: { xs: '38px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.825rem',
                   textTransform: 'none',
                   color: '#60a5fa',
                   borderColor: 'rgba(96, 165, 250, 0.4)',
                   '&:hover': { bgcolor: 'rgba(96, 165, 250, 0.1)' },
+                  '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } },
                 }}
               >
-                LinkedIn
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>LinkedIn</Box>
               </Button>
 
               <Button
@@ -427,16 +442,18 @@ export default function PortfolioPage() {
                 sx={{
                   borderRadius: '8px',
                   py: 0.8,
-                  px: 2,
+                  px: { xs: 1, sm: 2 },
+                  minWidth: { xs: '38px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.825rem',
                   textTransform: 'none',
                   color: '#f3f4f6',
                   borderColor: 'rgba(255, 255, 255, 0.25)',
                   '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+                  '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } },
                 }}
               >
-                GitHub
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>GitHub</Box>
               </Button>
 
               <Button
@@ -449,19 +466,20 @@ export default function PortfolioPage() {
                 sx={{
                   borderRadius: '8px',
                   py: 0.8,
-                  px: 2,
+                  px: { xs: 1, sm: 2 },
+                  minWidth: { xs: '38px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.825rem',
                   textTransform: 'none',
                   color: '#f3f4f6',
                   borderColor: 'rgba(255, 255, 255, 0.2)',
                   '&:hover': { bgcolor: 'rgba(255, 255, 255, 0.1)' },
+                  '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } },
                 }}
               >
-                Email
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Email</Box>
               </Button>
 
-              {/* PHONE BUTTON: ICON-ONLY ON MOBILE (xs), FULL TEXT ON TABLET/DESKTOP (sm+) */}
               <Button
                 variant="outlined"
                 size="medium"
@@ -472,23 +490,18 @@ export default function PortfolioPage() {
                 sx={{
                   borderRadius: '8px',
                   py: 0.8,
-                  px: { xs: 1.25, sm: 2 },
-                  minWidth: { xs: 'auto', sm: 'auto' },
+                  px: { xs: 1, sm: 2 },
+                  minWidth: { xs: '38px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.825rem',
                   textTransform: 'none',
                   color: '#34d399',
                   borderColor: 'rgba(52, 211, 153, 0.4)',
                   '&:hover': { bgcolor: 'rgba(52, 211, 153, 0.1)' },
-                  '& .MuiButton-startIcon': {
-                    mr: { xs: 0, sm: 1 },
-                    ml: { xs: 0, sm: -0.5 },
-                  },
+                  '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } },
                 }}
               >
-                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
-                  +91 96331 34324
-                </Box>
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>+91 96331 34324</Box>
               </Button>
 
               <Button
@@ -500,15 +513,17 @@ export default function PortfolioPage() {
                 sx={{
                   borderRadius: '8px',
                   py: 0.8,
-                  px: 2,
+                  px: { xs: 1, sm: 2 },
+                  minWidth: { xs: '38px', sm: 'auto' },
                   fontWeight: 700,
                   fontSize: '0.825rem',
                   textTransform: 'none',
                   bgcolor: '#3b82f6',
                   '&:hover': { bgcolor: '#2563eb' },
+                  '& .MuiButton-startIcon': { mr: { xs: 0, sm: 1 }, ml: { xs: 0, sm: -0.5 } },
                 }}
               >
-                Resume
+                <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Resume</Box>
               </Button>
             </Box>
 
