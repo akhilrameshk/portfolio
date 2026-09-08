@@ -203,8 +203,9 @@ export default function PortfolioPage() {
     window.open('https://github.com/akhilrameshk', '_blank', 'noopener,noreferrer');
   };
 
+  // UPDATED RESUME FILE PATH
   const downloadResume = () => {
-    window.open('/resume.pdf', '_blank', 'noopener,noreferrer');
+    window.open('/akhil_full_stack_developer.pdf', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -375,7 +376,7 @@ export default function PortfolioPage() {
               I&apos;m Akhil Ramesh K, a Senior Full Stack Engineer & Team Lead with 10+ years of experience building scalable web applications using Next.js, React, Node.js, TypeScript, and MongoDB.
             </Typography>
 
-            {/* ACTION BUTTONS: ALL BUTTONS SWITCH TO ICON-ONLY ON xs FOR PERFECT SINGLE-ROW FIT */}
+            {/* ACTION BUTTONS BAR */}
             <Box 
               sx={{ 
                 display: 'flex', 
@@ -504,10 +505,14 @@ export default function PortfolioPage() {
                 <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>+91 96331 34324</Box>
               </Button>
 
+              {/* RESUME BUTTON DIRECT LINK TO FULL FILE NAME */}
               <Button
                 variant="contained"
                 size="medium"
-                onClick={downloadResume}
+                component="a"
+                href="/akhil_full_stack_developer.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Download PDF Resume"
                 startIcon={<DownloadIcon />}
                 sx={{
