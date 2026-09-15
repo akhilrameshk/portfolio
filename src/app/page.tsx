@@ -211,9 +211,9 @@ function PortfolioPageContent() {
     window.open('https://wa.me/919633134324?text=Hi%20Akhil,%20I%20reviewed%20your%20portfolio!', '_blank', 'noopener,noreferrer');
   };
 
-  // LINKEDIN FIXED WITH FULL VALID PROTOCOL URL
+  // UPDATED LINKEDIN URL
   const openLinkedIn = () => {
-    window.open('https://www.linkedin.com/in/akhilrameshk', '_blank', 'noopener,noreferrer');
+    window.open('https://www.linkedin.com/in/akhil-ramesh-a0270648', '_blank', 'noopener,noreferrer');
   };
 
   const openGitHub = () => {
@@ -221,8 +221,28 @@ function PortfolioPageContent() {
   };
 
   return (
-    <Box sx={{ bgcolor: 'background.default', color: 'text.primary', minHeight: '100vh', pb: 12, position: 'relative', transition: 'background-color 0.3s ease, color 0.3s ease' }}>
-      
+    <Box
+      sx={{
+        bgcolor: 'background.default',
+        color: 'text.primary',
+        minHeight: '100vh',
+        pb: 12,
+        position: 'relative',
+        transition: 'background-color 0.3s ease, color 0.3s ease',
+        // MOBILE FADE-IN ANIMATION
+        animation: 'fadeInMobile 0.8s ease-in-out',
+        '@keyframes fadeInMobile': {
+          '0%': {
+            opacity: 0,
+            transform: 'translateY(10px)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateY(0)',
+          },
+        },
+      }}
+    >
       {/* HEADER / NAVBAR */}
       <Box
         component="header"
@@ -273,7 +293,6 @@ function PortfolioPageContent() {
               </Button>
             ))}
 
-            {/* THEME TOGGLE ICON IN HEADER BAR */}
             <Tooltip title={`Switch to ${isDark ? 'light' : 'dark'} mode`}>
               <IconButton onClick={toggleColorMode} color="inherit" size="small" sx={{ ml: 1 }}>
                 {isDark ? <Brightness7Icon sx={{ color: '#f59e0b' }} /> : <Brightness4Icon sx={{ color: '#1e293b' }} />}
@@ -355,7 +374,6 @@ function PortfolioPageContent() {
               textAlign: { xs: 'center', sm: 'left' },
             }}
           >
-            {/* STATUS CHIP */}
             <Box sx={{ mb: 2, display: 'flex', justifyContent: { xs: 'center', sm: 'flex-start' } }}>
               <Chip
                 icon={
@@ -1058,14 +1076,17 @@ function PortfolioPageContent() {
 
 // --- ROOT WRAPPER PROVIDING THEME AND COLOR MODE ---
 export default function PortfolioPage() {
+  // DEFAULT STATE INITIALIZED TO DARK MODE
   const [mode, setMode] = useState<'light' | 'dark'>('dark');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const savedMode = localStorage.getItem('portfolioThemeMode') as 'light' | 'dark' | null;
     if (savedMode) {
       setMode(savedMode);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      setMode('light');
+    } else {
+      setMode('dark');
     }
   }, []);
 
@@ -1101,6 +1122,11 @@ export default function PortfolioPage() {
       }),
     [mode]
   );
+
+  // HYDRATION SAFETY CHECK
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <ColorModeContext.Provider value={colorMode}>
